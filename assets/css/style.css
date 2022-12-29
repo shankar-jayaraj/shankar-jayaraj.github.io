@@ -404,6 +404,37 @@ section {
   left: calc(50% - 20px);
 }
 
+.section-title h3 {
+  font-size: 28px;
+  
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #45505b;
+}
+
+.section-title h3::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.section-title h3::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: #0563bb;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
 .section-title p {
   margin-bottom: 0;
 }
@@ -414,6 +445,7 @@ section {
 .about .content h3 {
   font-weight: 700;
   font-size: 26px;
+
   color: #728394;
 }
 
@@ -441,6 +473,7 @@ section {
 
 .about .content p:last-child {
   margin-bottom: 0;
+  align-content: justify;
 }
 
 /*--------------------------------------------------------------
@@ -486,7 +519,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Akills
+# Skills
 --------------------------------------------------------------*/
 .skills .progress {
   height: 60px;
@@ -558,12 +591,21 @@ section {
   margin-bottom: 10px;
 }
 
+.resume .resume-item h6 {
+  font-size: 16px;
+  background: #f7f8f9;
+  padding: 5px 15px;
+  display: inline-block;
+  
+}
+
 .resume .resume-item ul {
   padding-left: 20px;
 }
 
 .resume .resume-item ul li {
   padding-bottom: 10px;
+  font-style: italic;
 }
 
 .resume .resume-item:last-child {
