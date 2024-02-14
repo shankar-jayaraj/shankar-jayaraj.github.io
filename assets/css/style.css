@@ -10,8 +10,8 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Montserrat", sans-serif;
-  color: #D9F4FF;
   background: #035FAC;
+  color: #D9F4FF;
 }
 
 a {
@@ -31,7 +31,7 @@ h4,
 h5,
 h6 {
   font-family: "Poppins", sans-serif;
-  color: #D9F4FF;
+  color: #D1D2C2;
 }
 
 /*--------------------------------------------------------------
@@ -44,7 +44,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #035FAC;
+  background: #A4E100;
   width: 40px;
   height: 40px;
   border-radius: 50px;
@@ -87,7 +87,7 @@ h6 {
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid #035FAC;
+  border: 6px solid #ffffff;
   border-top-color: #fff;
   border-bottom-color: #fff;
   border-radius: 50%;
@@ -181,13 +181,13 @@ h6 {
 .nav-menu a:focus {
   display: flex;
   align-items: center;
-  color: #035FAC;
+  color: #A4E100; /* icon colour */
   padding: 10px 18px;
   margin-bottom: 8px;
   transition: 0.3s;
   font-size: 15px;
   border-radius: 50px;
-  background: #D9F4FF;
+  background: #035FAC;
   height: 56px;
   width: 100%;
   overflow: hidden;
@@ -223,7 +223,7 @@ h6 {
 .nav-menu .active,
 .nav-menu .active:focus,
 .nav-menu li:hover>a {
-  color: #fff;
+  color: #a4e100;
   background: #035FAC;
 }
 
@@ -231,7 +231,7 @@ h6 {
 .nav-menu .active span,
 .nav-menu .active:focus span,
 .nav-menu li:hover>a span {
-  color: #fff;
+  color: #a4e100;
 }
 
 .nav-menu a:hover,
@@ -265,7 +265,7 @@ h6 {
 }
 
 .mobile-nav-toggle i {
-  color: #45505b;
+  color: #035FAC;
 }
 
 .mobile-nav-active {
@@ -290,6 +290,7 @@ h6 {
   background: url("../img/hero-bg.jpg") top right no-repeat;
   background-size: 100% auto;
   position: relative;
+
 }
 
 @media (min-width: 992px) {
@@ -300,8 +301,9 @@ h6 {
 
 #hero:before {
   content: "";
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, .7);
   position: absolute;
+  
   bottom: 0;
   top: 0;
   left: 0;
@@ -313,19 +315,23 @@ h6 {
   font-size: 64px;
   font-weight: 700;
   line-height: 56px;
-  color: #45505b;
+  color: #035FAC;
+
 }
 
 #hero p {
   color: #45505b;
-  margin: 15px 0 0 0;
+  margin: 20px 0 0 0;
   font-size: 26px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Antonio', sans-serif;
+  font-weight: 800;
+
 }
 
 #hero p span {
-  color: #0563bb;
+  color: #0563bb; /* hero title font colour */
   letter-spacing: 1px;
+  
 }
 
 #hero .social-links {
@@ -335,14 +341,14 @@ h6 {
 #hero .social-links a {
   font-size: 24px;
   display: inline-block;
-  color: #45505b;
+  color: #000000;
   line-height: 1;
   margin-right: 20px;
   transition: 0.3s;
 }
 
 #hero .social-links a:hover {
-  color: #0563bb;
+  color: #035FAC;
 }
 
 @media (max-width: 992px) {
@@ -360,6 +366,9 @@ h6 {
     font-size: 20px;
     line-height: 24px;
   }
+
+
+  
 }
 
 /*--------------------------------------------------------------
@@ -382,7 +391,7 @@ section {
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
-  color: #45505b;
+  color: #D9F4FF;
 }
 
 .section-title h2::before {
@@ -391,7 +400,7 @@ section {
   display: block;
   width: 120px;
   height: 1px;
-  background: #ddd;
+  background: #d9f4ff;
   bottom: 1px;
   left: calc(50% - 60px);
 }
@@ -402,18 +411,18 @@ section {
   display: block;
   width: 40px;
   height: 3px;
-  background: #035FAC;
+  background: #01B9D5;
   bottom: 0;
   left: calc(50% - 20px);
 }
 
 .section-title h3 {
   font-size: 28px;
-  
+  padding-top: 40px;
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
-  color: #45505b;
+  color: #D9F4FF; /* about mecolour*/
 }
 
 .section-title h3::before {
@@ -433,7 +442,7 @@ section {
   display: block;
   width: 30px;
   height: 3px;
-  background: #035FAC;
+  background: #01B9D5;
   bottom: 0;
   left: calc(50% - 20px);
 }
@@ -470,7 +479,7 @@ section {
 .about .content ul i {
   font-size: 16px;
   margin-right: 5px;
-  color: #0563bb;
+  color: #01B9D5; /*bullet colour */
   line-height: 0;
 }
 
@@ -488,7 +497,7 @@ section {
   width: 100%;
   position: relative;
   text-align: center;
-  background: #fff;
+  background: #035FAC; /*summary background colour */
 }
 
 .facts .count-box i {
@@ -497,8 +506,8 @@ section {
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
-  background: #0563bb;
-  color: #fff;
+  background: #01B9D5;
+  color: #D9F4FF;
   border-radius: 50px;
   display: inline-flex;
   align-items: center;
@@ -511,7 +520,7 @@ section {
   font-size: 36px;
   display: block;
   font-weight: 600;
-  color: #011426;
+  color: #D9F4FF;
 }
 
 .facts .count-box p {
@@ -562,17 +571,28 @@ section {
 --------------------------------------------------------------*/
 .resume .resume-title {
   font-size: 26px;
-  font-weight: 700;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  font-weight: 800;
+  margin-top: 30px;
+  margin-bottom: 30px;
   color: #45505b;
 }
 
 .resume .resume-item {
   padding: 0 0 20px 20px;
   margin-top: -2px;
-  border-left: 2px solid #035FAC;
+  border-left: 2px solid #01B9D5;
   position: relative;
+}
+
+.resume .resume-item h3 {
+  line-height: 20px;
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  color: #D9F4FF;
+  background-color: #000000;
+  margin-bottom: 10px;
 }
 
 .resume .resume-item h4 {
@@ -581,13 +601,13 @@ section {
   font-weight: 600;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-  color: #0563bb;
+  color: #D9F4FF;
   margin-bottom: 10px;
 }
 
 .resume .resume-item h5 {
   font-size: 16px;
-  background: #d9f4ff;
+  background: #D9F4FF;
   padding: 5px 15px;
   display: inline-block;
   font-weight: 600;
@@ -599,16 +619,19 @@ section {
   background: #d9f4ff;
   padding: 5px 15px;
   display: inline-block;
+  color: #035FAC;
   
 }
 
 .resume .resume-item ul {
   padding-left: 20px;
+  color: #01B9D5; /*item colour*/
 }
 
 .resume .resume-item ul li {
   padding-bottom: 10px;
   font-style: italic;
+  
 }
 
 .resume .resume-item:last-child {
@@ -623,8 +646,8 @@ section {
   border-radius: 50px;
   left: -9px;
   top: 0;
-  background: #fff;
-  border: 2px solid #035FAC;
+  background: #d9f4ff; /*bullet colour*/
+  border: 2px solid #01B9D5; /*bullet border colour*/
 }
 
 /*--------------------------------------------------------------
