@@ -18,7 +18,9 @@
 --------------------------------------------------------------*/
 body {
     font-family: "Montserrat", sans-serif;
-    background: #035FAC;
+    /* background: #035FAC;
+     */
+    background: linear-gradient(180deg, #035FAC 75%, #01B9D5 100%);
     color: #D9F4FF;
   }
   
@@ -1248,8 +1250,9 @@ body {
   # Footer
   --------------------------------------------------------------*/
   #footer {
-    background: #f7f8f9;
-    color: #45505b;
+    /* background: #ffffff; */
+    /* background: linear-gradient(180deg, #035FAC 25%, #01B9D5 50%, #A4E100 100%); */
+    color: #000000;
     font-size: 14px;
     text-align: center;
     padding: 30px 0;
@@ -1291,7 +1294,7 @@ body {
   }
   
   #footer .social-links a:hover {
-    background: #035FAC;
+    background: #A4E100;
     color: #fff;
     text-decoration: none;
   }
