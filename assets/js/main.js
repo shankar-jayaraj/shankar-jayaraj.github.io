@@ -244,6 +244,16 @@
     }
   });
 
+  // Add this JavaScript code
+  function toggleMenu() {
+    const navbarLinks = document.querySelector('.navbar-links');
+    if (navbarLinks.style.display === "block") {
+        navbarLinks.style.display = "none";
+    } else {
+        navbarLinks.style.display = "block";
+    }
+}
+
   /**
    * Animation on scroll
    */
