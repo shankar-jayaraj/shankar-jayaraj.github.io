@@ -278,7 +278,7 @@ body {
   /**
   * Mobile Navigation 
   */
-  /* .mobile-nav-toggle {
+  .mobile-nav-toggle {
     position: fixed;
     right: 10px;
     top: 10px;
@@ -309,96 +309,7 @@ body {
   .mobile-nav-active .mobile-nav-toggle {
     color: #fff;
     background-color: #0563bb;
-  } */
-
-/* Mobile Responsive Styles */
-@media (max-width: 768px) {
-  .container {
-      padding: 15px;
-      width: 100%;
   }
-
-  .profile {
-      padding: 20px 15px;
-  }
-
-  .profile img {
-      width: 96px;
-      height: 96px;
-  }
-
-  .link-button {
-      padding: 14px 16px;
-      margin: 10px 0;
-      font-size: 14px;
-  }
-
-  .featured {
-      padding: 15px;
-      margin: 15px 0;
-  }
-
-  .steps-container {
-      padding: 20px 15px;
-  }
-
-  .step {
-      padding: 10px;
-      margin: 15px 0;
-      font-size: 14px;
-  }
-
-  .tools-category h1 {
-      font-size: 1.8em;
-  }
-
-  .tools-category h2 {
-      font-size: 1.2em;
-  }
-
-  .tools-category h3 {
-      font-size: 1em;
-  }
-
-  .social-links {
-      gap: 15px;
-  }
-
-  .social-links a {
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
-  }
-}
-
-/* Touch Device Optimization */
-@media (hover: none) {
-  .link-button:hover {
-      transform: none;
-  }
-
-  .featured:hover::before {
-      transform: none;
-  }
-
-  .step:hover {
-      transform: none;
-  }
-}
-
-/* Small Screen Optimization */
-@media (max-width: 480px) {
-  .tool-desc {
-      display: none;
-  }
-
-  .link-button {
-      text-align: center;
-      justify-content: center;
-  }
-}
-
-
   
   /*--------------------------------------------------------------
   # Hero Section
