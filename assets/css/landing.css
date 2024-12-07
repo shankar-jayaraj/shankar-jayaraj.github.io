@@ -136,6 +136,7 @@ body {
     
     .link-button {
         padding: 14px 20px;
+        text-align: center;
     }
     
     .step {
@@ -1390,6 +1391,7 @@ body {
 .link-button {
     display: flex;
     align-items: center;
+    text-align: center;
     justify-content: space-between;
     background: rgba(1, 185, 213, 0.1);
     color: var(--light-blue);
@@ -1403,7 +1405,7 @@ body {
 .link-button:hover {
     background: var(--bright-aqua);
     transform: translateX(8px);
-    box-shadow: 0 4px 15px rgba(1, 185, 213, 0.3);
+    box-shadow: 0 4px 15px #035FAC;
 }
 .featured {
     background: linear-gradient(135deg, rgba(1, 185, 213, 0.1), rgba(164, 225, 0, 0.1));
@@ -1416,7 +1418,7 @@ body {
 }
 
 .featured a {
-    color: var(--white);
+    color: var(--lime-green);
     font-weight: 200;
     font-size: 1.2em;
     text-decoration: none;
@@ -1514,6 +1516,20 @@ body {
   margin: 30px 0;
 }
 
+.tools-category h1 {
+  color: var(--white);
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  text-align: center;
+}
+
+.tools-category h2 {
+  color: var(--soft-grey);
+  margin-bottom: 20px;
+  font-size: 1.4em;
+  text-align: center;
+}
+
 .tools-category h3 {
   color: var(--bright-aqua);
   margin-bottom: 20px;
@@ -1530,7 +1546,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: left;
   padding: 16px 20px;
 }
 
