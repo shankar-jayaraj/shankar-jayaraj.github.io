@@ -664,6 +664,37 @@ section {
   border: 2px solid #01B9D5; /*bullet border colour*/
 }
 
+.resume .resume-item img {
+  max-width: 150px;  /* Controls the maximum width of images */
+  height: auto;      /* Maintains aspect ratio */
+  margin: 10px 15px 10px 0;  /* Adds spacing around images */
+  border-radius: 4px;  /* Optional: adds slightly rounded corners */
+  display: inline-block;  /* Allows horizontal stacking */
+  vertical-align: middle;  /* Aligns images vertically */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Optional: adds subtle shadow */
+}
+
+/* Container for multiple images */
+.resume .resume-item .image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;  /* Space between images */
+  align-items: center;
+  margin: 10px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .resume .resume-item img {
+    max-width: 120px;  /* Slightly smaller on mobile */
+  }
+  
+  .resume .resume-item .image-container {
+    gap: 10px;
+  }
+}
+
+
 /*--------------------------------------------------------------
 # Portfolio
 --------------------------------------------------------------*/
