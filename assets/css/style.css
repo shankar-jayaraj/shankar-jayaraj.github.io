@@ -282,7 +282,7 @@ h6 {
 }
 
 .mobile-nav-toggle i {
-  color: #035FAC;
+  color: var(--light-blue);
 }
 
 .mobile-nav-active {
@@ -294,8 +294,8 @@ h6 {
 }
 
 .mobile-nav-active .mobile-nav-toggle {
-  color: #fff;
-  background-color: #0563bb;
+  color: var(--lime-green);
+  background-color: var(--bright-aqua);
 }
 
 @media (max-width: 991px) {
