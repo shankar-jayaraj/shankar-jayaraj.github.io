@@ -22,6 +22,14 @@ body {
   a {
     color: #A4E100;
     text-decoration: none;
+    align-self: auto;
+    font-weight: normal;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: inline;
+    transition: none;
   }
   
   a:hover {
@@ -29,7 +37,15 @@ body {
     text-decoration: none;
   }
   
-  h1,
+  h1 {
+    font-size: 40px;
+    font-weight: 900;
+    padding-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    color: var(--light-blue) /* about mecolour*/
+  }
   h2,
   h3,
   h4,
@@ -413,6 +429,7 @@ body {
     text-align: center;
     padding-bottom: 30px;
   }
+
   
   .section-title h2 {
     font-size: 32px;
@@ -1333,6 +1350,10 @@ body {
     margin: 20px 0;
     color: var(--light-blue);
   }
+
+  .step a {
+    color: var(--white);
+  }
   
   .step {
     text-align: left;
@@ -1423,6 +1444,8 @@ body {
     font-size: 1.2em;
     text-decoration: none;
     justify-content: center;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 .featured::before {
@@ -1463,10 +1486,10 @@ body {
     transition: all 0.3s ease;
 }
 
-.step:hover {
+/* .step:hover {
     background: rgba(1, 185, 213, 0.1);
     transform: translateX(10px);
-}
+} */
 
 .step-number {
     color: var(--bright-aqua);
