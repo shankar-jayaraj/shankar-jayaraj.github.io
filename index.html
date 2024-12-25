@@ -28,6 +28,9 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  {% if site.google_analytics %}
+  {% include analytics.html %}
+  {% endif %}
 </head>
 
 <body>
