@@ -4,7 +4,7 @@ Disallow: /forms/
 Disallow: /pages/
 Disallow: /landing/
 Disallow: /assests/
-Allow: /public/
+Allow: /
 
 User-agent: Googlebot
 
