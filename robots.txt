@@ -18,4 +18,4 @@ Allow: /public/
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: sitemap.xml
+Sitemap: https://github.com/shankar-jayaraj/shankar-jayaraj.github.io/blob/main/sitemap.xml
