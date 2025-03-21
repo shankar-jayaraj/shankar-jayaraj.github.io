@@ -648,7 +648,7 @@ section {
 
 .resume .resume-item ul {
   padding-left: 20px;
-  color: #01B9D5; /*item colour*/
+  color: --light-blue; /*item colour*/
 }
 
 .resume .resume-item ul li {
@@ -701,6 +701,52 @@ section {
   .resume .resume-item .image-container {
     gap: 10px;
   }
+}
+
+/*--------------------------------------------------------------
+# Tabs
+--------------------------------------------------------------*/
+
+
+.nav-tabs {
+  border-bottom: 2px solid var(--deep-blue);
+}
+
+.nav-tabs .nav-link {
+  color: var(--deep-blue);
+  background-color: var(--light-blue);
+  border: 1px solid var(--soft-grey);
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: var(--bright-aqua);
+  color: white;
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--light-blue);
+  background-color: var(--deep-blue);
+  border-color: var(--lime-green);
+  border-bottom-color: transparent;
+}
+
+.tab-content {
+  background-color: var(--deep-blue);
+  color: var(--light-blue);
+  border-top: none;
+  padding: 15px;
+}
+
+.tab-pane {
+  
+  color: var(--light-blue);
+}
+
+.tab-pane h3 {
+  color: var(--bright-aqua);
+  
 }
 
 
