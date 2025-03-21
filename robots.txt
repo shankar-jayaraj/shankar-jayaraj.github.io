@@ -7,12 +7,7 @@ Disallow: /assests/
 Allow: /public/
 
 User-agent: Googlebot
-Disallow: /admin/
-Disallow: /forms/
-Disallow: /pages/
-Disallow: /landing/
-Disallow: /assests/
-Disallow: /temp/
+
 Allow: /
 
 User-agent: PerplexityBot
