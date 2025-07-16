@@ -304,7 +304,7 @@ h6 {
   }
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 575px) {
   .portfolio-container {
     padding-left: 0;
     padding-right: 0;
