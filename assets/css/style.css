@@ -304,6 +304,17 @@ h6 {
   }
 }
 
+@media (max-width: 575.98px) {
+  .portfolio-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .portfolio-item {
+    margin-bottom: 20px;
+  }
+}
+
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
