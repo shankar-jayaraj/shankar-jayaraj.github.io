@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes&display=swap');
 
 :root {
     --deep-blue: #035FAC;
@@ -1409,6 +1410,22 @@ section {
   font-size: 13px;
 }
 
+#footer .signature {
+  font-family: 'Great Vibes', cursive !important;
+  color: var(--lime-green) !important;
+  font-size: 2rem !important;
+  font-weight: normal !important;
+  letter-spacing: 1px !important;
+  padding-top: 16px;
+  display: block !important;
+  text-align: center !important;
+  background: none !important;
+  user-select: none;
+  pointer-events: none;
+  text-shadow: 0 2px 4px #d1d2c2;
+}
+
+
 /* Steps Container Styling */
 .steps-container {
   padding: 20px;
@@ -1497,3 +1514,4 @@ section {
       height: 180px;
   }
 }
+
