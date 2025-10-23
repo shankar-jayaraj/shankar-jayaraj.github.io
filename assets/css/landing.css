@@ -1343,6 +1343,21 @@ body {
   #footer .credits {
     font-size: 13px;
   }
+
+  #footer .signature {
+  font-family: 'Great Vibes', cursive !important;
+  color: var(--light-blue) !important;
+  font-size: 2rem !important;
+  font-weight: normal !important;
+  letter-spacing: 1px !important;
+  padding-top: 16px;
+  display: block !important;
+  text-align: center !important;
+  background: none !important;
+  user-select: none;
+  pointer-events: none;
+  text-shadow: 0 2px 4px #d1d2c2;
+}
   
   /* Steps Container Styling */
   .steps-container {
