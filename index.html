@@ -42,24 +42,21 @@
     const hash = window.location.hash;
 
     document.addEventListener('DOMContentLoaded', function () {
-      // Remove hardcoded active state
-      const activeTab = document.querySelector('.nav-link.active');
+      var activeTab = document.querySelector('.nav-link.active');
       if (activeTab) activeTab.classList.remove('active');
 
-      const activePane = document.querySelector('.tab-pane.show.active');
+      var activePane = document.querySelector('.tab-pane.show.active');
       if (activePane) activePane.classList.remove('show', 'active');
 
       setTimeout(function () {
         if (hash) {
-          // Hash in URL → activate matching tab (e.g. #nav-contact)
-          const tabTrigger = document.querySelector('[data-bs-target="' + hash + '"]');
+          var tabTrigger = document.querySelector('[data-bs-target="' + hash + '"]');
           if (tabTrigger) {
             bootstrap.Tab.getOrCreateInstance(tabTrigger).show();
-            window.scrollTo(0, 0);
           }
         } else {
-          // No hash → activate About tab by default
-          const defaultTab = document.querySelector('#nav-about-tab');
+          // No hash → default to About tab
+          var defaultTab = document.querySelector('#nav-about-tab');
           if (defaultTab) bootstrap.Tab.getOrCreateInstance(defaultTab).show();
         }
       }, 50);
@@ -112,34 +109,30 @@
 
   <!-- ======= Hero Section ======= -->
 
-  <section id="hero" class="d-flex align-items-center justify-content-end " style="position:relative;">
-    <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <!-- <h1> Shankar J</h1> -->
-      <h1 class="d-flex justify-content-end align-items-center"> Shankar J </h1>
-      <p class="d-flex justify-content-end align-items-center"><span class="typed"
-          data-typed-items="Ph.D Scholar @ NIT Calicut , Former Academician , Speaker , Trainer, IEEE Member/Volunter, VU3FIY, Mentor of Change - AIM - Govt of India "></span>
-      </p>
-      <div class="social-links text-end">
-        <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
-        <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=drshankarj" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://www.instagram.com/drshankarj/" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="https://www.youtube.com/c/drshankarj" class="youtube"><i class="bx bxl-youtube"></i></a>
-        <a href="https://www.facebook.com/drshankarj" class="facebook"><i class="bx bxl-facebook"></i></a>
-      </div>
+  <section id="hero" class="d-flex align-items-center justify-content-end" style="position:relative;">
+  <div class="container" data-aos="zoom-in" data-aos-delay="100">
+    <h1 class="d-flex justify-content-end align-items-center">Shankar J</h1>
+    <p class="d-flex justify-content-end align-items-center">
+      <span class="typed" data-typed-items="Ph.D Scholar @ NIT Calicut , Former Academician , Speaker , Trainer, IEEE Member/Volunter, VU3FIY, Mentor of Change - AIM - Govt of India "></span>
+    </p>
+    <div class="social-links text-end">
+      <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=drshankarj" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      <a href="https://www.instagram.com/drshankarj/" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="https://www.youtube.com/c/drshankarj" class="youtube"><i class="bx bxl-youtube"></i></a>
+      <a href="https://www.facebook.com/drshankarj" class="facebook"><i class="bx bxl-facebook"></i></a>
     </div>
-      <a href="#main" class="scroll-down-indicator" aria-label="Scroll down to content">
-      <span class="scroll-text">Scroll</span>
-      <div class="scroll-arrow">
-        <i class="bx bx-chevron-down"></i>
-      </div>
-    </a>
-    
+  </div>
 
-  </section>
+  <!-- Scroll Down Indicator -->
+  <a href="javascript:void(0)" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'})" class="scroll-down-indicator" aria-label="Scroll down to content">
+    <span class="scroll-text">Scroll</span>
+    <div class="scroll-arrow"><i class="bx bx-chevron-down"></i></div>
+  </a>
+
+</section><!-- End Hero -->
+
   
   <!-- End Hero -->
-
-
 
 
   <main id="main">
@@ -1148,17 +1141,26 @@
   })();
   </script>
   <script>
-    // Auto-hide scroll indicator once user starts scrolling
-    const scrollIndicator = document.querySelector('.scroll-down-indicator');
+    var scrollIndicator = document.querySelector('.scroll-down-indicator');
     if (scrollIndicator) {
       window.addEventListener('scroll', function () {
-        if (window.scrollY > 80) {
-          scrollIndicator.classList.add('hidden');
-        } else {
-          scrollIndicator.classList.remove('hidden');
-        }
+        scrollIndicator.classList.toggle('hidden', window.scrollY > 80);
       }, { passive: true });
     }
+  </script>
+
+  <!-- Force page to top on load — overrides AOS, hash, and any auto-scroll -->
+  <script>
+    // Immediately on parse
+    window.scrollTo(0, 0);
+    history.scrollRestoration = 'manual'; // Prevent browser from restoring scroll position
+
+    // After everything (AOS, typed.js, main.js) has initialized
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }, 100);
+    });
   </script>
   
 </body>
