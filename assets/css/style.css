@@ -10,7 +10,7 @@
     --lime-green: #A4E100;
 }
 
-/* ── Scroll Down Indicator ── */
+/* Scroll Down Indicator */
 .scroll-down-indicator {
   position: absolute;
   bottom: 33%;
@@ -29,18 +29,13 @@
   padding: 8px 18px 10px;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  /* Ensure it's never cut off */
   white-space: nowrap;
-  min-width: 80px;
 }
-
 .scroll-down-indicator:hover,
 .scroll-down-indicator:active {
   background: rgba(0, 0, 0, 0.7);
-  border-color: rgba(255, 255, 255, 0.7);
   color: #fff;
 }
-
 .scroll-text {
   font-size: 10px;
   letter-spacing: 2.5px;
@@ -49,55 +44,24 @@
   color: #ffffff;
   line-height: 1;
 }
-
 .scroll-arrow i {
   font-size: 22px;
   color: #ffffff;
   display: block;
-  animation: bounce 1.6s ease-in-out infinite;
+  animation: scrollBounce 1.6s ease-in-out infinite;
   line-height: 1;
 }
-
-@keyframes bounce {
+@keyframes scrollBounce {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(6px); }
 }
-
 .scroll-down-indicator.hidden {
   opacity: 0;
   pointer-events: none;
 }
-
-/* ── Mobile overrides ── */
 @media (max-width: 768px) {
-  #hero {
-    position: relative;          /* Required for absolute child positioning */
-    min-height: 100svh;          /* Use small viewport height on mobile browsers */
-    padding-bottom: 80px;        /* Make room for the indicator above fold */
-  }
-
-  .scroll-down-indicator {
-    bottom: 33%;
-    padding: 7px 14px 9px;
-    background: rgba(0, 0, 0, 0.6);  /* Slightly darker on mobile for contrast */
-  }
-
-  .scroll-text {
-    font-size: 9px;
-    letter-spacing: 2px;
-  }
-
-  .scroll-arrow i {
-    font-size: 20px;
-  }
-}
-
-/* ── Very small phones (iPhone SE etc.) ── */
-@media (max-width: 375px) {
-  .scroll-down-indicator {
-    bottom: 33%;
-    padding: 6px 12px 8px;
-  }
+  #hero { min-height: 100svh; padding-bottom: 80px; }
+  .scroll-down-indicator { bottom: 33%; background: rgba(0,0,0,0.6); }
 }
 
 /*--------------------------------------------------------------
