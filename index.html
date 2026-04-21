@@ -40,29 +40,32 @@
   <script>
   (function () {
     const hash = window.location.hash;
-    if (!hash) return;
 
     document.addEventListener('DOMContentLoaded', function () {
-      // Immediately deactivate the default active tab to prevent flash
+      // Remove hardcoded active state
       const activeTab = document.querySelector('.nav-link.active');
       if (activeTab) activeTab.classList.remove('active');
 
       const activePane = document.querySelector('.tab-pane.show.active');
-      if (activePane) {
-        activePane.classList.remove('show', 'active');
-      }
+      if (activePane) activePane.classList.remove('show', 'active');
 
-      // Now activate the correct tab
       setTimeout(function () {
-        const tabTrigger = document.querySelector(`[data-bs-target="${hash}"]`);
-        if (tabTrigger) {
-          bootstrap.Tab.getOrCreateInstance(tabTrigger).show();
-          window.scrollTo(0, 0);
+        if (hash) {
+          // Hash in URL → activate matching tab (e.g. #nav-contact)
+          const tabTrigger = document.querySelector('[data-bs-target="' + hash + '"]');
+          if (tabTrigger) {
+            bootstrap.Tab.getOrCreateInstance(tabTrigger).show();
+            window.scrollTo(0, 0);
+          }
+        } else {
+          // No hash → activate About tab by default
+          const defaultTab = document.querySelector('#nav-about-tab');
+          if (defaultTab) bootstrap.Tab.getOrCreateInstance(defaultTab).show();
         }
       }, 50);
     });
   })();
-</script>
+  </script>
 
 </head>
 
@@ -124,7 +127,7 @@
         <a href="https://www.facebook.com/drshankarj" class="facebook"><i class="bx bxl-facebook"></i></a>
       </div>
     </div>
-      <a href="#nav-about" class="scroll-down-indicator" aria-label="Scroll down to content">
+      <a href="#main" class="scroll-down-indicator" aria-label="Scroll down to content">
       <span class="scroll-text">Scroll</span>
       <div class="scroll-arrow">
         <i class="bx bx-chevron-down"></i>
