@@ -410,6 +410,7 @@
     .cat-pill.typo { background: #fff4d6; color: #8a6100; }
     .cat-pill.homo { background: #efe3ff; color: #6b3bd1; }
     .cat-pill.fmt { background: #e3f0ff; color: #035FAC; }
+    .cat-pill.md { background: #fde8f3; color: #b02a7a; }
 
     code.cp {
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -654,9 +655,7 @@
     <header class="top">
       <div class="brand">
         <h1>LinkedIn Post Cleaner <span class="spark">✦</span></h1>
-        <p class="sub">Paste your AI-polished draft on the left. Get clean text on the right —
-          with invisible watermark characters and AI typographic tells stripped out. Everything
-          runs in your browser; nothing is uploaded.</p>
+        <p class="sub">Paste your AI-polished draft on the left. Get clean text on the right - with invisible watermark characters and AI typographic tells stripped out. Everything runs in your browser; nothing is uploaded.</p>
       </div>
       <a class="back" href="../index.html">← Back to portfolio</a>
     </header>
@@ -689,6 +688,11 @@
           <input type="checkbox" id="opt-homoglyph">
           <span class="track"></span>
           <span class="label">Fix homoglyphs<small>Cyrillic / Greek lookalikes → Latin</small></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="opt-markdown" checked>
+          <span class="track"></span>
+          <span class="label">Strip Markdown<small>**bold** ## _links_ `code` → plain text</small></span>
         </label>
         <div class="select-opt">
           <span class="label">Bullet points<small>emoji · arrow · hyphen bullets</small></span>
@@ -921,6 +925,57 @@
         /^(\s*)(\p{Extended_Pictographic}(?:[\u{1F3FB}-\u{1F3FF}️‍]|\p{Extended_Pictographic})*)\s+/u;
 
       /* =========================================================
+         Markdown strip (opt-in)
+         LLM drafts arrive wrapped in Markdown (**bold**, ## heads,
+         [links](url), `code`, > quotes, --- rules). LinkedIn does NOT
+         render Markdown, so this syntax survives as literal clutter and
+         reads as a machine tell. This unwraps the syntax, keeping text.
+         Operates on the whole string before the codepoint loop, tallying
+         each edit into the "md" category via the passed-in tally().
+      ========================================================= */
+      function stripMarkdown(text, tally) {
+        // --- Line-level: headings, blockquotes, horizontal rules ---
+        var out = text.split("\n").map(function (line) {
+          if (/^\s*([-*_])(?:\s*\1){2,}\s*$/.test(line)) {
+            tally(0x2D, "Horizontal rule (---)", "md", "md:hr");
+            return "";
+          }
+          var h = line.match(/^\s*(#{1,6})\s+(.*?)(?:\s+#+)?\s*$/);
+          if (h) {
+            tally(0x23, "Heading marker (#)", "md", "md:heading");
+            line = h[2];
+          }
+          var bq = line.match(/^\s*(?:>\s?)+/);
+          if (bq) {
+            tally(0x3E, "Blockquote (>)", "md", "md:bq");
+            line = line.slice(bq[0].length);
+          }
+          return line;
+        }).join("\n");
+
+        // --- Inline: ordered so wrappers unwrap outer-to-inner safely ---
+        var keepInner = function (m, inner) { return inner; };
+        function repl(re, cp, name, key) {
+          out = out.replace(re, function () {
+            tally(cp, name, "md", key);
+            return keepInner.apply(null, arguments);
+          });
+        }
+        repl(/```[^\n`]*\r?\n?([\s\S]*?)```/g, 0x60, "Code fence (```)", "md:fence");
+        repl(/`([^`\n]+)`/g, 0x60, "Inline code (`)", "md:code");
+        repl(/!\[([^\]]*)\]\([^)]*\)/g, 0x21, "Image (![]())", "md:img");
+        repl(/\[([^\]]+)\]\([^)]*\)/g, 0x5B, "Link ([](url))", "md:link");
+        repl(/\*\*\*(?=\S)([\s\S]*?\S)\*\*\*/g, 0x2A, "Bold-italic (***)", "md:bi");
+        repl(/\*\*(?=\S)([\s\S]*?\S)\*\*/g, 0x2A, "Bold (**)", "md:bold-a");
+        repl(/(?<!\w)__(?=\S)([\s\S]*?\S)__(?!\w)/g, 0x5F, "Bold (__)", "md:bold-u");
+        repl(/\*(?=\S)([^*\n]*?\S)\*/g, 0x2A, "Italic (*)", "md:ital-a");
+        repl(/(?<!\w)_(?=\S)([^_\n]*?\S)_(?!\w)/g, 0x5F, "Italic (_)", "md:ital-u");
+        repl(/~~(?=\S)([\s\S]*?\S)~~/g, 0x7E, "Strikethrough (~~)", "md:strike");
+
+        return out;
+      }
+
+      /* =========================================================
          Core cleaner
          Returns { cleaned, findings: Map<key, {...}>, reveal }
       ========================================================= */
@@ -933,8 +988,15 @@
           e.count++;
         }
 
-        // --- Bullet pre-pass (line-level, opt-in; keeps emoji/arrow/hyphen bullets by default) ---
         var working = text;
+
+        // --- Markdown strip pre-pass (opt-in). Runs first so any Markdown
+        //     "- item" bullets are then handled by the bullet control below. ---
+        if (opts.markdown) {
+          working = stripMarkdown(working, tally);
+        }
+
+        // --- Bullet pre-pass (line-level, opt-in; keeps emoji/arrow/hyphen bullets by default) ---
         if (opts.bullet && opts.bullet !== "keep") {
           var target = opts.bullet === "dot" ? "• " : "- ";
           var targetCp = opts.bullet === "dot" ? 0x2022 : 0x2D;
@@ -1095,7 +1157,8 @@
       var input = $("input"), output = $("output");
       var opts = {
         dash: $("opt-dash"), quotes: $("opt-quotes"), ellipsis: $("opt-ellipsis"),
-        spaces: $("opt-spaces"), homoglyph: $("opt-homoglyph")
+        spaces: $("opt-spaces"), homoglyph: $("opt-homoglyph"),
+        markdown: $("opt-markdown")
       };
 
       var CAT_META = {
@@ -1103,7 +1166,8 @@
         ws: { label: "Odd whitespace", cls: "ws", kind: "removed", order: 1 },
         typo: { label: "AI typographic tell", cls: "typo", kind: "normalized", order: 2 },
         homo: { label: "Homoglyph", cls: "homo", kind: "normalized", order: 3 },
-        fmt: { label: "Bullet formatting", cls: "fmt", kind: "normalized", order: 4 }
+        md: { label: "Markdown syntax", cls: "md", kind: "normalized", order: 4 },
+        fmt: { label: "Bullet formatting", cls: "fmt", kind: "normalized", order: 5 }
       };
 
       var bulletMode = "keep";
@@ -1124,7 +1188,8 @@
         var o = {
           dash: opts.dash.checked, quotes: opts.quotes.checked,
           ellipsis: opts.ellipsis.checked, spaces: opts.spaces.checked,
-          homoglyph: opts.homoglyph.checked, bullet: bulletMode
+          homoglyph: opts.homoglyph.checked, markdown: opts.markdown.checked,
+          bullet: bulletMode
         };
         var res = clean(raw, o);
 
