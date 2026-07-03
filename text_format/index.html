@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>LinkedIn Post Cleaner — Remove Hidden AI Footprints | Shankar J</title>
+  <meta name="description"
+    content="Paste an AI-polished LinkedIn draft and instantly strip invisible watermark characters, zero-width signatures and AI typographic tells. Runs entirely in your browser — nothing is uploaded.">
+  <meta name="robots" content="noindex">
+
+  <!-- Favicon (reuses the main portfolio asset) -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts — same families as the main portfolio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ---------- Brand palette (from portfolio css/style.css) ---------- */
+    :root {
+      --deep-blue: #035FAC;
+      --light-blue: #D9F4FF;
+      --bright-aqua: #01B9D5;
+      --soft-grey: #D1D2C2;
+      --lime-green: #A4E100;
+
+      --ink: #23303c;
+      --muted: #6b7a89;
+      --danger: #d13b3b;
+      --page-bg: #f2f8fc;
+      --card-bg: #ffffff;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(3, 95, 172, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 100% -10%, rgba(1, 185, 213, .12), transparent 60%),
+        radial-gradient(1000px 500px at -10% 0%, rgba(3, 95, 172, .10), transparent 55%),
+        var(--page-bg);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 22px clamp(14px, 3vw, 34px) 60px;
+    }
+
+    /* ---------- Header ---------- */
+    header.top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .brand h1 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3.4vw, 2.05rem);
+      margin: 0 0 6px;
+      color: var(--deep-blue);
+      letter-spacing: -.2px;
+    }
+
+    .brand h1 .spark { color: var(--bright-aqua); }
+
+    .brand p.sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+      max-width: 60ch;
+    }
+
+    a.back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      color: var(--deep-blue);
+      background: #fff;
+      border: 1px solid var(--soft-grey);
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .88rem;
+      white-space: nowrap;
+      transition: .18s ease;
+      box-shadow: var(--shadow);
+    }
+
+    a.back:hover { background: var(--light-blue); border-color: var(--bright-aqua); }
+
+    /* ---------- Options bar ---------- */
+    .options {
+      background: var(--card-bg);
+      border: 1px solid var(--soft-grey);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .options .legend {
+      font-size: .74rem;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .options .legend::before {
+      content: "";
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--bright-aqua);
+    }
+
+    .toggle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 10px 18px;
+    }
+
+    .switch {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      cursor: pointer;
+      user-select: none;
+      padding: 4px 2px;
+    }
+
+    .switch input { position: absolute; opacity: 0; pointer-events: none; }
+
+    .track {
+      flex: none;
+      width: 40px; height: 22px;
+      border-radius: 999px;
+      background: var(--soft-grey);
+      position: relative;
+      transition: background .18s ease;
+    }
+
+    .track::after {
+      content: "";
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+      transition: transform .18s ease;
+    }
+
+    .switch input:checked + .track { background: var(--lime-green); }
+    .switch input:checked + .track::after { transform: translateX(18px); }
+    .switch input:focus-visible + .track { outline: 2px solid var(--deep-blue); outline-offset: 2px; }
+
+    .switch .label {
+      font-size: .9rem;
+      font-weight: 500;
+    }
+    .switch .label small { display: block; color: var(--muted); font-weight: 400; font-size: .76rem; }
+
+    /* ---------- Panels ---------- */
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--soft-grey);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--soft-grey);
+    }
+
+    .panel .head h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      color: var(--deep-blue);
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .panel.output .head h2 { color: #0a7d33; }
+
+    .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+    .dot.in { background: var(--bright-aqua); }
+    .dot.out { background: var(--lime-green); }
+
+    textarea, .output-box {
+      width: 100%;
+      border: 0;
+      resize: vertical;
+      min-height: 300px;
+      padding: 16px;
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: .98rem;
+      line-height: 1.6;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    textarea:focus { outline: none; background: #fcfefe; }
+    textarea::placeholder { color: #a9b6c1; }
+
+    .output-box {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: anywhere;
+      background: #fbfffe;
+      overflow: auto;
+      max-height: 620px;
+    }
+
+    .output-box.empty { color: #a9b6c1; }
+
+    .panel .foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 16px;
+      border-top: 1px solid var(--soft-grey);
+      background: #fbfdff;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .counts b { color: var(--ink); font-weight: 600; }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: .85rem;
+      padding: 8px 15px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: .16s ease;
+    }
+
+    .btn.copy { background: var(--deep-blue); color: #fff; }
+    .btn.copy:hover { background: #0272cc; }
+    .btn.copy.done { background: var(--lime-green); color: #1c3a00; }
+    .btn.ghost { background: #fff; color: var(--deep-blue); border: 1px solid var(--soft-grey); }
+    .btn.ghost:hover { background: var(--light-blue); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* ---------- Report ---------- */
+    .report {
+      margin-top: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--soft-grey);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .report .rhead {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--soft-grey);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .summary {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .summary .badge {
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    .summary.clean { color: #0a7d33; }
+    .summary.clean .badge { background: rgba(164, 225, 0, .22); color: #4a6a00; }
+    .summary.dirty { color: var(--deep-blue); }
+    .summary.dirty .badge { background: rgba(1, 185, 213, .16); color: #056b7c; }
+    .summary.idle { color: var(--muted); }
+
+    .report .rbody { padding: 4px 18px 18px; }
+
+    table.findings {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      margin-top: 12px;
+    }
+
+    table.findings th {
+      text-align: left;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-bottom: 2px solid var(--soft-grey);
+    }
+
+    table.findings td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #eef3f6;
+      vertical-align: middle;
+    }
+
+    table.findings tr:last-child td { border-bottom: 0; }
+
+    .cat-pill {
+      display: inline-block;
+      font-size: .74rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--light-blue);
+      color: var(--deep-blue);
+      white-space: nowrap;
+    }
+    .cat-pill.sig { background: #ffe3e3; color: var(--danger); }
+    .cat-pill.ws { background: #e7f7ea; color: #0a7d33; }
+    .cat-pill.typo { background: #fff4d6; color: #8a6100; }
+    .cat-pill.homo { background: #efe3ff; color: #6b3bd1; }
+
+    code.cp {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      background: #f1f5f8;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: .82rem;
+      color: var(--deep-blue);
+    }
+
+    td.count b {
+      display: inline-block;
+      min-width: 26px;
+      text-align: center;
+      background: var(--deep-blue);
+      color: #fff;
+      border-radius: 7px;
+      padding: 2px 8px;
+      font-size: .82rem;
+    }
+
+    /* ---------- Reveal panel ---------- */
+    .reveal-toggle {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 0;
+      color: var(--deep-blue);
+      font-weight: 600;
+      font-size: .86rem;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+    .reveal-toggle .chev { transition: transform .18s ease; }
+    .reveal-toggle.open .chev { transform: rotate(90deg); }
+
+    .reveal-box {
+      display: none;
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px dashed var(--soft-grey);
+      border-radius: 10px;
+      background: #fbfdff;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: anywhere;
+      font-family: "Poppins", sans-serif;
+      font-size: .95rem;
+      line-height: 1.8;
+      max-height: 340px;
+      overflow: auto;
+    }
+    .reveal-box.show { display: block; }
+
+    .marker {
+      display: inline-block;
+      background: var(--danger);
+      color: #fff;
+      font-size: .68rem;
+      font-weight: 700;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      padding: 1px 5px;
+      margin: 0 1px;
+      border-radius: 5px;
+      vertical-align: middle;
+      letter-spacing: .3px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer.note {
+      margin-top: 26px;
+      text-align: center;
+      font-size: .82rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    footer.note .lock { color: var(--lime-green); font-weight: 700; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 760px) {
+      .columns { grid-template-columns: 1fr; }
+      textarea, .output-box { min-height: 220px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="top">
+      <div class="brand">
+        <h1>LinkedIn Post Cleaner <span class="spark">✦</span></h1>
+        <p class="sub">Paste your AI-polished draft on the left. Get clean text on the right —
+          with invisible watermark characters and AI typographic tells stripped out. Everything
+          runs in your browser; nothing is uploaded.</p>
+      </div>
+      <a class="back" href="../index.html">← Back to portfolio</a>
+    </header>
+
+    <!-- Options -->
+    <section class="options" aria-label="Cleaning options">
+      <div class="legend">Cleaning options</div>
+      <div class="toggle-grid">
+        <label class="switch">
+          <input type="checkbox" id="opt-dash" checked>
+          <span class="track"></span>
+          <span class="label">Remove em / en dashes<small>— –  →  -</small></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="opt-quotes" checked>
+          <span class="track"></span>
+          <span class="label">Straighten quotes<small>“ ” ‘ ’  →  " '  (off = don't touch)</small></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="opt-ellipsis" checked>
+          <span class="track"></span>
+          <span class="label">Fix ellipsis<small>…  →  ...</small></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="opt-spaces" checked>
+          <span class="track"></span>
+          <span class="label">Collapse extra spaces<small>trim lines &amp; exotic spaces</small></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="opt-homoglyph">
+          <span class="track"></span>
+          <span class="label">Fix homoglyphs<small>Cyrillic / Greek lookalikes → Latin</small></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Editor columns -->
+    <section class="columns">
+      <div class="panel input">
+        <div class="head">
+          <h2><span class="dot in"></span> Your AI-polished draft</h2>
+          <button class="btn ghost" id="clearBtn" title="Clear input">Clear</button>
+        </div>
+        <textarea id="input" spellcheck="false"
+          placeholder="Paste your AI-polished LinkedIn post here…"></textarea>
+        <div class="foot">
+          <span class="counts"><b id="inChars">0</b> chars · <b id="inWords">0</b> words</span>
+          <span id="inHidden"></span>
+        </div>
+      </div>
+
+      <div class="panel output">
+        <div class="head">
+          <h2><span class="dot out"></span> Cleaned text</h2>
+          <button class="btn copy" id="copyBtn" disabled>
+            <span id="copyLabel">Copy</span>
+          </button>
+        </div>
+        <div class="output-box empty" id="output" aria-live="polite">Cleaned text will appear here.</div>
+        <div class="foot">
+          <span class="counts"><b id="outChars">0</b> chars · <b id="outWords">0</b> words</span>
+          <span id="outSaved"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Report -->
+    <section class="report" aria-label="Detection report">
+      <div class="rhead">
+        <div class="summary idle" id="summary">
+          <span id="summaryText">Awaiting text…</span>
+        </div>
+      </div>
+      <div class="rbody">
+        <div id="reportTable"></div>
+        <button class="reveal-toggle" id="revealToggle" hidden>
+          <span class="chev">▸</span> <span id="revealLabel">Show where the hidden characters were</span>
+        </button>
+        <div class="reveal-box" id="revealBox"></div>
+      </div>
+    </section>
+
+    <footer class="note">
+      <span><span class="lock">🔒</span> 100% client-side — your text never leaves this browser tab.</span>
+      <span>·</span>
+      <span>Built for <a href="../index.html" style="color:var(--deep-blue);font-weight:600;text-decoration:none;">Shankar J</a></span>
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* =========================================================
+         Character catalogue
+         Each entry: codepoint (number) -> { name, cat }
+         cat: "sig" (invisible signature/zero-width, always removed)
+              handled inline; whitespace/typo/homoglyph handled separately.
+      ========================================================= */
+
+      // Tier 1 — always-removed invisible signature characters.
+      // (ZWJ U+200D and VS16 U+FE0F are NOT here — handled by emoji-safe pass.)
+      var SIGNATURE = {
+        0x200B: "Zero-width space",
+        0x200C: "Zero-width non-joiner",
+        0x2060: "Word joiner",
+        0xFEFF: "Zero-width no-break space (BOM)",
+        0x00AD: "Soft hyphen",
+        0x180E: "Mongolian vowel separator",
+        0x061C: "Arabic letter mark",
+        0x200E: "Left-to-right mark",
+        0x200F: "Right-to-left mark",
+        0x2061: "Function application",
+        0x2062: "Invisible times",
+        0x2063: "Invisible separator",
+        0x2064: "Invisible plus",
+        0xFFFC: "Object replacement character",
+        0xFFFD: "Replacement character"
+      };
+
+      // Bidirectional formatting controls (also invisible signatures).
+      // U+202A–U+202E and U+2066–U+2069
+      function isBidiControl(cp) {
+        return (cp >= 0x202A && cp <= 0x202E) || (cp >= 0x2066 && cp <= 0x2069);
+      }
+
+      // Tier 2 — exotic spaces normalised to a regular space.
+      var EXOTIC_SPACE = {
+        0x00A0: "No-break space",
+        0x2000: "En quad", 0x2001: "Em quad",
+        0x2002: "En space", 0x2003: "Em space",
+        0x2004: "Three-per-em space", 0x2005: "Four-per-em space",
+        0x2006: "Six-per-em space", 0x2007: "Figure space",
+        0x2008: "Punctuation space", 0x2009: "Thin space",
+        0x200A: "Hair space", 0x202F: "Narrow no-break space",
+        0x205F: "Medium mathematical space", 0x3000: "Ideographic space"
+      };
+
+      // Tier 4 — homoglyph map (Cyrillic / Greek lookalikes -> Latin).
+      // Pragmatic subset of the most common confusables, not exhaustive.
+      var HOMOGLYPH = {
+        // Cyrillic lowercase
+        0x0430: "a", 0x0435: "e", 0x043E: "o", 0x0440: "p", 0x0441: "c",
+        0x0445: "x", 0x0443: "y", 0x0456: "i", 0x0458: "j", 0x04BB: "h",
+        0x0455: "s", 0x0501: "d",
+        // Cyrillic uppercase
+        0x0410: "A", 0x0412: "B", 0x0415: "E", 0x041A: "K", 0x041C: "M",
+        0x041D: "H", 0x041E: "O", 0x0420: "P", 0x0421: "C", 0x0422: "T",
+        0x0425: "X", 0x0405: "S", 0x0406: "I", 0x0408: "J",
+        // Greek
+        0x0391: "A", 0x0392: "B", 0x0395: "E", 0x0396: "Z", 0x0397: "H",
+        0x0399: "I", 0x039A: "K", 0x039C: "M", 0x039D: "N", 0x039F: "O",
+        0x03A1: "P", 0x03A4: "T", 0x03A5: "Y", 0x03A7: "X",
+        0x03BF: "o", 0x03B1: "a", 0x03B9: "i", 0x03BD: "v"
+      };
+
+      // Short marker tags for the reveal view.
+      var MARKERS = {
+        0x200B: "ZWSP", 0x200C: "ZWNJ", 0x200D: "ZWJ", 0x2060: "WJ",
+        0xFEFF: "BOM", 0x00AD: "SHY", 0x180E: "MVS", 0x00A0: "NBSP",
+        0x202F: "NNBSP", 0x2009: "THSP", 0xFE0F: "VS16", 0xFFFD: "REPL"
+      };
+
+      function u(cp) {
+        return "U+" + cp.toString(16).toUpperCase().padStart(4, "0");
+      }
+      function markerFor(cp) {
+        return MARKERS[cp] || (cp >= 0xE0000 && cp <= 0xE007F ? "TAG" :
+          (cp >= 0xFE00 && cp <= 0xFE0F) || (cp >= 0xE0100 && cp <= 0xE01EF) ? "VS" : u(cp));
+      }
+
+      /* ---------- Emoji-context helpers (keep real emoji intact) ---------- */
+      function isEmojiCodepoint(cp) {
+        if (cp === undefined) return false;
+        return (
+          (cp >= 0x1F000 && cp <= 0x1FAFF) ||  // misc emoji & supplemental
+          (cp >= 0x2600 && cp <= 0x27BF) ||    // misc symbols & dingbats
+          (cp >= 0x1F1E6 && cp <= 0x1F1FF) ||  // regional indicators
+          cp === 0x2764 ||                     // heavy black heart
+          (cp >= 0x2190 && cp <= 0x21FF) === false && (cp >= 0x2B00 && cp <= 0x2BFF)
+        );
+      }
+
+      /* =========================================================
+         Core cleaner
+         Returns { cleaned, findings: Map<cat|cp, {...}>, revealHTML, removedTotal }
+      ========================================================= */
+      function clean(text, opts) {
+        var findings = {}; // key: cp -> {cp,name,cat,count}
+        function tally(cp, name, cat) {
+          var e = findings[cat + ":" + cp];
+          if (!e) { e = findings[cat + ":" + cp] = { cp: cp, name: name, cat: cat, count: 0 }; }
+          e.count++;
+        }
+
+        // Work on an array of codepoints so surrogate pairs stay intact.
+        var cps = Array.from(text).map(function (ch) { return ch.codePointAt(0); });
+        var out = [];
+        var reveal = []; // array of {type:'text'|'marker', value|cp}
+
+        function pushText(s) {
+          var last = reveal[reveal.length - 1];
+          if (last && last.type === "text") { last.value += s; }
+          else { reveal.push({ type: "text", value: s }); }
+        }
+
+        for (var i = 0; i < cps.length; i++) {
+          var cp = cps[i];
+          var prev = cps[i - 1];
+          var next = cps[i + 1];
+
+          // --- Tier 1: signature / invisible ---
+          if (SIGNATURE.hasOwnProperty(cp)) {
+            tally(cp, SIGNATURE[cp], "sig");
+            reveal.push({ type: "marker", cp: cp });
+            continue; // dropped
+          }
+          if (isBidiControl(cp)) {
+            tally(cp, "Bidirectional control", "sig");
+            reveal.push({ type: "marker", cp: cp });
+            continue;
+          }
+          // Unicode Tags block — invisible ASCII smuggling / watermark vector
+          if (cp >= 0xE0000 && cp <= 0xE007F) {
+            tally(cp, "Unicode tag character", "sig");
+            reveal.push({ type: "marker", cp: cp });
+            continue;
+          }
+          // C0/C1 control chars (keep tab, newline, carriage return)
+          if ((cp <= 0x1F && cp !== 0x09 && cp !== 0x0A && cp !== 0x0D) ||
+              (cp >= 0x7F && cp <= 0x9F)) {
+            tally(cp, "Control character", "sig");
+            reveal.push({ type: "marker", cp: cp });
+            continue;
+          }
+
+          // --- ZWJ (U+200D): keep only inside emoji sequences ---
+          if (cp === 0x200D) {
+            if (isEmojiCodepoint(prev) && isEmojiCodepoint(next)) {
+              out.push(cp); pushText(String.fromCodePoint(cp)); // legit emoji joiner
+            } else {
+              tally(cp, "Zero-width joiner (orphan)", "sig");
+              reveal.push({ type: "marker", cp: cp });
+            }
+            continue;
+          }
+
+          // --- Variation selectors ---
+          if ((cp >= 0xFE00 && cp <= 0xFE0F) || (cp >= 0xE0100 && cp <= 0xE01EF)) {
+            // Keep VS16 (U+FE0F) when it follows an emoji base (emoji presentation).
+            if (cp === 0xFE0F && isEmojiCodepoint(prev)) {
+              out.push(cp); pushText(String.fromCodePoint(cp));
+            } else {
+              tally(cp, cp === 0xFE0F ? "Variation selector-16" : "Variation selector", "sig");
+              reveal.push({ type: "marker", cp: cp });
+            }
+            continue;
+          }
+
+          // --- Line / paragraph separators -> newline ---
+          if (cp === 0x2028 || cp === 0x2029) {
+            tally(cp, cp === 0x2028 ? "Line separator" : "Paragraph separator", "sig");
+            out.push(0x0A); pushText("\n");
+            continue;
+          }
+
+          // --- Tier 2: exotic spaces ---
+          if (EXOTIC_SPACE.hasOwnProperty(cp)) {
+            if (opts.spaces) {
+              tally(cp, EXOTIC_SPACE[cp], "ws");
+              reveal.push({ type: "marker", cp: cp });
+              out.push(0x20); // regular space (may be collapsed later)
+            } else {
+              out.push(cp); pushText(String.fromCodePoint(cp));
+            }
+            continue;
+          }
+
+          // --- Tier 3: typographic tells ---
+          if (opts.dash && (cp === 0x2014 || cp === 0x2013 || cp === 0x2015)) {
+            tally(cp, cp === 0x2014 ? "Em dash" : cp === 0x2013 ? "En dash" : "Horizontal bar", "typo");
+            out.push(0x2D); pushText("-");
+            continue;
+          }
+          if (opts.quotes && (cp === 0x201C || cp === 0x201D || cp === 0x201E || cp === 0x201F || cp === 0x2033)) {
+            tally(cp, "Curly double quote", "typo");
+            out.push(0x22); pushText('"');
+            continue;
+          }
+          if (opts.quotes && (cp === 0x2018 || cp === 0x2019 || cp === 0x201A || cp === 0x201B || cp === 0x2032)) {
+            tally(cp, "Curly single quote / apostrophe", "typo");
+            out.push(0x27); pushText("'");
+            continue;
+          }
+          if (opts.ellipsis && cp === 0x2026) {
+            tally(cp, "Horizontal ellipsis", "typo");
+            out.push(0x2E, 0x2E, 0x2E); pushText("...");
+            continue;
+          }
+
+          // --- Tier 4: homoglyphs ---
+          if (opts.homoglyph && HOMOGLYPH.hasOwnProperty(cp)) {
+            var rep = HOMOGLYPH[cp];
+            tally(cp, "Homoglyph → \"" + rep + "\"", "homo");
+            for (var k = 0; k < rep.length; k++) { out.push(rep.charCodeAt(k)); }
+            pushText(rep);
+            continue;
+          }
+
+          // --- default: keep as-is ---
+          out.push(cp);
+          pushText(String.fromCodePoint(cp));
+        }
+
+        // Rebuild string from codepoints.
+        var cleaned = out.map(function (c) { return String.fromCodePoint(c); }).join("");
+
+        // Whitespace collapsing pass (only if enabled).
+        if (opts.spaces) {
+          cleaned = cleaned
+            .replace(/[ \t]+\n/g, "\n")      // trailing spaces per line
+            .replace(/ {2,}/g, " ")           // runs of spaces -> single
+            .replace(/\n{3,}/g, "\n\n")       // cap blank-line runs
+            .replace(/[ \t]+$/g, "")          // trailing at very end
+            .replace(/^\n+/, "");             // leading blank lines
+        }
+
+        return { cleaned: cleaned, findings: findings, reveal: reveal };
+      }
+
+      /* =========================================================
+         UI wiring
+      ========================================================= */
+      var $ = function (id) { return document.getElementById(id); };
+      var input = $("input"), output = $("output");
+      var opts = {
+        dash: $("opt-dash"), quotes: $("opt-quotes"), ellipsis: $("opt-ellipsis"),
+        spaces: $("opt-spaces"), homoglyph: $("opt-homoglyph")
+      };
+
+      var CAT_META = {
+        sig: { label: "Invisible signature", cls: "sig", order: 0 },
+        ws: { label: "Odd whitespace", cls: "ws", order: 1 },
+        typo: { label: "AI typographic tell", cls: "typo", order: 2 },
+        homo: { label: "Homoglyph", cls: "homo", order: 3 }
+      };
+
+      function countWords(s) {
+        var t = s.trim();
+        return t ? t.split(/\s+/).length : 0;
+      }
+
+      function escapeHtml(s) {
+        return s.replace(/[&<>"]/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+        });
+      }
+
+      function render() {
+        var raw = input.value;
+        var o = {
+          dash: opts.dash.checked, quotes: opts.quotes.checked,
+          ellipsis: opts.ellipsis.checked, spaces: opts.spaces.checked,
+          homoglyph: opts.homoglyph.checked
+        };
+        var res = clean(raw, o);
+
+        // Output box
+        if (raw.length === 0) {
+          output.textContent = "Cleaned text will appear here.";
+          output.classList.add("empty");
+          $("copyBtn").disabled = true;
+        } else {
+          output.textContent = res.cleaned;
+          output.classList.remove("empty");
+          $("copyBtn").disabled = res.cleaned.length === 0;
+        }
+
+        // Counts
+        $("inChars").textContent = Array.from(raw).length;
+        $("inWords").textContent = countWords(raw);
+        $("outChars").textContent = Array.from(res.cleaned).length;
+        $("outWords").textContent = countWords(res.cleaned);
+
+        // Findings -> array
+        var list = Object.keys(res.findings).map(function (k) { return res.findings[k]; });
+        var total = list.reduce(function (a, f) { return a + f.count; }, 0);
+        var cats = {};
+        list.forEach(function (f) { cats[f.cat] = true; });
+        var catCount = Object.keys(cats).length;
+
+        // Summary
+        var summary = $("summary"), sText = $("summaryText");
+        summary.className = "summary";
+        if (raw.length === 0) {
+          summary.classList.add("idle");
+          sText.innerHTML = "Awaiting text…";
+        } else if (total === 0) {
+          summary.classList.add("clean");
+          sText.innerHTML = '<span class="badge">CLEAN</span> ✨ No hidden footprints found — your text was already clean.';
+        } else {
+          summary.classList.add("dirty");
+          sText.innerHTML = '<span class="badge">' + total + ' REMOVED</span> ✅ ' +
+            total + ' hidden ' + (total === 1 ? "character" : "characters") +
+            ' removed across ' + catCount + ' ' + (catCount === 1 ? "category" : "categories") + '.';
+        }
+
+        // Table (sorted by category order, then count desc)
+        var tableWrap = $("reportTable");
+        if (list.length === 0) {
+          tableWrap.innerHTML = "";
+        } else {
+          list.sort(function (a, b) {
+            var d = CAT_META[a.cat].order - CAT_META[b.cat].order;
+            return d !== 0 ? d : b.count - a.count;
+          });
+          var rows = list.map(function (f) {
+            var m = CAT_META[f.cat];
+            return '<tr>' +
+              '<td><span class="cat-pill ' + m.cls + '">' + m.label + '</span></td>' +
+              '<td>' + escapeHtml(f.name) + '</td>' +
+              '<td><code class="cp">' + u(f.cp) + '</code></td>' +
+              '<td class="count"><b>' + f.count + '</b></td>' +
+              '</tr>';
+          }).join("");
+          tableWrap.innerHTML =
+            '<table class="findings"><thead><tr>' +
+            '<th>Category</th><th>Character</th><th>Code point</th><th>Count</th>' +
+            '</tr></thead><tbody>' + rows + '</tbody></table>';
+        }
+
+        // Reveal view (only meaningful when invisible/whitespace markers exist)
+        buildReveal(res.reveal, total);
+
+        // Foot hints
+        $("inHidden").innerHTML = total > 0
+          ? '<span style="color:var(--danger);font-weight:600;">' + total + ' hidden found</span>' : "";
+        $("outSaved").innerHTML = total > 0
+          ? '<span style="color:#0a7d33;font-weight:600;">cleaned ✓</span>' : "";
+      }
+
+      function buildReveal(reveal, total) {
+        var btn = $("revealToggle"), box = $("revealBox");
+        var hasMarkers = reveal.some(function (r) { return r.type === "marker"; });
+        if (!hasMarkers) {
+          btn.hidden = true;
+          box.classList.remove("show");
+          btn.classList.remove("open");
+          box.innerHTML = "";
+          return;
+        }
+        btn.hidden = false;
+        var html = reveal.map(function (r) {
+          if (r.type === "text") return escapeHtml(r.value);
+          return '<span class="marker" title="' + u(r.cp) + '">' + markerFor(r.cp) + '</span>';
+        }).join("");
+        box.innerHTML = html;
+      }
+
+      // Reveal toggle
+      $("revealToggle").addEventListener("click", function () {
+        var box = $("revealBox");
+        var open = box.classList.toggle("show");
+        this.classList.toggle("open", open);
+        $("revealLabel").textContent = open
+          ? "Hide the highlighted view" : "Show where the hidden characters were";
+      });
+
+      // Copy
+      var copyBtn = $("copyBtn");
+      copyBtn.addEventListener("click", function () {
+        var text = output.classList.contains("empty") ? "" : output.textContent;
+        if (!text) return;
+        var done = function () {
+          copyBtn.classList.add("done");
+          $("copyLabel").textContent = "Copied!";
+          setTimeout(function () {
+            copyBtn.classList.remove("done");
+            $("copyLabel").textContent = "Copy";
+          }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallbackCopy);
+        } else { fallbackCopy(); }
+        function fallbackCopy() {
+          var ta = document.createElement("textarea");
+          ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); done(); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+      });
+
+      // Clear
+      $("clearBtn").addEventListener("click", function () {
+        input.value = ""; input.focus(); render();
+      });
+
+      // Live updates (debounced)
+      var t;
+      function schedule() { clearTimeout(t); t = setTimeout(render, 90); }
+      input.addEventListener("input", schedule);
+      Object.keys(opts).forEach(function (k) {
+        opts[k].addEventListener("change", render);
+      });
+
+      render();
+    })();
+  </script>
+</body>
+
+</html>
