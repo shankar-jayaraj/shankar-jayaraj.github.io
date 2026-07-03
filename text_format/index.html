@@ -19,6 +19,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500&display=swap"
     rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     /* ---------- Brand palette (from portfolio css/style.css) ---------- */
@@ -181,6 +182,39 @@
       font-weight: 500;
     }
     .switch .label small { display: block; color: var(--muted); font-weight: 400; font-size: .76rem; }
+
+    /* Select-style option (bullets) */
+    .select-opt {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 2px;
+    }
+    .select-opt .label { font-size: .9rem; font-weight: 500; }
+    .select-opt .label small { display: block; color: var(--muted); font-weight: 400; font-size: .76rem; }
+    .seg {
+      display: inline-flex;
+      border: 1px solid var(--soft-grey);
+      border-radius: 999px;
+      overflow: hidden;
+      background: #fff;
+      width: fit-content;
+    }
+    .seg button {
+      border: 0;
+      background: none;
+      font-family: inherit;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 6px 13px;
+      cursor: pointer;
+      transition: .15s ease;
+      white-space: nowrap;
+    }
+    .seg button + button { border-left: 1px solid var(--soft-grey); }
+    .seg button.active { background: var(--deep-blue); color: #fff; }
+    .seg button:not(.active):hover { background: var(--light-blue); color: var(--deep-blue); }
 
     /* ---------- Panels ---------- */
     .columns {
@@ -366,6 +400,7 @@
     .cat-pill.ws { background: #e7f7ea; color: #0a7d33; }
     .cat-pill.typo { background: #fff4d6; color: #8a6100; }
     .cat-pill.homo { background: #efe3ff; color: #6b3bd1; }
+    .cat-pill.fmt { background: #e3f0ff; color: #035FAC; }
 
     code.cp {
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -436,19 +471,117 @@
       letter-spacing: .3px;
     }
 
-    /* ---------- Footer ---------- */
-    footer.note {
-      margin-top: 26px;
+    /* ---------- Research note ---------- */
+    .research {
+      margin-top: 20px;
+      background: linear-gradient(180deg, #fff, #fbfdff);
+      border: 1px solid var(--soft-grey);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .research summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 15px 18px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      color: var(--deep-blue);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .96rem;
+    }
+    .research summary::-webkit-details-marker { display: none; }
+    .research summary .chev { transition: transform .18s ease; color: var(--bright-aqua); }
+    .research[open] summary .chev { transform: rotate(90deg); }
+    .research .rc {
+      padding: 0 18px 18px;
+      font-size: .9rem;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    .research .rc p { margin: 0 0 10px; }
+    .research .rc a { color: var(--deep-blue); font-weight: 600; }
+    .research .rc ul { margin: 8px 0 0; padding-left: 20px; }
+    .research .rc li { margin-bottom: 6px; color: var(--muted); }
+    .research .rc li b { color: var(--ink); }
+
+    /* ---------- Signature footer ---------- */
+    footer.sig {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid var(--soft-grey);
       text-align: center;
-      font-size: .82rem;
+    }
+    footer.sig .signature {
+      font-family: "Great Vibes", cursive;
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--deep-blue);
+      margin-bottom: 4px;
+    }
+    footer.sig .role {
+      font-size: .84rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    footer.sig .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    footer.sig .social-links a {
+      width: 40px; height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--soft-grey);
+      color: var(--deep-blue);
+      transition: .18s ease;
+      box-shadow: 0 4px 12px rgba(3, 95, 172, .06);
+    }
+    footer.sig .social-links a:hover {
+      background: var(--deep-blue);
+      color: #fff;
+      border-color: var(--deep-blue);
+      transform: translateY(-3px);
+    }
+    footer.sig .social-links a svg { width: 19px; height: 19px; fill: currentColor; }
+    footer.sig .quick {
+      font-size: .86rem;
+      margin-bottom: 14px;
+    }
+    footer.sig .quick a {
+      color: var(--deep-blue);
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 4px;
+    }
+    footer.sig .quick a:hover { text-decoration: underline; }
+    footer.sig .quick .sep { color: var(--soft-grey); }
+    footer.sig .privacy {
+      font-size: .8rem;
       color: var(--muted);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       flex-wrap: wrap;
+      margin-bottom: 8px;
     }
-    footer.note .lock { color: var(--lime-green); font-weight: 700; }
+    footer.sig .privacy .lock { color: var(--lime-green); font-weight: 700; }
+    footer.sig .copyright {
+      font-size: .78rem;
+      color: var(--muted);
+      padding-bottom: 20px;
+    }
+    footer.sig .copyright b { color: var(--deep-blue); }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 760px) {
@@ -500,6 +633,14 @@
           <span class="track"></span>
           <span class="label">Fix homoglyphs<small>Cyrillic / Greek lookalikes → Latin</small></span>
         </label>
+        <div class="select-opt">
+          <span class="label">Bullet points<small>emoji · arrow · hyphen bullets</small></span>
+          <div class="seg" id="bulletSeg" role="group" aria-label="Bullet handling">
+            <button type="button" data-mode="keep" class="active">Keep as-is</button>
+            <button type="button" data-mode="hyphen">Unify to -</button>
+            <button type="button" data-mode="dot">Unify to •</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -549,10 +690,68 @@
       </div>
     </section>
 
-    <footer class="note">
-      <span><span class="lock">🔒</span> 100% client-side — your text never leaves this browser tab.</span>
-      <span>·</span>
-      <span>Built for <a href="../index.html" style="color:var(--deep-blue);font-weight:600;text-decoration:none;">Shankar J</a></span>
+    <!-- Research note -->
+    <details class="research">
+      <summary><span class="chev">▸</span> Why this works — the research behind it</summary>
+      <div class="rc">
+        <p>Newer LLMs leave two kinds of footprints, and this tool targets both:</p>
+        <ul>
+          <li><b>Invisible Unicode artifacts.</b> Through 2025, ChatGPT models were observed
+            emitting hidden characters — the narrow no-break space (U+202F), zero-width space
+            (U+200B), em space (U+2003) and em dash (U+2014). Forensic analysis concluded these
+            are most likely <i>training artifacts</i> from professionally typeset text rather than
+            a deliberate watermark, but either way they flag text as machine-touched.
+            (<a href="https://www.rumidocs.com/newsroom/new-chatgpt-models-seem-to-leave-watermarks-on-text" target="_blank" rel="noopener">Rumidocs</a>,
+            <a href="https://windowsforum.com/threads/unveiling-hidden-unicode-characters-in-openais-chatgpt-models-the-invisible-watermark-debate.361510/" target="_blank" rel="noopener">analysis</a>)</li>
+          <li><b>Statistical &amp; stylometric tells.</b> Modern detectors don't rely on hidden
+            characters alone — they weigh punctuation frequency, sentence burstiness and lexical
+            patterns, and treat homoglyph substitution as an adversarial signal
+            (Mikros, 2025; Kanwal et al., 2026). Normalizing curly quotes, em-dashes, exotic
+            spaces and lookalike letters reduces those surface tells.</li>
+          <li><b>What a cleaner can't fix.</b> Token-level statistical watermarks and
+            embedding-based classifiers key on <i>word choices</i>, not characters — only genuine
+            rewriting changes those. This tool removes the mechanical fingerprints; your own voice
+            does the rest.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Signature footer -->
+    <footer class="sig">
+      <div class="signature">Shankar J</div>
+      <div class="role">AI / ML Researcher · Ph.D Scholar, NIT Calicut · Speaker &amp; Trainer</div>
+
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/drshankarj" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/drshankarj/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/c/drshankarj" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/drshankarj" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        </a>
+        <a href="https://github.com/shankar-jayaraj" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58l-.01-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22l-.01 3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .3z"/></svg>
+        </a>
+        <a href="https://wa.me/919344775577" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.5 9.5 0 0 1-4.83-1.32l-.35-.2-3.6.94.96-3.5-.22-.36a9.48 9.48 0 0 1-1.45-5.05c0-5.24 4.27-9.5 9.5-9.5 2.54 0 4.92.99 6.72 2.78a9.44 9.44 0 0 1 2.78 6.72c0 5.24-4.27 9.5-9.5 9.5zM20.5 3.5A11.4 11.4 0 0 0 12.05.09C5.77.09.66 5.2.66 11.48c0 2.02.53 3.99 1.53 5.73L.56 23.4l6.34-1.66a11.36 11.36 0 0 0 5.14 1.31h.01c6.28 0 11.39-5.11 11.39-11.39 0-3.04-1.18-5.9-3.34-8.06z"/></svg>
+        </a>
+      </div>
+
+      <div class="quick">
+        <a href="../index.html">Portfolio</a><span class="sep"> · </span>
+        <a href="https://www.topmate.io/shankar_j" target="_blank" rel="noopener">Book Me</a><span class="sep"> · </span>
+        <a href="https://www.linkedin.com/in/drshankarj" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+
+      <div class="privacy">
+        <span class="lock">🔒</span> 100% client-side — your text never leaves this browser tab.
+      </div>
+      <div class="copyright">&copy; 2026 <b>Shankar J</b>. All rights reserved.</div>
     </footer>
 
   </div>
@@ -651,20 +850,49 @@
         );
       }
 
+      /* ---------- Bullet markers (line-level normalisation) ---------- */
+      // Symbol / arrow characters commonly used as list bullets.
+      var BULLET_SYMBOLS =
+        "•‣⁃∙◦▪▫●○■□" + // dots & squares
+        "►▶▸▹‣·‧" +                        // triangles / middots
+        "→⇒➜➤➔➙➡➘⇨" +            // arrows
+        "»›❖✦✧★☆–—―*+";     // guillemets, stars, dashes, *+
+      // ASCII hyphen-minus appended separately so it stays literal (last in the class, no range).
+      var RE_BULLET_SYM = new RegExp("^(\\s*)([" + BULLET_SYMBOLS + "\\-])\\s+");
+      // A leading emoji (optionally a full ZWJ / skin-tone / VS16 sequence) used as a bullet.
+      var RE_BULLET_EMOJI =
+        /^(\s*)(\p{Extended_Pictographic}(?:[\u{1F3FB}-\u{1F3FF}️‍]|\p{Extended_Pictographic})*)\s+/u;
+
       /* =========================================================
          Core cleaner
-         Returns { cleaned, findings: Map<cat|cp, {...}>, revealHTML, removedTotal }
+         Returns { cleaned, findings: Map<key, {...}>, reveal }
       ========================================================= */
       function clean(text, opts) {
-        var findings = {}; // key: cp -> {cp,name,cat,count}
-        function tally(cp, name, cat) {
-          var e = findings[cat + ":" + cp];
-          if (!e) { e = findings[cat + ":" + cp] = { cp: cp, name: name, cat: cat, count: 0 }; }
+        var findings = {}; // key -> {cp,name,cat,count}
+        function tally(cp, name, cat, key) {
+          key = key || (cat + ":" + cp);
+          var e = findings[key];
+          if (!e) { e = findings[key] = { cp: cp, name: name, cat: cat, count: 0 }; }
           e.count++;
         }
 
+        // --- Bullet pre-pass (line-level, opt-in; keeps emoji/arrow/hyphen bullets by default) ---
+        var working = text;
+        if (opts.bullet && opts.bullet !== "keep") {
+          var target = opts.bullet === "dot" ? "• " : "- ";
+          var targetCp = opts.bullet === "dot" ? 0x2022 : 0x2D;
+          var targetName = 'Bullet marker → "' + target.trim() + '"';
+          working = working.split("\n").map(function (line) {
+            var m = line.match(RE_BULLET_SYM) || line.match(RE_BULLET_EMOJI);
+            if (!m) return line;
+            if (m[2] === target.trim()) return line; // already the chosen marker
+            tally(targetCp, targetName, "fmt", "fmt:bullet");
+            return m[1] + target + line.slice(m[0].length);
+          }).join("\n");
+        }
+
         // Work on an array of codepoints so surrogate pairs stay intact.
-        var cps = Array.from(text).map(function (ch) { return ch.codePointAt(0); });
+        var cps = Array.from(working).map(function (ch) { return ch.codePointAt(0); });
         var out = [];
         var reveal = []; // array of {type:'text'|'marker', value|cp}
 
@@ -809,11 +1037,14 @@
       };
 
       var CAT_META = {
-        sig: { label: "Invisible signature", cls: "sig", order: 0 },
-        ws: { label: "Odd whitespace", cls: "ws", order: 1 },
-        typo: { label: "AI typographic tell", cls: "typo", order: 2 },
-        homo: { label: "Homoglyph", cls: "homo", order: 3 }
+        sig: { label: "Invisible signature", cls: "sig", kind: "removed", order: 0 },
+        ws: { label: "Odd whitespace", cls: "ws", kind: "removed", order: 1 },
+        typo: { label: "AI typographic tell", cls: "typo", kind: "normalized", order: 2 },
+        homo: { label: "Homoglyph", cls: "homo", kind: "normalized", order: 3 },
+        fmt: { label: "Bullet formatting", cls: "fmt", kind: "normalized", order: 4 }
       };
+
+      var bulletMode = "keep";
 
       function countWords(s) {
         var t = s.trim();
@@ -831,7 +1062,7 @@
         var o = {
           dash: opts.dash.checked, quotes: opts.quotes.checked,
           ellipsis: opts.ellipsis.checked, spaces: opts.spaces.checked,
-          homoglyph: opts.homoglyph.checked
+          homoglyph: opts.homoglyph.checked, bullet: bulletMode
         };
         var res = clean(raw, o);
 
@@ -852,12 +1083,14 @@
         $("outChars").textContent = Array.from(res.cleaned).length;
         $("outWords").textContent = countWords(res.cleaned);
 
-        // Findings -> array
+        // Findings -> array, split into "removed" (invisible) vs "normalized" (visible)
         var list = Object.keys(res.findings).map(function (k) { return res.findings[k]; });
-        var total = list.reduce(function (a, f) { return a + f.count; }, 0);
-        var cats = {};
-        list.forEach(function (f) { cats[f.cat] = true; });
-        var catCount = Object.keys(cats).length;
+        var removedTotal = 0, normalizedTotal = 0;
+        list.forEach(function (f) {
+          if (CAT_META[f.cat].kind === "removed") removedTotal += f.count;
+          else normalizedTotal += f.count;
+        });
+        var total = removedTotal + normalizedTotal;
 
         // Summary
         var summary = $("summary"), sText = $("summaryText");
@@ -870,9 +1103,13 @@
           sText.innerHTML = '<span class="badge">CLEAN</span> ✨ No hidden footprints found — your text was already clean.';
         } else {
           summary.classList.add("dirty");
-          sText.innerHTML = '<span class="badge">' + total + ' REMOVED</span> ✅ ' +
-            total + ' hidden ' + (total === 1 ? "character" : "characters") +
-            ' removed across ' + catCount + ' ' + (catCount === 1 ? "category" : "categories") + '.';
+          var parts = [];
+          if (removedTotal) parts.push('<b>' + removedTotal + '</b> invisible ' +
+            (removedTotal === 1 ? "character" : "characters") + ' removed');
+          if (normalizedTotal) parts.push('<b>' + normalizedTotal + '</b> visible ' +
+            (normalizedTotal === 1 ? "tell" : "tells") + ' normalized');
+          sText.innerHTML = '<span class="badge">' + total + ' FIXED</span> ✅ ' +
+            parts.join(' · ') + '.';
         }
 
         // Table (sorted by category order, then count desc)
@@ -972,6 +1209,18 @@
       input.addEventListener("input", schedule);
       Object.keys(opts).forEach(function (k) {
         opts[k].addEventListener("change", render);
+      });
+
+      // Bullet segmented control
+      var bulletSeg = $("bulletSeg");
+      bulletSeg.addEventListener("click", function (e) {
+        var btn = e.target.closest("button");
+        if (!btn) return;
+        bulletMode = btn.getAttribute("data-mode");
+        Array.prototype.forEach.call(bulletSeg.querySelectorAll("button"), function (b) {
+          b.classList.toggle("active", b === btn);
+        });
+        render();
       });
 
       render();
