@@ -485,6 +485,27 @@
       letter-spacing: .3px;
     }
 
+    /* A visible character that was normalised (e.g. em-dash → -, curly → straight). */
+    .chg {
+      background: rgba(164, 225, 0, .28);
+      color: #3a5200;
+      border-radius: 4px;
+      padding: 0 2px;
+      box-shadow: inset 0 -1px 0 rgba(10, 125, 51, .4);
+    }
+
+    .reveal-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--soft-grey);
+      font-size: .78rem;
+      color: var(--muted);
+    }
+    .reveal-legend span.item { display: inline-flex; align-items: center; gap: 6px; }
+
     /* ---------- Research note ---------- */
     .research {
       margin-top: 20px;
@@ -937,6 +958,10 @@
           if (last && last.type === "text") { last.value += s; }
           else { reveal.push({ type: "text", value: s }); }
         }
+        // A visible character that was normalised — shown highlighted (green) in the reveal.
+        function pushChange(value, title) {
+          reveal.push({ type: "change", value: value, title: title });
+        }
 
         for (var i = 0; i < cps.length; i++) {
           var cp = cps[i];
@@ -1012,23 +1037,24 @@
 
           // --- Tier 3: typographic tells ---
           if (opts.dash && (cp === 0x2014 || cp === 0x2013 || cp === 0x2015)) {
-            tally(cp, cp === 0x2014 ? "Em dash" : cp === 0x2013 ? "En dash" : "Horizontal bar", "typo");
-            out.push(0x2D); pushText("-");
+            var dashName = cp === 0x2014 ? "Em dash" : cp === 0x2013 ? "En dash" : "Horizontal bar";
+            tally(cp, dashName, "typo");
+            out.push(0x2D); pushChange("-", dashName + " → -");
             continue;
           }
           if (opts.quotes && (cp === 0x201C || cp === 0x201D || cp === 0x201E || cp === 0x201F || cp === 0x2033)) {
             tally(cp, "Curly double quote", "typo");
-            out.push(0x22); pushText('"');
+            out.push(0x22); pushChange('"', "Curly double quote → \"");
             continue;
           }
           if (opts.quotes && (cp === 0x2018 || cp === 0x2019 || cp === 0x201A || cp === 0x201B || cp === 0x2032)) {
             tally(cp, "Curly single quote / apostrophe", "typo");
-            out.push(0x27); pushText("'");
+            out.push(0x27); pushChange("'", "Curly single quote → '");
             continue;
           }
           if (opts.ellipsis && cp === 0x2026) {
             tally(cp, "Horizontal ellipsis", "typo");
-            out.push(0x2E, 0x2E, 0x2E); pushText("...");
+            out.push(0x2E, 0x2E, 0x2E); pushChange("...", "Ellipsis → ...");
             continue;
           }
 
@@ -1037,7 +1063,7 @@
             var rep = HOMOGLYPH[cp];
             tally(cp, "Homoglyph → \"" + rep + "\"", "homo");
             for (var k = 0; k < rep.length; k++) { out.push(rep.charCodeAt(k)); }
-            pushText(rep);
+            pushChange(rep, "Homoglyph " + u(cp) + " → " + rep);
             continue;
           }
 
@@ -1185,7 +1211,10 @@
       function buildReveal(reveal, total) {
         var btn = $("revealToggle"), box = $("revealBox");
         var hasMarkers = reveal.some(function (r) { return r.type === "marker"; });
-        if (!hasMarkers) {
+        var hasChanges = reveal.some(function (r) { return r.type === "change"; });
+        // Show the reveal for any edit — invisible removals (red) or visible
+        // normalisations (green) — so it mirrors every finding in the table.
+        if (!hasMarkers && !hasChanges) {
           btn.hidden = true;
           box.classList.remove("show");
           btn.classList.remove("open");
@@ -1193,11 +1222,21 @@
           return;
         }
         btn.hidden = false;
+        var legendParts = [];
+        if (hasMarkers) legendParts.push(
+          '<span class="item"><span class="marker">ZWSP</span> removed / invisible</span>');
+        if (hasChanges) legendParts.push(
+          '<span class="item"><span class="chg">Aa</span> normalised</span>');
+        var legend = '<div class="reveal-legend">' + legendParts.join("") + '</div>';
         var html = reveal.map(function (r) {
           if (r.type === "text") return escapeHtml(r.value);
+          if (r.type === "change") {
+            return '<span class="chg" title="' + escapeHtml(r.title) + '">' +
+              escapeHtml(r.value) + '</span>';
+          }
           return '<span class="marker" title="' + u(r.cp) + '">' + markerFor(r.cp) + '</span>';
         }).join("");
-        box.innerHTML = html;
+        box.innerHTML = legend + html;
       }
 
       // Reveal toggle
