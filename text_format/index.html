@@ -273,6 +273,9 @@
     textarea:focus { outline: none; background: #fcfefe; }
     textarea::placeholder { color: #a9b6c1; }
 
+    /* Reading-optimised output: comfortable measure, rhythm & spacing so the
+       cleaned post is pleasant to read on mobile (styling only — copied text
+       is byte-for-byte identical to the source). */
     .output-box {
       white-space: pre-wrap;
       word-wrap: break-word;
@@ -280,6 +283,12 @@
       background: #fbfffe;
       overflow: auto;
       max-height: 620px;
+      font-size: 1rem;
+      line-height: 1.75;
+      letter-spacing: .1px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      hyphens: none;
     }
 
     .output-box.empty { color: #a9b6c1; }
@@ -425,6 +434,10 @@
     /* ---------- Reveal panel ---------- */
     .reveal-toggle {
       margin-top: 14px;
+      /* A bare `.reveal-toggle{display:inline-flex}` overrides the UA
+         [hidden]{display:none} rule, so the `hidden` attribute would never
+         hide the button (it leaked an empty reveal box). The explicit
+         `.reveal-toggle[hidden]` rule below restores that behaviour. */
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -436,6 +449,7 @@
       cursor: pointer;
       padding: 4px 0;
     }
+    .reveal-toggle[hidden] { display: none; }
     .reveal-toggle .chev { transition: transform .18s ease; }
     .reveal-toggle.open .chev { transform: rotate(90deg); }
 
@@ -587,6 +601,28 @@
     @media (max-width: 760px) {
       .columns { grid-template-columns: 1fr; }
       textarea, .output-box { min-height: 220px; }
+      /* Larger type & looser rhythm for thumb-distance reading on phones. */
+      .output-box {
+        font-size: 1.06rem;
+        line-height: 1.85;
+        padding: 18px 17px;
+        letter-spacing: .15px;
+        max-height: 72vh;
+        word-break: normal;
+        overflow-wrap: break-word;   /* keep long words tidy without shredding them */
+      }
+      /* Tap-friendly action buttons (>=44px hit target). */
+      .btn { padding: 11px 18px; font-size: .92rem; }
+      .panel .head { padding: 14px 16px; }
+      .panel .head h2 { font-size: 1.05rem; }
+      /* Give the cleaned-text card breathing room and a subtle read cue. */
+      .panel.output { border-color: var(--bright-aqua); }
+    }
+
+    /* Even tighter phones — keep the measure comfortable, avoid cramped edges. */
+    @media (max-width: 420px) {
+      .wrap { padding-left: 12px; padding-right: 12px; }
+      .output-box { font-size: 1.08rem; line-height: 1.9; padding: 16px 15px; }
     }
   </style>
 </head>
@@ -1224,6 +1260,48 @@
       });
 
       render();
+    })();
+  </script>
+
+  <!-- ============================================================
+       Source-protection deterrents.
+       NOTE: client-side code can never be truly hidden (this page is
+       open-source on GitHub). These handlers only raise the bar for
+       casual inspection — they block right-click, the common dev-tools
+       shortcuts and view-source. Text selection & the Copy button are
+       left fully working so the tool stays usable.
+  ============================================================ -->
+  <script>
+    (function () {
+      "use strict";
+
+      // Block the context (right-click) menu.
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+
+      // Block common inspection / view-source / save shortcuts.
+      document.addEventListener("keydown", function (e) {
+        var k = (e.key || "").toLowerCase();
+        var block =
+          e.key === "F12" ||                                  // dev tools
+          (e.ctrlKey && e.shiftKey && (k === "i" || k === "j" || k === "c")) || // inspect / console / picker
+          (e.ctrlKey && k === "u") ||                         // view source
+          (e.ctrlKey && k === "s") ||                         // save page
+          // macOS equivalents (Cmd+Opt+I / J / C, Cmd+U, Cmd+S)
+          (e.metaKey && e.altKey && (k === "i" || k === "j" || k === "c")) ||
+          (e.metaKey && (k === "u" || k === "s"));
+        if (block) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      });
+
+      // Discourage dragging images/text out of the page.
+      document.addEventListener("dragstart", function (e) {
+        e.preventDefault();
+      });
     })();
   </script>
 </body>
