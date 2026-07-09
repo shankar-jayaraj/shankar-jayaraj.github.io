@@ -7,10 +7,20 @@ Disallow: /assests/
 Allow: /
 
 User-agent: Googlebot
-
 Allow: /
 
+# AI answer engines explicitly welcome
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
 User-agent: PerplexityBot
 Allow: /
+User-agent: Google-Extended
+Allow: /
 
-Sitemap: https://github.com/shankar-jayaraj/shankar-jayaraj.github.io/blob/main/sitemap.xml
+Sitemap: https://shankar-jayaraj.github.io/sitemap.xml
