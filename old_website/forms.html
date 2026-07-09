@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LinkedIn Personal Branding Services - Market Research</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header { background: #0077B5; color: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .section { margin-bottom: 30px; border-left: 4px solid #0077B5; padding-left: 20px; }
+        .question { margin-bottom: 15px; }
+        .required { color: red; }
+        input[type="text"], select, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        textarea { height: 100px; }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; }
+        .checkbox-item { display: flex; align-items: center; margin-right: 20px; }
+        .price-range { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+        .submit-btn { background: #0077B5; color: white; padding: 15px 30px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 LinkedIn Personal Branding for Tech Professionals</h1>
+        <p><strong>Help me understand your LinkedIn growth needs and create services that deliver real results!</strong></p>
+        <p>As a tech professional active on LinkedIn since October 2023, I'm building specialized personal branding services. Your insights will help me create solutions that actually work for people like you.</p>
+    </div>
+
+    <form method="POST" action="/submit-research">
+        
+        <!-- Professional Background Section -->
+        <div class="section">
+            <h2>📊 Your Professional Background</h2>
+            
+            <div class="question">
+                <label>What best describes your current role in tech? <span class="required">*</span></label>
+                <select name="tech_role" required>
+                    <option value="">Select your role</option>
+                    <option value="software_engineer">Software Engineer/Developer</option>
+                    <option value="data_scientist">Data Scientist/ML Engineer</option>
+                    <option value="product_manager">Product Manager</option>
+                    <option value="tech_lead">Tech Lead/Senior Engineer</option>
+                    <option value="engineering_manager">Engineering Manager</option>
+                    <option value="founder_cto">Founder/CTO</option>
+                    <option value="qa_devops">QA/DevOps Engineer</option>
+                    <option value="ui_ux">UI/UX Designer</option>
+                    <option value="consultant">Tech Consultant</option>
+                    <option value="other">Other (specify below)</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Years of experience in tech:</label>
+                <select name="experience_years">
+                    <option value="">Select range</option>
+                    <option value="0-2">0-2 years (Entry level)</option>
+                    <option value="3-5">3-5 years (Mid-level)</option>
+                    <option value="6-10">6-10 years (Senior level)</option>
+                    <option value="11+">11+ years (Expert level)</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>What's your current LinkedIn activity level?</label>
+                <select name="linkedin_activity">
+                    <option value="">Select activity level</option>
+                    <option value="rarely_active">Rarely active (few posts per year)</option>
+                    <option value="occasionally_active">Occasionally active (1-2 posts per month)</option>
+                    <option value="regularly_active">Regularly active (1-2 posts per week)</option>
+                    <option value="very_active">Very active (3-5 posts per week)</option>
+                    <option value="daily_active">Daily active (5+ posts per week)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- LinkedIn Goals & Challenges Section -->
+        <div class="section">
+            <h2>🎯 Your LinkedIn Goals & Challenges</h2>
+            
+            <div class="question">
+                <label>What are your PRIMARY LinkedIn goals? (Select up to 3) <span class="required">*</span></label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="linkedin_goals[]" value="job_opportunities" id="job_opportunities">
+                        <label for="job_opportunities">Land better job opportunities</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="linkedin_goals[]" value="thought_leadership" id="thought_leadership">
+                        <label for="thought_leadership">Establish thought leadership</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="linkedin_goals[]" value="network_expansion" id="network_expansion">
+                        <label for="network_expansion">Expand professional network</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="linkedin_goals[]" value="business_opportunities" id="business_opportunities">
+                        <label for="business_opportunities">Generate business opportunities</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="linkedin_goals[]" value="personal_brand" id="personal_brand">
+                        <label for="personal_brand">Build strong personal brand</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="linkedin_goals[]" value="industry_recognition" id="industry_recognition">
+                        <label for="industry_recognition">Gain industry recognition</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="linkedin_goals[]" value="speaking_opportunities" id="speaking_opportunities">
+                        <label for="speaking_opportunities">Get speaking opportunities</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="linkedin_goals[]" value="freelance_clients" id="freelance_clients">
+                        <label for="freelance_clients">Attract freelance clients</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>What's your BIGGEST challenge with LinkedIn right now? <span class="required">*</span></label>
+                <textarea name="biggest_challenge" required placeholder="Be specific about what's holding you back from achieving your LinkedIn goals..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>How many meaningful connections/opportunities have you gained from LinkedIn in the past 6 months?</label>
+                <select name="linkedin_results">
+                    <option value="">Select range</option>
+                    <option value="none">None</option>
+                    <option value="1-3">1-3 connections/opportunities</option>
+                    <option value="4-10">4-10 connections/opportunities</option>
+                    <option value="11-25">11-25 connections/opportunities</option>
+                    <option value="25+">25+ connections/opportunities</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Service Interest & Preferences Section -->
+        <div class="section">
+            <h2>💡 Service Interest & Preferences</h2>
+            
+            <div class="question">
+                <label>Which LinkedIn personal branding services would be most valuable to you? (Rank your top 3)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="service_interest[]" value="profile_optimization" id="profile_optimization">
+                        <label for="profile_optimization">Complete LinkedIn profile optimization</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="service_interest[]" value="content_strategy" id="content_strategy">
+                        <label for="content_strategy">Content strategy & planning</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="service_interest[]" value="content_creation" id="content_creation">
+                        <label for="content_creation">Content creation & writing</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="service_interest[]" value="engagement_strategy" id="engagement_strategy">
+                        <label for="engagement_strategy">Engagement & networking strategy</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="service_interest[]" value="one_on_one_coaching" id="one_on_one_coaching">
+                        <label for="one_on_one_coaching">1:1 strategy sessions</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="service_interest[]" value="group_coaching" id="group_coaching">
+                        <label for="group_coaching">Group coaching/cohort program</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="service_interest[]" value="done_for_you" id="done_for_you">
+                        <label for="done_for_you">Done-for-you content management</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="service_interest[]" value="workshops" id="workshops">
+                        <label for="workshops">Intensive workshops/bootcamps</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>What format would you prefer for LinkedIn personal branding guidance?</label>
+                <select name="preferred_format">
+                    <option value="">Select preference</option>
+                    <option value="one_on_one">1:1 personalized sessions</option>
+                    <option value="small_group">Small group coaching (4-6 people)</option>
+                    <option value="online_course">Self-paced online course</option>
+                    <option value="intensive_workshop">Intensive workshop (half/full day)</option>
+                    <option value="monthly_cohort">Monthly cohort program</option>
+                    <option value="done_for_you">Done-for-you service</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>How quickly do you want to see results from LinkedIn personal branding efforts?</label>
+                <select name="timeline_expectations">
+                    <option value="">Select timeline</option>
+                    <option value="immediate">Immediately (within 1 month)</option>
+                    <option value="short_term">Short-term (2-3 months)</option>
+                    <option value="medium_term">Medium-term (4-6 months)</option>
+                    <option value="long_term">Long-term (6+ months)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Investment & Pricing Section -->
+        <div class="section">
+            <h2>💰 Investment & Pricing</h2>
+            
+            <div class="question">
+                <label>What's a reasonable monthly investment for LinkedIn personal branding services that deliver results? <span class="required">*</span></label>
+                <div class="price-range">
+                    <div>
+                        <input type="radio" name="monthly_budget" value="under_10k" id="under_10k">
+                        <label for="under_10k">Under ₹10,000</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="monthly_budget" value="10k_25k" id="10k_25k">
+                        <label for="10k_25k">₹10,000 - ₹25,000</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="monthly_budget" value="25k_50k" id="25k_50k">
+                        <label for="25k_50k">₹25,000 - ₹50,000</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="monthly_budget" value="50k_100k" id="50k_100k">
+                        <label for="50k_100k">₹50,000 - ₹1,00,000</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="monthly_budget" value="100k_plus" id="100k_plus">
+                        <label for="100k_plus">₹1,00,000+</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>For a comprehensive LinkedIn personal branding audit & strategy session, what would you pay?</label>
+                <select name="audit_pricing">
+                    <option value="">Select range</option>
+                    <option value="under_5k">Under ₹5,000</option>
+                    <option value="5k_15k">₹5,000 - ₹15,000</option>
+                    <option value="15k_30k">₹15,000 - ₹30,000</option>
+                    <option value="30k_50k">₹30,000 - ₹50,000</option>
+                    <option value="50k_plus">₹50,000+</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>What would make you DEFINITELY want to invest in LinkedIn personal branding services?</label>
+                <textarea name="investment_motivation" placeholder="What outcomes, guarantees, or approaches would make this a no-brainer investment for you?"></textarea>
+            </div>
+        </div>
+
+        <!-- Decision-Making Section -->
+        <div class="section">
+            <h2>🤔 Decision-Making Process</h2>
+            
+            <div class="question">
+                <label>What's most important when choosing a LinkedIn personal branding expert?</label>
+                <select name="selection_criteria">
+                    <option value="">Select top priority</option>
+                    <option value="proven_results">Proven track record & results</option>
+                    <option value="industry_expertise">Tech industry expertise</option>
+                    <option value="personal_approach">Personalized approach</option>
+                    <option value="affordable_pricing">Affordable pricing</option>
+                    <option value="comprehensive_service">Comprehensive service offering</option>
+                    <option value="ongoing_support">Ongoing support & mentorship</option>
+                    <option value="quick_results">Quick results & fast implementation</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>Have you ever hired a personal branding consultant or coach before?</label>
+                <select name="previous_experience">
+                    <option value="">Select experience</option>
+                    <option value="never">Never hired one</option>
+                    <option value="considered">Considered but never hired</option>
+                    <option value="bad_experience">Hired but had bad experience</option>
+                    <option value="good_experience">Hired and had good experience</option>
+                    <option value="mixed_experience">Mixed experiences</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>What would prevent you from investing in LinkedIn personal branding services?</label>
+                <textarea name="investment_barriers" placeholder="What concerns, objections, or barriers would stop you from moving forward?"></textarea>
+            </div>
+        </div>
+
+        <!-- Contact & Follow-up Section -->
+        <div class="section">
+            <h2>📧 Stay Connected</h2>
+            
+            <div class="question">
+                <label>Your name (optional for personalized insights):</label>
+                <input type="text" name="name" placeholder="How should I address you?">
+            </div>
+
+            <div class="question">
+                <label>Your LinkedIn profile URL (optional):</label>
+                <input type="url" name="linkedin_url" placeholder="https://linkedin.com/in/your-profile">
+            </div>
+
+            <div class="question">
+                <label>Best email to send you insights & updates:</label>
+                <input type="email" name="email" placeholder="your.email@example.com">
+            </div>
+
+            <div class="question">
+                <label>Any specific LinkedIn challenges you'd like me to address in our WhatsApp community?</label>
+                <textarea name="specific_challenges" placeholder="What specific LinkedIn personal branding topics would you like to see discussed?"></textarea>
+            </div>
+
+            <div class="question">
+                <label>Would you be interested in a FREE 20-minute LinkedIn profile review session?</label>
+                <select name="free_review_interest">
+                    <option value="">Select interest level</option>
+                    <option value="very_interested">Very interested - let's schedule!</option>
+                    <option value="somewhat_interested">Somewhat interested</option>
+                    <option value="maybe_later">Maybe later</option>
+                    <option value="not_interested">Not interested</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <button type="submit" class="submit-btn">🚀 Submit My Insights</button>
+            <p style="margin-top: 20px; color: #666;">
+                <strong>Your insights will help me create LinkedIn personal branding services that actually work for tech professionals like you!</strong>
+            </p>
+        </div>
+    </form>
+
+    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+        <h3>🎁 What You'll Get:</h3>
+        <ul>
+            <li><strong>Personalized LinkedIn insights</strong> based on your responses</li>
+            <li><strong>Early access</strong> to specialized tech professional services</li>
+            <li><strong>Exclusive WhatsApp community</strong> updates and tips</li>
+            <li><strong>Priority consideration</strong> for free strategy sessions</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Shankar J: Keynote & FDP Speaker on AI/ML in Signal Processing and EEG
+
+> Shankar J (Shankar Jayaraj) is a PhD scholar in Electronics and Communication
+> Engineering at the National Institute of Technology (NIT) Calicut, India,
+> researching brain-computer interfaces (BCI) and EEG deep learning. He is a
+> keynote, FDP and workshop speaker on AI/ML in signal processing who has
+> delivered 480 expert sessions to more than 16,500 learners. He is a four-time
+> IEEE-recognised volunteer leader and a Springer Best Paper Award recipient
+> (ICMT 2013). He was quoted in Forbes (April 2024) and featured in The Times
+> of India (August 2024).
+
+## Facts
+- PhD Scholar, ECE, NIT Calicut: EEG deep learning, motor imagery classification, biomedical signal pipelines toward clinically viable neurotech.
+- Peer-reviewed BCI paper: "TriMiX: An Interpretable Machine Learning Pipeline for Tri-Class Motor Imagery EEG Classification for Clinical Brain-Computer Interfaces", IEEE, 2025. Adds a rest class for safer asynchronous control; 96.26% subject-wise accuracy on the 109-subject PhysioNet EEG dataset. https://ieeexplore.ieee.org/document/11436539
+- 480 expert sessions delivered; 16,500+ learners; 10+ years teaching ECE as former Assistant Professor (APJ Abdul Kalam Technological University).
+- Awards: IEEE R10 YP Outstanding Volunteer in Academic 2021; IEEE India Council Outstanding YP Volunteer 2020; IEEE Kerala Section Outstanding Volunteer 2020; IEEE President's Challenge Coin 2018; Springer Best Paper, ICMT 2013.
+- Mentor of Change, Atal Innovation Mission, NITI Aayog. Licensed amateur radio operator (VU3FIY).
+- Press: quoted in Forbes, April 2024 (Jodie Cook, "Will Every Entrepreneur Have An AI Coach?"); featured in The Times of India, 23 August 2024.
+- Open to Research Scientist / Research Associate roles in biomedical AI, EEG and BCI: industry or academia; remote-first; Thiruvananthapuram, Kerala for on-site.
+- Booking: send event date, audience and topic; replies within 24 hours.
+
+## Pages
+- [Home](https://shankar-jayaraj.github.io/): positioning, credentials, FAQ
+- [Speaking](https://shankar-jayaraj.github.io/speaking.html): signature talks, FDP catalogue, booking FAQs
+- [Research](https://shankar-jayaraj.github.io/research.html): focus areas, publications, hiring snapshot
+- [About](https://shankar-jayaraj.github.io/about.html): story, awards, press
+- [Resources](https://shankar-jayaraj.github.io/resources.html): free checklists, LinkedIn Post Cleaner, workflows, open notebooks
+- [Contact](https://shankar-jayaraj.github.io/contact.html): booking form (WhatsApp +91 93447 75577; LinkedIn: linkedin.com/in/drshankarj)

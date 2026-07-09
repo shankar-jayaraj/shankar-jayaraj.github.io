@@ -1,0 +1,16 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /forms/
+Disallow: /pages/
+Disallow: /landing/
+Disallow: /assests/
+Allow: /
+
+User-agent: Googlebot
+
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://github.com/shankar-jayaraj/shankar-jayaraj.github.io/blob/main/sitemap.xml
