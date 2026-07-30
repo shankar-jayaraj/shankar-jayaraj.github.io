@@ -53,16 +53,25 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- DELIBERATELY NOT LISTED: /text_format/ (the LinkedIn Post Cleaner) currently
+  <!-- Free browser tool: Markdown -> LaTeX converter for Overleaf. Indexable on
+       purpose — a tool page that answers a real utility query ("markdown to latex
+       overleaf", "latex unicode character not set up for use") earns the kind of
+       inbound links and answer-engine citations a personal site otherwise cannot. -->
+  <url>
+    <loc>https://shankar-jayaraj.github.io/text_latex/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- DELIBERATELY NOT LISTED: /text_format/ (the LinkedIn Post Cleaner) still
        carries <meta name="robots" content="noindex"> at text_format/index.html:10.
        Listing a noindexed URL here produces a "Submitted URL marked noindex" error
-       in Search Console, so it stays out while that tag is in place.
+       in Search Console, so it stays out while that tag is in place. This is why
+       one tool appears above and its sibling does not — it is not an oversight.
 
-       RECOMMENDED: remove that noindex and add this URL back. A free, genuinely
-       useful browser tool is one of the best link magnets and answer-engine
-       citations available — people search for "remove hidden AI characters" and
-       "clean LinkedIn post formatting", and a tool page that answers a utility
-       query earns the kind of inbound links a personal site otherwise cannot. -->
+       RECOMMENDED: remove that noindex and add /text_format/ here too, for exactly
+       the reason the LaTeX converter is listed. -->
 
   <!-- Link hub used from social bios. -->
   <url>
