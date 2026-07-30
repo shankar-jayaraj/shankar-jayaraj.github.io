@@ -27,6 +27,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/revamp.css?v=20260709b">
 
+  <!-- SEO/AEO NOTE re: the "IEEE Student Branch webinar, Dedan Kimathi University" Event below.
+       It deliberately has no 'location' field, which is why Google Search Console does not list
+       it as a 4th standalone "detected item" - it only appears nested inside the other three
+       events' performerIn. A virtual event needs a VirtualLocation with a real url to register as
+       standalone, and there is no public page for this specific past webinar to link to - do NOT
+       invent one just to clear that warning.
+       This is also moot for Google's Event rich-result carousel, which explicitly excludes events
+       whose end date is already in the past: this entry was never going to render as a bookable
+       event card regardless of location. Its only job is to be international-speaker social proof
+       inside Person.performerIn (confirming Shankar has spoken to an audience outside India), which
+       it already does correctly. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
