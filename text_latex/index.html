@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Markdown to LaTeX Converter for Overleaf — Free, No Upload | Shankar J</title>
+  <meta name="description" content="Free browser tool that converts Markdown or plain text into LaTeX that compiles in Overleaf without errors. Escapes special characters correctly, converts tables, maths, code and citations, and builds the package preamble for you. Nothing is uploaded.">
+  <meta name="keywords" content="markdown to latex, markdown to latex converter, latex overleaf converter, md to tex, markdown table to latex tabular, latex escape special characters, unicode character not set up for use with latex">
+  <meta name="author" content="Shankar J">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://shankar-jayaraj.github.io/text_latex/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Markdown to LaTeX Converter for Overleaf — Free, No Upload">
+  <meta property="og:description" content="Paste Markdown, get LaTeX that compiles in Overleaf without errors. Correct escaping, dynamic package preamble, and a warning for anything that needs your attention. Runs entirely in your browser.">
+  <meta property="og:url" content="https://shankar-jayaraj.github.io/text_latex/">
+  <meta property="og:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img.png">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+  <meta property="og:image:alt" content="Shankar J, PhD scholar at NIT Calicut and keynote speaker on AI/ML in signal processing and EEG">
+  <!-- TODO (high value): replace profile-img.png with a 1200x630 branded OG card.
+       At 400x400 LinkedIn and X cannot render a large preview, so every shared
+       link shows a small square thumbnail instead of a full-width card.
+       Then update the width/height above and switch twitter:card back to
+       summary_large_image. Applies to every page on this site, not just this one. -->
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Markdown to LaTeX Converter for Overleaf">
+  <meta name="twitter:description" content="Paste Markdown, get LaTeX that compiles in Overleaf without errors. Free, runs in your browser.">
+  <meta name="twitter:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img.png">
+  <meta name="twitter:image:alt" content="Shankar J, PhD scholar at NIT Calicut and keynote speaker on AI/ML in signal processing and EEG">
+
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://shankar-jayaraj.github.io/text_latex/#app",
+        "name": "Markdown to LaTeX Converter for Overleaf",
+        "url": "https://shankar-jayaraj.github.io/text_latex/",
+        "description": "A free browser-based tool that converts Markdown or plain text into LaTeX that compiles in Overleaf without errors. It escapes LaTeX special characters correctly, converts headings, lists, tables, maths, code blocks, images, footnotes and citations, and generates only the package preamble the document actually needs.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any (web browser)",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "inLanguage": "en",
+        "author": {"@id": "https://shankar-jayaraj.github.io/#shankar"},
+        "publisher": {"@id": "https://shankar-jayaraj.github.io/#shankar"},
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "featureList": [
+          "Converts Markdown headings, emphasis, lists and block quotes to LaTeX",
+          "Escapes LaTeX special characters without breaking maths, code or URLs",
+          "Markdown tables to tabular, with booktabs rules and alignment",
+          "Fenced code blocks to listings or verbatim",
+          "Inline and display maths passthrough, distinguishing maths from currency",
+          "Images to includegraphics, footnotes, and citations to cite",
+          "Dynamic package preamble containing only what the document needs",
+          "Full compilable document or body-only fragment",
+          "Warns about Unicode characters pdfLaTeX cannot typeset",
+          "Runs entirely client-side: no upload, no storage"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://shankar-jayaraj.github.io/text_latex/#webpage",
+        "url": "https://shankar-jayaraj.github.io/text_latex/",
+        "name": "Markdown to LaTeX Converter for Overleaf",
+        "isPartOf": {"@id": "https://shankar-jayaraj.github.io/#site"},
+        "mainEntity": {"@id": "https://shankar-jayaraj.github.io/text_latex/#app"},
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://shankar-jayaraj.github.io/"},
+          {"@type": "ListItem", "position": 2, "name": "Resources", "item": "https://shankar-jayaraj.github.io/resources.html"},
+          {"@type": "ListItem", "position": 3, "name": "Markdown to LaTeX Converter", "item": "https://shankar-jayaraj.github.io/text_latex/"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "Why does my Markdown fail to compile after converting to LaTeX?", "acceptedAnswer": {"@type": "Answer", "text": "Almost always escaping. LaTeX reserves ten characters (# $ % & _ { } ~ ^ and backslash) that must be escaped in prose but must NOT be escaped inside maths, code blocks or URLs. The most common symptom is an underscore in an image filename becoming an escaped underscore, after which Overleaf reports a missing file. This converter sets code, maths and URLs aside as opaque tokens before escaping anything, so those regions are never touched by the escaper."}},
+          {"@type": "Question", "name": "Why does Overleaf say 'Unicode character not set up for use with LaTeX'?", "acceptedAnswer": {"@type": "Answer", "text": "Overleaf compiles with pdfLaTeX by default, and pdfLaTeX cannot read most non-ASCII characters. Curly quotes, dashes, arrows, Greek letters, CJK characters and emoji all trigger this hard error. This converter maps around eighty common symbols to proper LaTeX commands, removes emoji, and lists by code point anything it could not map, so you can either delete those characters or switch Overleaf to XeLaTeX or LuaLaTeX under Menu then Compiler."}},
+          {"@type": "Question", "name": "Does this tool upload my document anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The entire conversion runs in your browser using local JavaScript. Nothing you paste is uploaded, logged or stored on any server."}},
+          {"@type": "Question", "name": "Can I paste the output straight into an existing Overleaf project?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose 'Body only' and the tool emits just the converted content, with the packages it needs listed as comments at the top so you can add any missing lines to your existing preamble. Choose 'Full document' instead and you get a complete file with documentclass, preamble and begin/end document that compiles on its own."}},
+          {"@type": "Question", "name": "How does it handle citations and a bibliography?", "acceptedAnswer": {"@type": "Answer", "text": "Bracketed citations such as [@key] become cite commands, and a locator such as [@key, p. 33] becomes cite with an optional argument. The bibliography lines are deliberately emitted commented out, because a bibliography command pointing at a .bib file that does not exist yet is a hard error, whereas a cite command with no bibliography is only a warning. Upload your .bib file to Overleaf, then uncomment those two lines."}}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Google Analytics 4 (G-04MPNZV7JT).
+       The google_analytics key in _config.yml does NOT emit this tag: that key is only
+       read by Jekyll themes such as minima, and this site uses no theme. The tag has to
+       be in the HTML.
+       Privacy note: this sets analytics cookies. If you ever need EU/UK consent
+       compliance, gate this behind a consent banner or switch to a cookieless
+       analytics tool. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04MPNZV7JT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-04MPNZV7JT');
+  </script>
+
+  <style>
+    /* ---------- Brand palette (from portfolio css/style.css) ---------- */
+    :root {
+      --deep-blue: #035FAC;
+      --light-blue: #D9F4FF;
+      --bright-aqua: #01B9D5;
+      --soft-grey: #D1D2C2;
+      --lime-green: #A4E100;
+
+      --ink: #23303c;
+      --muted: #6b7a89;
+      --danger: #d13b3b;
+      --page-bg: #f2f8fc;
+      --card-bg: #ffffff;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(3, 95, 172, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 100% -10%, rgba(1, 185, 213, .12), transparent 60%),
+        radial-gradient(1000px 500px at -10% 0%, rgba(3, 95, 172, .10), transparent 55%),
+        var(--page-bg);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 22px clamp(14px, 3vw, 34px) 60px;
+    }
+
+    /* ---------- Header ---------- */
+    header.top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .brand h1 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3.4vw, 2.05rem);
+      margin: 0 0 6px;
+      color: var(--deep-blue);
+      letter-spacing: -.2px;
+    }
+
+    .brand h1 .spark { color: var(--bright-aqua); }
+
+    .brand p.sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+      max-width: 60ch;
+    }
+
+    a.back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      color: var(--deep-blue);
+      background: #fff;
+      border: 1px solid var(--soft-grey);
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .88rem;
+      white-space: nowrap;
+      transition: .18s ease;
+      box-shadow: var(--shadow);
+    }
+
+    a.back:hover { background: var(--light-blue); border-color: var(--bright-aqua); }
+
+    /* ---------- Options bar ---------- */
+    .options {
+      background: var(--card-bg);
+      border: 1px solid var(--soft-grey);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .options .legend {
+      font-size: .74rem;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .options .legend::before {
+      content: "";
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--bright-aqua);
+    }
+
+    .toggle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 10px 18px;
+    }
+
+    .switch {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      cursor: pointer;
+      user-select: none;
+      padding: 4px 2px;
+    }
+
+    .switch input { position: absolute; opacity: 0; pointer-events: none; }
+
+    .track {
+      flex: none;
+      width: 40px; height: 22px;
+      border-radius: 999px;
+      background: var(--soft-grey);
+      position: relative;
+      transition: background .18s ease;
+    }
+
+    .track::after {
+      content: "";
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+      transition: transform .18s ease;
+    }
+
+    .switch input:checked + .track { background: var(--lime-green); }
+    .switch input:checked + .track::after { transform: translateX(18px); }
+    .switch input:focus-visible + .track { outline: 2px solid var(--deep-blue); outline-offset: 2px; }
+
+    .switch .label {
+      font-size: .9rem;
+      font-weight: 500;
+    }
+    .switch .label small { display: block; color: var(--muted); font-weight: 400; font-size: .76rem; }
+
+    /* Select-style option (bullets) */
+    .select-opt {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 2px;
+    }
+    .select-opt .label { font-size: .9rem; font-weight: 500; }
+    .select-opt .label small { display: block; color: var(--muted); font-weight: 400; font-size: .76rem; }
+    .seg {
+      display: inline-flex;
+      border: 1px solid var(--soft-grey);
+      border-radius: 999px;
+      overflow: hidden;
+      background: #fff;
+      width: fit-content;
+    }
+    .seg button {
+      border: 0;
+      background: none;
+      font-family: inherit;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 6px 13px;
+      cursor: pointer;
+      transition: .15s ease;
+      white-space: nowrap;
+    }
+    .seg button + button { border-left: 1px solid var(--soft-grey); }
+    .seg button.active { background: var(--deep-blue); color: #fff; }
+    .seg button:not(.active):hover { background: var(--light-blue); color: var(--deep-blue); }
+
+    /* ---------- Panels ---------- */
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--soft-grey);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--soft-grey);
+    }
+
+    .panel .head h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      color: var(--deep-blue);
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .panel.output .head h2 { color: #0a7d33; }
+
+    .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+    .dot.in { background: var(--bright-aqua); }
+    .dot.out { background: var(--lime-green); }
+
+    textarea {
+      width: 100%;
+      border: 0;
+      resize: vertical;
+      min-height: 300px;
+      padding: 16px;
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: .98rem;
+      line-height: 1.6;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    textarea:focus { outline: none; background: #fcfefe; }
+    textarea::placeholder { color: #a9b6c1; }
+
+    /* Output is SOURCE CODE, not prose: monospace, tight leading, no letter
+       spacing. The sibling tool's reading-optimised styling is wrong here. */
+    #output {
+      font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas,
+                   "Liberation Mono", monospace;
+      font-size: .86rem;
+      line-height: 1.55;
+      letter-spacing: 0;
+      tab-size: 2;
+      -moz-tab-size: 2;
+      background: #fbfdff;
+      white-space: pre;
+      overflow: auto;
+      max-height: 620px;
+    }
+    #output::placeholder { color: #a9b6c1; }
+
+    .panel .foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 16px;
+      border-top: 1px solid var(--soft-grey);
+      background: #fbfdff;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .counts b { color: var(--ink); font-weight: 600; }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: .85rem;
+      padding: 8px 15px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: .16s ease;
+    }
+
+    .btn.copy { background: var(--deep-blue); color: #fff; }
+    .btn.copy:hover { background: #0272cc; }
+    .btn.copy.done { background: var(--lime-green); color: #1c3a00; }
+    .btn.ghost { background: #fff; color: var(--deep-blue); border: 1px solid var(--soft-grey); }
+    .btn.ghost:hover { background: var(--light-blue); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* ---------- Report ---------- */
+    .report {
+      margin-top: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--soft-grey);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .report .rhead {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--soft-grey);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .summary {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .summary .badge {
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    .summary.clean { color: #0a7d33; }
+    .summary.clean .badge { background: rgba(164, 225, 0, .22); color: #4a6a00; }
+    .summary.dirty { color: var(--deep-blue); }
+    .summary.dirty .badge { background: rgba(1, 185, 213, .16); color: #056b7c; }
+    .summary.idle { color: var(--muted); }
+
+    .report .rbody { padding: 4px 18px 18px; }
+
+    table.findings {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+      margin-top: 12px;
+    }
+
+    table.findings th {
+      text-align: left;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-bottom: 2px solid var(--soft-grey);
+    }
+
+    table.findings td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #eef3f6;
+      vertical-align: middle;
+    }
+
+    table.findings tr:last-child td { border-bottom: 0; }
+
+    .cat-pill {
+      display: inline-block;
+      font-size: .74rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--light-blue);
+      color: var(--deep-blue);
+      white-space: nowrap;
+    }
+    .cat-pill.sig { background: #ffe3e3; color: var(--danger); }
+    .cat-pill.ws { background: #e7f7ea; color: #0a7d33; }
+    .cat-pill.typo { background: #fff4d6; color: #8a6100; }
+    .cat-pill.homo { background: #efe3ff; color: #6b3bd1; }
+    .cat-pill.fmt { background: #e3f0ff; color: #035FAC; }
+    .cat-pill.md { background: #fde8f3; color: #b02a7a; }
+
+    code.cp {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      background: #f1f5f8;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: .82rem;
+      color: var(--deep-blue);
+    }
+
+    td.count b {
+      display: inline-block;
+      min-width: 26px;
+      text-align: center;
+      background: var(--deep-blue);
+      color: #fff;
+      border-radius: 7px;
+      padding: 2px 8px;
+      font-size: .82rem;
+    }
+
+    /* ---------- Reveal panel ---------- */
+    .reveal-toggle {
+      margin-top: 14px;
+      /* A bare `.reveal-toggle{display:inline-flex}` overrides the UA
+         [hidden]{display:none} rule, so the `hidden` attribute would never
+         hide the button (it leaked an empty reveal box). The explicit
+         `.reveal-toggle[hidden]` rule below restores that behaviour. */
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 0;
+      color: var(--deep-blue);
+      font-weight: 600;
+      font-size: .86rem;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+    .reveal-toggle[hidden] { display: none; }
+    .reveal-toggle .chev { transition: transform .18s ease; }
+    .reveal-toggle.open .chev { transform: rotate(90deg); }
+
+    .reveal-box {
+      display: none;
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px dashed var(--soft-grey);
+      border-radius: 10px;
+      background: #fbfdff;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: anywhere;
+      font-family: "Poppins", sans-serif;
+      font-size: .95rem;
+      line-height: 1.8;
+      max-height: 340px;
+      overflow: auto;
+    }
+    .reveal-box.show { display: block; }
+
+
+    /* ---------- Research note ---------- */
+    .research {
+      margin-top: 20px;
+      background: linear-gradient(180deg, #fff, #fbfdff);
+      border: 1px solid var(--soft-grey);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .research summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 15px 18px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      color: var(--deep-blue);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .96rem;
+    }
+    .research summary::-webkit-details-marker { display: none; }
+    .research summary .chev { transition: transform .18s ease; color: var(--bright-aqua); }
+    .research[open] summary .chev { transform: rotate(90deg); }
+    .research .rc {
+      padding: 0 18px 18px;
+      font-size: .9rem;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    .research .rc p { margin: 0 0 10px; }
+    .research .rc a { color: var(--deep-blue); font-weight: 600; }
+    .research .rc ul { margin: 8px 0 0; padding-left: 20px; }
+    .research .rc li { margin-bottom: 6px; color: var(--muted); }
+    .research .rc li b { color: var(--ink); }
+
+    /* ---------- Signature footer ---------- */
+    footer.sig {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid var(--soft-grey);
+      text-align: center;
+    }
+    footer.sig .signature {
+      font-family: "Great Vibes", cursive;
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--deep-blue);
+      margin-bottom: 4px;
+    }
+    footer.sig .role {
+      font-size: .84rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    footer.sig .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    footer.sig .social-links a {
+      width: 40px; height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--soft-grey);
+      color: var(--deep-blue);
+      transition: .18s ease;
+      box-shadow: 0 4px 12px rgba(3, 95, 172, .06);
+    }
+    footer.sig .social-links a:hover {
+      background: var(--deep-blue);
+      color: #fff;
+      border-color: var(--deep-blue);
+      transform: translateY(-3px);
+    }
+    footer.sig .social-links a svg { width: 19px; height: 19px; fill: currentColor; }
+    footer.sig .quick {
+      font-size: .86rem;
+      margin-bottom: 14px;
+    }
+    footer.sig .quick a {
+      color: var(--deep-blue);
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 4px;
+    }
+    footer.sig .quick a:hover { text-decoration: underline; }
+    footer.sig .quick .sep { color: var(--soft-grey); }
+    footer.sig .privacy {
+      font-size: .8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    footer.sig .privacy .lock { color: var(--lime-green); font-weight: 700; }
+    footer.sig .copyright {
+      font-size: .78rem;
+      color: var(--muted);
+      padding-bottom: 20px;
+    }
+    footer.sig .copyright b { color: var(--deep-blue); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 760px) {
+      .columns { grid-template-columns: 1fr; }
+      textarea { min-height: 220px; }
+      /* Larger type & looser rhythm for thumb-distance reading on phones. */
+      /* Tap-friendly action buttons (>=44px hit target). */
+      .btn { padding: 11px 18px; font-size: .92rem; }
+      .panel .head { padding: 14px 16px; }
+      .panel .head h2 { font-size: 1.05rem; }
+      /* Give the cleaned-text card breathing room and a subtle read cue. */
+      .panel.output { border-color: var(--bright-aqua); }
+    }
+
+    /* Even tighter phones — keep the measure comfortable, avoid cramped edges. */
+    @media (max-width: 420px) {
+      .wrap { padding-left: 12px; padding-right: 12px; }
+    }
+    /* Two buttons share the output panel head. */
+    .btn-row { display: flex; gap: 8px; align-items: center; }
+    .report h3 {
+      font-family: "Montserrat", sans-serif;
+      font-size: .82rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 18px 0 8px;
+    }
+    .report h3:first-child { margin-top: 0; }
+    .fix { color: var(--muted); font-size: .82rem; }
+    td.sev { white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <header class="top">
+      <div class="brand">
+        <h1>Markdown to LaTeX <span class="spark">✦</span></h1>
+        <p class="sub">Paste Markdown or plain text on the left. Get LaTeX on the right that compiles in Overleaf without errors &mdash; special characters escaped, packages worked out for you, and a warning for anything that needs your attention. Everything runs in your browser; nothing is uploaded.</p>
+      </div>
+      <a class="back" href="../resources.html">← Back to resources</a>
+    </header>
+
+    <section class="options" aria-label="Conversion options">
+      <div class="legend">Output</div>
+      <div class="select-opt">
+        <span class="seg-label">Document</span>
+        <div class="seg" id="modeSeg" role="group" aria-label="Output type">
+          <button type="button" data-mode="full" class="active">Full document</button>
+          <button type="button" data-mode="body">Body only</button>
+        </div>
+      </div>
+      <div class="select-opt">
+        <span class="seg-label">Code blocks</span>
+        <div class="seg" id="codeSeg" role="group" aria-label="Code block style">
+          <button type="button" data-mode="listings" class="active">listings</button>
+          <button type="button" data-mode="verbatim">verbatim</button>
+        </div>
+      </div>
+
+      <div class="legend">Options</div>
+      <div class="toggle-grid">
+        <label class="switch">
+          <input type="checkbox" id="opt-unicode" checked>
+          <span class="track"></span>
+          <span class="label">Target pdfLaTeX<small>Off = XeLaTeX/LuaLaTeX, keep Unicode as-is</small></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="opt-quotes" checked>
+          <span class="track"></span>
+          <span class="label">Smart quotes<small>“curly” → ``LaTeX'' quotes</small></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="opt-booktabs" checked>
+          <span class="track"></span>
+          <span class="label">booktabs tables<small>Cleaner rules than \hline</small></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="opt-numbered" checked>
+          <span class="track"></span>
+          <span class="label">Number sections<small>Off uses \section*</small></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="columns">
+      <div class="panel input">
+        <div class="head">
+          <h2><span class="dot in"></span> Markdown in</h2>
+          <button class="btn ghost" id="clearBtn" type="button" title="Clear input">Clear</button>
+        </div>
+        <textarea id="input" spellcheck="false" placeholder="# My paper&#10;&#10;Paste Markdown here. Headings, **bold**, lists, tables, $math$, ```code```, images, footnotes and [@citations] are all handled."></textarea>
+        <div class="foot">
+          <span class="counts"><b id="inChars">0</b> chars · <b id="inWords">0</b> words</span>
+        </div>
+      </div>
+
+      <div class="panel output">
+        <div class="head">
+          <h2><span class="dot out"></span> LaTeX out</h2>
+          <div class="btn-row">
+            <button class="btn ghost" id="dlBtn" type="button" disabled>Download .tex</button>
+            <button class="btn copy" id="copyBtn" type="button" disabled><span id="copyLabel">Copy</span></button>
+          </div>
+        </div>
+        <textarea id="output" readonly spellcheck="false" placeholder="Your LaTeX will appear here."></textarea>
+        <div class="foot">
+          <span class="counts"><b id="outChars">0</b> chars · <b id="outLines">0</b> lines</span>
+          <span class="counts" id="status" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="report" aria-label="Conversion report">
+      <div class="rhead">
+        <div class="summary idle" id="summary"><span id="summaryText">Paste something to get started.</span></div>
+        <button class="reveal-toggle" id="pkgToggle" type="button" hidden><span id="pkgLabel">Show required packages</span></button>
+      </div>
+      <div class="rbody">
+        <div class="reveal-box" id="pkgBox"></div>
+        <div id="warnTable"></div>
+        <div id="convTable"></div>
+      </div>
+    </section>
+
+    <details class="research">
+      <summary>Why Markdown → LaTeX usually breaks (and what this tool does about it)</summary>
+      <div class="research-body">
+        <p>Most Markdown-to-LaTeX conversions fail for the same handful of reasons. None of them are
+        exotic, and all of them produce errors that are hard to read if you did not write the
+        converter yourself. Here is what actually goes wrong.</p>
+
+        <h4>1. Escaping is not a find-and-replace</h4>
+        <p>LaTeX reserves ten characters: <code>#</code> <code>$</code> <code>%</code>
+        <code>&amp;</code> <code>_</code> <code>{</code> <code>}</code> <code>~</code>
+        <code>^</code> <code>\</code>. They have to be escaped in ordinary prose — but
+        <em>not</em> inside maths, <em>not</em> inside code blocks, and <em>not</em> inside URLs or
+        image filenames. A converter that escapes first destroys the Markdown syntax it was about
+        to read; one that converts first ends up escaping the LaTeX commands it just wrote.</p>
+        <p>The classic symptom is an underscore in a filename. <code>my_plot.png</code> becomes
+        <code>my\_plot.png</code>, and Overleaf then reports a missing file — which looks like an
+        upload problem, not an escaping problem. This tool sets aside code, maths and URLs as opaque
+        tokens before it escapes anything, so those regions are structurally unreachable by the
+        escaper.</p>
+
+        <h4>2. A stray percent sign silently eats the rest of the line</h4>
+        <p><code>%</code> starts a comment in LaTeX. An unescaped one in a URL or in body text does
+        not produce an error where it occurs — it deletes everything after it on that line, and you
+        usually find out several lines later when a brace no longer matches. It is one of the most
+        confusing errors in LaTeX precisely because the message points somewhere else.</p>
+
+        <h4>3. Overleaf compiles with pdfLaTeX by default, and pdfLaTeX cannot read most Unicode</h4>
+        <p>If you paste text containing a curly quote, an en dash, an arrow, a Greek letter, a CJK
+        character or an emoji, pdfLaTeX raises
+        <code>! Package inputenc Error: Unicode character … not set up for use with LaTeX</code>.
+        This is a hard error, not a warning. This tool maps roughly eighty common symbols to proper
+        LaTeX commands, strips emoji (pdfLaTeX cannot render them at any setting), and lists by code
+        point anything it could not map — so you can either remove those characters or switch
+        Overleaf to XeLaTeX or LuaLaTeX under <em>Menu → Compiler</em>.</p>
+
+        <h4>4. Tables break when a row has the wrong number of cells</h4>
+        <p>Markdown tolerates a ragged table. LaTeX does not: a row with more cells than the column
+        specification gives <code>! Extra alignment tab has been changed to \cr</code>. Rows are
+        padded or truncated here, and you get told which ones.</p>
+
+        <h4>5. Lists cannot nest more than four deep</h4>
+        <p>LaTeX raises <code>! Too deeply nested</code> at the fifth level of <code>itemize</code>
+        or <code>enumerate</code>. There are packages that lift the limit, but the honest fix is to
+        restructure the list, so deeper items are flattened to level four and flagged.</p>
+
+        <h4>6. Task lists collide with the optional argument of \item</h4>
+        <p><code>\item [x] do the thing</code> does not print "[x]" — LaTeX reads
+        <code>[x]</code> as the item's optional <em>label</em> and quietly replaces the bullet with
+        it. Any list item whose text begins with a bracket needs a <code>{}</code> in front. It is a
+        small thing that bites everyone who converts a GitHub-style checklist.</p>
+
+        <h4>7. \verb is fragile, so this tool does not use it</h4>
+        <p><code>\verb</code> is the obvious choice for inline code, but it fails inside any moving
+        argument — you cannot use it in <code>\section{}</code>, <code>\caption{}</code> or
+        <code>\footnote{}</code>. Inline code is emitted as <code>\texttt{}</code> with the contents
+        escaped, which works everywhere.</p>
+
+        <h4>8. Currency looks exactly like maths</h4>
+        <p><code>$</code> opens maths mode, so "it costs $5 and $10" silently becomes an italic
+        formula and throws the rest of the document out of alignment. Distinguishing the two cases
+        needs more than a naive pair-match: the rule here follows Pandoc (no space just inside the
+        delimiters) plus a digit check, which correctly leaves <code>$5-$7</code> and
+        <code>$1,200</code> as text while still recognising <code>$x^2$</code> as maths.</p>
+
+        <h4>What the preamble does</h4>
+        <p>Only packages that are actually needed get loaded, in an order that matters —
+        <code>hyperref</code> must come last, <code>xurl</code> immediately before it, and
+        <code>lmodern</code> after <code>fontenc</code>. Two are always included and are worth
+        knowing about: <code>fontenc</code> with the T1 option, because without it
+        <code>&lt;</code>, <code>&gt;</code> and <code>|</code> typeset as inverted punctuation
+        rather than themselves; and <code>lmodern</code>, because T1 without it makes pdfLaTeX fall
+        back to bitmap fonts. If you pick "Body only", the same list is emitted as a comment so you
+        can copy the missing lines into your existing preamble.</p>
+
+        <p class="foot-note">Everything above runs locally in your browser. Nothing you paste is
+        uploaded, logged or stored.</p>
+      </div>
+    </details>
+
+    <footer class="sig">
+      <div class="signature">Shankar J</div>
+      <div class="role">AI / ML Researcher · Ph.D Scholar, NIT Calicut · Speaker &amp; Trainer</div>
+
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/drshankarj" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/drshankarj/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.12A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@drshankarj" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/drshankarj" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        </a>
+        <a href="https://github.com/shankar-jayaraj" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58l-.01-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22l-.01 3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .3z"/></svg>
+        </a>
+        <a href="https://wa.me/919344775577" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.5 9.5 0 0 1-4.83-1.32l-.35-.2-3.6.94.96-3.5-.22-.36a9.48 9.48 0 0 1-1.45-5.05c0-5.24 4.27-9.5 9.5-9.5 2.54 0 4.92.99 6.72 2.78a9.44 9.44 0 0 1 2.78 6.72c0 5.24-4.27 9.5-9.5 9.5zM20.5 3.5A11.4 11.4 0 0 0 12.05.09C5.77.09.66 5.2.66 11.48c0 2.02.53 3.99 1.53 5.73L.56 23.4l6.34-1.66a11.36 11.36 0 0 0 5.14 1.31h.01c6.28 0 11.39-5.11 11.39-11.39 0-3.04-1.18-5.9-3.34-8.06z"/></svg>
+        </a>
+      </div>
+
+      <div class="quick">
+        <a href="../index.html">Portfolio</a><span class="sep"> · </span>
+        <a href="https://www.topmate.io/shankar_j" target="_blank" rel="noopener">Book Me</a><span class="sep"> · </span>
+        <a href="https://www.linkedin.com/in/drshankarj" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+
+      <div class="privacy">
+        <span class="lock">🔒</span> 100% client-side — your text never leaves this browser tab.
+      </div>
+      <div class="copyright">&copy; 2026 <b>Shankar J</b>. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <!-- ===================== conversion engine ===================== -->
+  <script>
+    /* ============================================================================
+       Markdown / plain text  ->  LaTeX
+       Core invariant: at every point during conversion, each character in the
+       working string is either (a) user plain text that has NOT yet been escaped,
+       or (b) an opaque vault token. Raw LaTeX never sits in the working string.
+       Converters emit open/close token PAIRS around still-raw inner text, so one
+       atomic escape pass at the end sees only user text and tokens.
+       ============================================================================ */
+    (function (root, factory) {
+      if (typeof module === "object" && module.exports) module.exports = factory();
+      else root.MdToTex = factory();
+    })(typeof self !== "undefined" ? self : this, function () {
+      "use strict";
+
+      /* ---------------------------------------------------------------- vault */
+      var OPEN = "\uE000", CLOSE = "\uE001";
+      var TOKEN_RE = /\uE000(\d+)\uE001/g;
+
+      function createVault() {
+        var items = [];
+        return {
+          items: items,
+          put: function (latex) { items.push(latex); return OPEN + (items.length - 1) + CLOSE; },
+          restore: function (s) {
+            // Vault entries can themselves contain tokens, so loop until stable.
+            // The cap is a bug-containment guard against a self-referential token,
+            // not a real nesting limit.
+            var n = 0;
+            while (n++ < 20 && s.indexOf(OPEN) !== -1) {
+              var before = s;
+              s = s.replace(TOKEN_RE, function (m, i) {
+                var v = items[+i];
+                return v === undefined ? "" : v;
+              });
+              if (s === before) break;
+            }
+            return s;
+          }
+        };
+      }
+
+      /* ------------------------------------------------------------------ ctx */
+      function createCtx() {
+        return {
+          features: {},
+          counts: {},
+          warnings: [],
+          bibKeys: {},
+          images: [],
+          badChars: {},
+          footnotes: {},
+          footnoteOrder: [],
+          title: null,
+          feature: function (f) { this.features[f] = true; },
+          has: function (f) { return !!this.features[f]; },
+          count: function (k, n) { this.counts[k] = (this.counts[k] || 0) + (n === undefined ? 1 : n); },
+          warn: function (sev, what, fix) {
+            for (var i = 0; i < this.warnings.length; i++) {
+              if (this.warnings[i].what === what) { this.warnings[i].n++; return; }
+            }
+            this.warnings.push({ sev: sev, what: what, fix: fix || "", n: 1 });
+          }
+        };
+      }
+
+      /* -------------------------------------------------------------- escaping */
+      var ESC = {
+        "\\": "\\textbackslash{}", "{": "\\{", "}": "\\}", "$": "\\$", "&": "\\&",
+        "#": "\\#", "^": "\\textasciicircum{}", "_": "\\_", "%": "\\%", "~": "\\textasciitilde{}"
+      };
+      // ONE atomic pass. Sequential .replace() calls double-mangle: escaping "\"
+      // first emits "\textbackslash{}", whose braces are then eaten by the "{" pass.
+      function escapeText(s) {
+        return s.replace(/[\\{}$&#^_%~]/g, function (c) { return ESC[c]; });
+      }
+      // URLs obey different rules: % # & must be escaped, but _ ~ ^ must survive
+      // or the link/filename breaks.
+      function escapeUrl(u) {
+        return String(u).replace(/[%#&]/g, function (c) { return "\\" + c; });
+      }
+      function sanitisePath(p, ctx) {
+        p = String(p).replace(/^<|>$/g, "").trim();
+        if (/^https?:\/\//i.test(p)) {
+          ctx.warn("amber", "Image uses a remote URL (" + p.slice(0, 48) + ")",
+            "Overleaf cannot fetch remote images. Download the file and upload it to your project.");
+        } else {
+          ctx.images.push(p);
+        }
+        // A dot in the basename confuses graphicx's extension guessing.
+        var base = p.replace(/^.*\//, "");
+        if ((base.match(/\./g) || []).length > 1 || /\s/.test(p)) {
+          ctx.warn("amber", "Image filename has spaces or extra dots (" + base + ")",
+            "Rename it, or wrap the stem in braces: {my.file}.png");
+        }
+        return escapeUrl(p);
+      }
+
+      /* --------------------------------------------------------------- helpers */
+      function u(cp) {
+        return "U+" + cp.toString(16).toUpperCase().padStart(4, "0");
+      }
+      function slugify(s) {
+        return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "").slice(0, 60) || "document";
+      }
+
+      /* ================================================== stage 0: preflight === */
+      function normaliseInput(src, ctx) {
+        src = String(src).replace(/^\uFEFF/, "").replace(/\r\n?/g, "\n");
+        // Strip our own sentinels so a collision is impossible, not merely unlikely.
+        var pua = (src.match(/[\uE000\uE001]/g) || []).length;
+        if (pua) {
+          src = src.replace(/[\uE000\uE001]/g, "");
+          ctx.warn("blue", pua + " private-use control character(s) removed from input",
+            "These are invisible characters that would have collided with the converter's internals.");
+        }
+        // Expand tabs in the LEADING whitespace only: a tab-indented nested list
+        // otherwise reads as depth 0. Tabs elsewhere are content.
+        var lines = src.split("\n").map(function (ln) {
+          return ln.replace(/^[ \t]+/, function (w) { return w.replace(/\t/g, "    "); });
+        });
+        return lines;
+      }
+
+      /* ============================================ stage 1: fenced code ====== */
+      var LANG_MAP = {
+        js: "Java", javascript: "Java", ts: "Java", typescript: "Java", java: "Java",
+        py: "Python", python: "Python", c: "C", h: "C", cpp: "C++", "c++": "C++", cc: "C++",
+        cs: "[Sharp]C", csharp: "[Sharp]C", r: "R", matlab: "Matlab", m: "Matlab",
+        sh: "bash", bash: "bash", zsh: "bash", shell: "bash", sql: "SQL", php: "PHP",
+        ruby: "Ruby", rb: "Ruby", go: "Go", rust: "C", swift: "Swift", perl: "Perl",
+        html: "HTML", xml: "XML", tex: "TeX", latex: "TeX", vhdl: "VHDL", verilog: "Verilog",
+        fortran: "Fortran", pascal: "Pascal", lisp: "Lisp", scala: "Scala", kotlin: "Java"
+      };
+
+      function extractFences(lines, vault, ctx, opts) {
+        var out = [], i = 0;
+        while (i < lines.length) {
+          var m = /^ {0,3}(`{3,}|~{3,})\s*([^\s`]*)\s*$/.exec(lines[i]);
+          if (!m) { out.push(lines[i]); i++; continue; }
+          var fence = m[1], ch = fence[0], need = fence.length;
+          var info = (m[2] || "").toLowerCase();
+          var body = [], closed = false;
+          i++;
+          while (i < lines.length) {
+            var c = new RegExp("^ {0,3}(\\" + ch + "{" + need + ",})\\s*$").exec(lines[i]);
+            if (c) { closed = true; i++; break; }
+            body.push(lines[i]); i++;
+          }
+          if (!closed) {
+            ctx.warn("red", "Unclosed code fence", "Add a closing " + fence + " so the block ends where you intend.");
+          }
+          var code = body.join("\n");
+          ctx.feature("code"); ctx.count("codeblock");
+
+          var latex;
+          if (opts.codeStyle === "verbatim") {
+            if (/\\end\{verbatim\}/.test(code)) {
+              ctx.warn("red", "Code block contains the literal text \\end{verbatim}",
+                "This ends the block early and will not compile. Switch the code style to 'listings'.");
+            }
+            latex = "\\begin{verbatim}\n" + code + "\n\\end{verbatim}";
+          } else {
+            ctx.feature("listings");
+            if (/\\end\{lstlisting\}/.test(code)) {
+              ctx.warn("red", "Code block contains the literal text \\end{lstlisting}",
+                "This ends the block early and will not compile. Switch the code style to 'verbatim'.");
+            }
+            var lang = LANG_MAP[info];
+            latex = "\\begin{lstlisting}" + (lang ? "[language=" + lang + "]" : "") + "\n" + code + "\n\\end{lstlisting}";
+          }
+          // Blank lines around the token make the block parser treat it as its own
+          // paragraph with no special-casing at all.
+          out.push("", vault.put(latex), "");
+        }
+        return out;
+      }
+
+      /* ================================ stages 2-5: protect inline spans ====== */
+      function extractDisplayMath(text, vault, ctx) {
+        return text.replace(/\$\$([\s\S]*?)\$\$/g, function (m, inner) {
+          ctx.feature("math"); ctx.count("mathdisplay");
+          if (/\n[ \t]*\n/.test(inner)) {
+            ctx.warn("red", "Blank line inside display math",
+              "A blank line inside $$...$$ causes '! Missing $ inserted'. Remove it.");
+            inner = inner.replace(/\n[ \t]*\n+/g, "\n");
+          }
+          // amsmath deprecates $$...$$; \[...\] respects fleqn and spacing options.
+          return vault.put("\\[" + inner.trim() + "\\]");
+        });
+      }
+
+      function extractLatexEnvs(text, vault, ctx) {
+        // People paste LaTeX-flavoured Markdown constantly. Pass it through intact.
+        return text.replace(/\\begin\{([a-zA-Z*]+)\}([\s\S]*?)\\end\{\1\}/g, function (m) {
+          ctx.count("latexenv"); ctx.feature("math");
+          return vault.put(m);
+        });
+      }
+
+      function extractInlineMath(text, vault, ctx) {
+        // Guards, each earning its place against currency false positives:
+        //   (?<!\\)  skip an already-escaped \$
+        //   (?!\s) / (?<!\s)  Pandoc's rule - "$ 5" and "5 $" are not math
+        //   (?!\d)   kills "$5-$7", which the first two miss
+        var re = /(?<!\\)\$(?!\s)((?:\\.|[^$\\\n])+?)(?<!\s)\$(?!\d)/g;
+        text = text.replace(re, function (m, inner) {
+          ctx.feature("math"); ctx.count("mathinline");
+          return vault.put("\\(" + inner + "\\)");
+        });
+        var left = (text.match(/(?<!\\)\$/g) || []).length;
+        if (left) {
+          ctx.warn("blue", left + " unpaired $ treated as literal currency",
+            "If one of these was meant to be math, check that it has a closing $ with no space inside.");
+        }
+        return text;
+      }
+
+      function extractInlineCode(text, vault, ctx) {
+        return text.replace(/(`+)([^\n]+?)\1/g, function (m, ticks, inner) {
+          ctx.count("codespan");
+          if (inner.length > 40) {
+            ctx.warn("blue", "A code span is longer than 40 characters",
+              "\\texttt{} will not line-break it, so expect an 'Overfull \\hbox' warning.");
+          }
+          // \texttt{escaped} rather than \verb: \verb is fragile and fails outright
+          // inside any moving argument (\section{}, \caption{}, \footnote{}).
+          return vault.put("\\texttt{" + escapeText(inner) + "}");
+        });
+      }
+
+      function extractRawHtml(text, vault, ctx) {
+        text = text.replace(/<!--[\s\S]*?-->/g, "");
+        text = text.replace(/<br\s*\/?>/gi, function () { return vault.put("\\\\"); });
+        text = text.replace(/<sub>([\s\S]*?)<\/sub>/gi, function (m, i2) {
+          return vault.put("\\textsubscript{") + i2 + vault.put("}");
+        });
+        text = text.replace(/<sup>([\s\S]*?)<\/sup>/gi, function (m, i2) {
+          return vault.put("\\textsuperscript{") + i2 + vault.put("}");
+        });
+        var tags = {};
+        text = text.replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b[^>]*>/g, function (m, t) {
+          tags[t.toLowerCase()] = true; return "";
+        });
+        var names = Object.keys(tags);
+        if (names.length) {
+          ctx.warn("amber", "Raw HTML tags removed: " + names.slice(0, 6).join(", "),
+            "LaTeX has no HTML. The tag content was kept; the markup was dropped.");
+        }
+        return text;
+      }
+
+      /* ================================================ stage 6: block parse == */
+      function collectFootnoteDefs(lines, ctx) {
+        var out = [];
+        for (var i = 0; i < lines.length; i++) {
+          var m = /^ {0,3}\[\^([^\]\s]+)\]:\s*(.*)$/.exec(lines[i]);
+          if (m) {
+            var body = [m[2]];
+            // Continuation lines are indented.
+            while (i + 1 < lines.length && /^(\s{2,}|\t)\S/.test(lines[i + 1])) {
+              body.push(lines[i + 1].trim()); i++;
+            }
+            ctx.footnotes[m[1]] = body.join(" ").trim();
+            continue;
+          }
+          out.push(lines[i]);
+        }
+        return out;
+      }
+
+      var RE_ATX = /^ {0,3}(#{1,6})\s+(.*?)\s*#*\s*$/;
+      var RE_SETEXT = /^ {0,3}(=+|-+)\s*$/;
+      var RE_RULE = /^ {0,3}((\*\s*){3,}|(-\s*){3,}|(_\s*){3,})$/;
+      var RE_QUOTE = /^ {0,3}>\s?/;
+      var RE_ITEM = /^(\s*)([-*+]|\d{1,9}[.)])\s+(.*)$/;
+      var RE_DELIM = /^\s*\|?\s*:?-{1,}:?\s*(\|\s*:?-{1,}:?\s*)*\|?\s*$/;
+      var RE_TOKENLINE = /^\uE000\d+\uE001$/;
+
+      function splitCells(line) {
+        var s = line.trim().replace(/^\|/, "").replace(/\|$/, "");
+        return s.split(/(?<!\\)\|/).map(function (c) { return c.trim(); });
+      }
+
+      function parseBlocks(lines, ctx, depth) {
+        depth = depth || 0;
+        var blocks = [], i = 0;
+
+        while (i < lines.length) {
+          var ln = lines[i];
+
+          if (!ln.trim()) { i++; continue; }
+
+          if (RE_TOKENLINE.test(ln.trim())) {
+            blocks.push({ type: "raw", text: ln.trim() }); i++; continue;
+          }
+
+          var m = RE_ATX.exec(ln);
+          if (m) { blocks.push({ type: "heading", level: m[1].length, text: m[2] }); i++; continue; }
+
+          // Setext MUST be tested before the thematic rule: "---" matches both.
+          if (i + 1 < lines.length && ln.trim() && RE_SETEXT.test(lines[i + 1]) && !RE_ITEM.test(ln)) {
+            blocks.push({ type: "heading", level: lines[i + 1].trim()[0] === "=" ? 1 : 2, text: ln.trim() });
+            i += 2; continue;
+          }
+
+          if (RE_RULE.test(ln)) { blocks.push({ type: "rule" }); i++; continue; }
+
+          if (RE_QUOTE.test(ln)) {
+            var q = [];
+            while (i < lines.length && (RE_QUOTE.test(lines[i]) || (lines[i].trim() && q.length))) {
+              if (!RE_QUOTE.test(lines[i]) && !lines[i].trim()) break;
+              q.push(lines[i].replace(RE_QUOTE, "")); i++;
+            }
+            blocks.push({ type: "quote", blocks: depth > 3 ? [{ type: "para", text: q.join(" ") }] : parseBlocks(q, ctx, depth + 1) });
+            continue;
+          }
+
+          // A table needs a header row containing an unescaped | AND a delimiter
+          // row. The delimiter regex alone also matches a bare "---".
+          if (i + 1 < lines.length && /(?<!\\)\|/.test(ln) && RE_DELIM.test(lines[i + 1]) && lines[i + 1].indexOf("-") !== -1) {
+            var header = splitCells(ln);
+            var align = splitCells(lines[i + 1]).map(function (c) {
+              var l = c.charAt(0) === ":", r = c.charAt(c.length - 1) === ":";
+              return l && r ? "c" : r ? "r" : "l";
+            });
+            i += 2;
+            var rows = [];
+            while (i < lines.length && lines[i].trim() && /(?<!\\)\|/.test(lines[i])) {
+              rows.push(splitCells(lines[i])); i++;
+            }
+            blocks.push({ type: "table", header: header, align: align, rows: rows });
+            continue;
+          }
+
+          if (RE_ITEM.test(ln)) {
+            var items = [];
+            while (i < lines.length) {
+              var im = RE_ITEM.exec(lines[i]);
+              if (im) {
+                items.push({
+                  indent: im[1].length,
+                  kind: /^\d/.test(im[2]) ? "ol" : "ul",
+                  num: /^\d/.test(im[2]) ? parseInt(im[2], 10) : null,
+                  text: im[3]
+                });
+                i++;
+              } else if (lines[i].trim() && items.length && /^\s+\S/.test(lines[i])) {
+                items[items.length - 1].text += " " + lines[i].trim(); i++;   // lazy continuation
+              } else break;
+            }
+            blocks.push({ type: "list", items: items });
+            continue;
+          }
+
+          // Paragraph, with lazy continuation.
+          var p = [];
+          while (i < lines.length && lines[i].trim() && !RE_ATX.test(lines[i]) && !RE_RULE.test(lines[i]) &&
+                 !RE_QUOTE.test(lines[i]) && !RE_ITEM.test(lines[i]) && !RE_TOKENLINE.test(lines[i].trim())) {
+            if (i + 1 < lines.length && RE_SETEXT.test(lines[i + 1])) break;
+            p.push(lines[i].trim()); i++;
+          }
+          if (p.length) blocks.push({ type: "para", text: p.join(" ") });
+          else i++;
+        }
+        return blocks;
+      }
+
+      /* ============================================ stage 7: inline convert === */
+      var UNI_SIMPLE = {
+        "\u2018": "`", "\u2019": "'", "\u201C": "``", "\u201D": "''",
+        "\u2013": "--", "\u2014": "---", "\u2212": "-", "\u00A0": "~",
+        "\u2026": "\\ldots{}", "\u00AD": ""
+      };
+      var UNI_CMD = {
+        "\u2192": "\\textrightarrow{}", "\u2190": "\\textleftarrow{}",
+        "\u2191": "\\textuparrow{}", "\u2193": "\\textdownarrow{}",
+        "\u21D2": "$\\Rightarrow$", "\u21D0": "$\\Leftarrow$", "\u21D4": "$\\Leftrightarrow$",
+        "\u2264": "$\\leq$", "\u2265": "$\\geq$", "\u2248": "$\\approx$", "\u2260": "$\\neq$",
+        "\u00B1": "$\\pm$", "\u00D7": "$\\times$", "\u00F7": "$\\div$", "\u221E": "$\\infty$",
+        "\u2211": "$\\sum$", "\u220F": "$\\prod$", "\u221A": "$\\sqrt{}$", "\u222B": "$\\int$",
+        "\u2208": "$\\in$", "\u2209": "$\\notin$", "\u2200": "$\\forall$", "\u2203": "$\\exists$",
+        "\u222A": "$\\cup$", "\u2229": "$\\cap$", "\u2261": "$\\equiv$", "\u221D": "$\\propto$",
+        "\u2202": "$\\partial$", "\u2207": "$\\nabla$", "\u2205": "$\\emptyset$",
+        "\u2282": "$\\subset$", "\u2286": "$\\subseteq$", "\u22C5": "$\\cdot$",
+        "\u00B0": "\\textdegree{}", "\u20AC": "\\texteuro{}", "\u00A3": "\\pounds{}",
+        "\u00A5": "\\textyen{}", "\u00A2": "\\textcent{}", "\u00A9": "\\textcopyright{}",
+        "\u00AE": "\\textregistered{}", "\u2122": "\\texttrademark{}", "\u00B6": "\\P{}",
+        "\u00A7": "\\S{}", "\u2020": "\\dag{}", "\u2021": "\\ddag{}", "\u2022": "\\textbullet{}",
+        "\u00BD": "$\\frac{1}{2}$", "\u00BC": "$\\frac{1}{4}$", "\u00BE": "$\\frac{3}{4}$",
+        "\u2030": "\\textperthousand{}", "\u2605": "$\\bigstar$", "\u2713": "$\\checkmark$",
+        "\u2717": "$\\times$", "\u25A1": "$\\square$", "\u22A0": "$\\boxtimes$",
+        "\u03B1": "$\\alpha$", "\u03B2": "$\\beta$", "\u03B3": "$\\gamma$", "\u03B4": "$\\delta$",
+        "\u03B5": "$\\epsilon$", "\u03B8": "$\\theta$", "\u03BB": "$\\lambda$", "\u03BC": "$\\mu$",
+        "\u03C0": "$\\pi$", "\u03C3": "$\\sigma$", "\u03C4": "$\\tau$", "\u03C6": "$\\phi$",
+        "\u03C9": "$\\omega$", "\u03A9": "$\\Omega$", "\u03A3": "$\\Sigma$", "\u0394": "$\\Delta$",
+        "\u03A6": "$\\Phi$", "\u03A8": "$\\Psi$", "\u0398": "$\\Theta$", "\u039B": "$\\Lambda$"
+      };
+      var MATHY = /\$\\/;
+
+      function convertUnicode(s, vault, ctx, opts) {
+        if (!opts.unicode) return s;
+        s = s.replace(/[\u2018\u2019\u201C\u201D]/g, function (c) {
+          if (!opts.quotes) return c === "\u2018" || c === "\u2019" ? "'" : '"';
+          ctx.count("quotes"); return vault.put(UNI_SIMPLE[c]);
+        });
+        s = s.replace(/[\u2013\u2014\u2212\u00A0\u2026\u00AD]/g, function (c) {
+          ctx.count("unicode"); return vault.put(UNI_SIMPLE[c]);
+        });
+        // The /u flag makes this match whole code points, so astral emoji arrive as
+        // one character rather than two lone surrogates. The explicit \uE000\uE001
+        // exclusion is essential: those are our own vault sentinels, and they are
+        // non-ASCII, so without it this pass would delete every token in the string.
+        s = s.replace(/[^\x00-\x7F\uE000\uE001]/gu, function (c) {
+          var cmd = UNI_CMD[c];
+          if (cmd) {
+            ctx.count("unicode");
+            if (MATHY.test(cmd)) ctx.feature("symbols"); else ctx.feature("textsym");
+            return vault.put(cmd);
+          }
+          if (/\p{Extended_Pictographic}/u.test(c) || c === "\uFE0F" || c === "\u200D") {
+            ctx.count("emoji");
+            ctx.warn("amber", "Emoji removed", "pdfLaTeX cannot render emoji at all. They were dropped.");
+            return "";
+          }
+          var cp = c.codePointAt(0);
+          ctx.badChars[c] = u(cp);
+          return c;
+        });
+        return s;
+      }
+
+      function convertImages(s, vault, ctx, opts) {
+        return s.replace(/!\[([^\]]*)\]\(\s*(<[^>]*>|[^\s)]+)(?:\s+["'(]([^"')]*)["')])?\s*\)/g,
+          function (m, alt, src) {
+            ctx.feature("images"); ctx.count("image");
+            return vault.put("\\includegraphics[width=\\linewidth]{" + sanitisePath(src, ctx) + "}");
+          });
+      }
+
+      function convertLinks(s, vault, ctx, opts) {
+        return s.replace(/\[((?:[^\[\]]|\[[^\]]*\])*)\]\(\s*(<[^>]*>|[^\s)]+)(?:\s+["']([^"']*)["'])?\s*\)/g,
+          function (m, text, url) {
+            ctx.feature("links"); ctx.count("link");
+            url = url.replace(/^<|>$/g, "");
+            if (/%/.test(url)) {
+              ctx.warn("amber", "A URL contains %", "It has been escaped. An unescaped % comments out the rest of the line.");
+            }
+            if (text.trim() === url.trim()) return vault.put("\\url{" + escapeUrl(url) + "}");
+            return vault.put("\\href{" + escapeUrl(url) + "}{") + text + vault.put("}");
+          });
+      }
+
+      function convertCitations(s, vault, ctx) {
+        // Bracketed form only. Bare @key would mangle @mentions and email addresses.
+        return s.replace(/\[(-?@[^\]]+)\]/g, function (m, body) {
+          var parts = body.split(";").map(function (p) { return p.trim(); });
+          var keys = [], locator = null, ok = true;
+          parts.forEach(function (p) {
+            var mm = /^-?@([A-Za-z0-9_:.#$%&+?<>~/-]+)\s*(?:,\s*(.+))?$/.exec(p);
+            if (!mm) { ok = false; return; }
+            keys.push(mm[1]);
+            // Escape FIRST, then insert the non-breaking space. Doing it the other
+            // way round leaves escapeText to turn our own ~ into \textasciitilde{}.
+            if (mm[2]) locator = escapeText(mm[2]).replace(/\s+/g, "~");
+          });
+          if (!ok || !keys.length) return m;
+          keys.forEach(function (k) { ctx.bibKeys[k] = true; });
+          ctx.feature("cite"); ctx.count("cite", keys.length);
+          return vault.put("\\cite" + (locator ? "[" + locator + "]" : "") + "{" + keys.join(",") + "}");
+        });
+      }
+
+      function convertFootnoteRefs(s, vault, ctx, opts) {
+        return s.replace(/\[\^([^\]\s]+)\]/g, function (m, label) {
+          var def = ctx.footnotes[label];
+          if (def === undefined) {
+            ctx.warn("amber", "Footnote [^" + label + "] has no definition", "Add a line: [^" + label + "]: your text");
+            return m;
+          }
+          ctx.count("footnote");
+          if (ctx.footnoteOrder.indexOf(label) !== -1) {
+            ctx.warn("amber", "Footnote [^" + label + "] used more than once",
+              "LaTeX will print it twice. Use \\footnotemark/\\footnotetext if you need a single note.");
+          } else ctx.footnoteOrder.push(label);
+          return vault.put("\\footnote{") + def + vault.put("}");
+        });
+      }
+
+      function inlineToLatex(s, vault, ctx, opts) {
+        // 7.1 Markdown backslash escapes, first: vault the literal so nothing else sees it.
+        s = s.replace(/\\([\\`*_{}\[\]()#+\-.!|~>])/g, function (m, c) { return vault.put(escapeText(c)); });
+        // 7.2 images BEFORE links, or ![](x) partially matches the link regex.
+        s = convertImages(s, vault, ctx, opts);
+        s = convertLinks(s, vault, ctx, opts);
+        s = convertCitations(s, vault, ctx);
+        s = convertFootnoteRefs(s, vault, ctx, opts);
+        s = s.replace(/<((?:https?|ftp|mailto):[^>\s]+)>/g, function (m, url) {
+          ctx.feature("links"); ctx.count("link"); return vault.put("\\url{" + escapeUrl(url) + "}");
+        });
+        s = s.replace(/(^|[\s(])(https?:\/\/[^\s<>)]+)/g, function (m, pre, url) {
+          var trail = "";
+          url = url.replace(/[.,;:!?)]+$/, function (t) { trail = t; return ""; });
+          ctx.feature("links"); ctx.count("link");
+          return pre + vault.put("\\url{" + escapeUrl(url) + "}") + trail;
+        });
+        // 7.8 strikethrough, then emphasis longest-marker-first.
+        s = s.replace(/~~(?=\S)([\s\S]*?\S)~~/g, function (m, i2) {
+          ctx.feature("strike"); return vault.put("\\sout{") + i2 + vault.put("}");
+        });
+        s = s.replace(/\*\*\*(?=\S)([\s\S]*?\S)\*\*\*/g, function (m, i2) {
+          return vault.put("\\textbf{\\emph{") + i2 + vault.put("}}");
+        });
+        s = s.replace(/\*\*(?=\S)([\s\S]*?\S)\*\*/g, function (m, i2) {
+          return vault.put("\\textbf{") + i2 + vault.put("}");
+        });
+        s = s.replace(/(?<!\w)__(?=\S)([\s\S]*?\S)__(?!\w)/g, function (m, i2) {
+          return vault.put("\\textbf{") + i2 + vault.put("}");
+        });
+        s = s.replace(/\*(?=\S)([^*\n]*?\S)\*/g, function (m, i2) {
+          return vault.put("\\emph{") + i2 + vault.put("}");
+        });
+        s = s.replace(/(?<!\w)_(?=\S)([^_\n]*?\S)_(?!\w)/g, function (m, i2) {
+          return vault.put("\\emph{") + i2 + vault.put("}");
+        });
+        s = convertUnicode(s, vault, ctx, opts);
+        s = s.replace(/ {2,}/g, " ").replace(/ +([.,;:!?])/g, "$1");
+        // 7.13 the single atomic escape pass, last.
+        return escapeText(s);
+      }
+
+      /* ------------------------------------------------------------- renderers */
+      var SEC = ["section", "subsection", "subsubsection", "paragraph", "subparagraph"];
+
+      function renderHeading(b, vault, ctx, opts) {
+        var lvl = Math.min(b.level, 6);
+        if (lvl === 1 && !ctx.title && opts.mode === "full" && !ctx.sawHeading) {
+          ctx.title = inlineToLatex(b.text, vault, ctx, opts);
+          ctx.titleConsumed = true;
+          return null;
+        }
+        ctx.sawHeading = true;
+        // If the leading H1 became \title, every later level shifts up one so that
+        // "##" maps to \section rather than \subsection.
+        var eff = lvl - (ctx.titleConsumed ? 1 : 0);
+        var name = SEC[Math.max(0, Math.min(eff - 1, SEC.length - 1))];
+        var txt = inlineToLatex(b.text, vault, ctx, opts);
+        if (/\\footnote/.test(vault.restore(txt))) {
+          ctx.warn("amber", "Footnote inside a heading", "It needs \\protect in a moving argument; consider moving it into the body.");
+        }
+        ctx.count("heading");
+        return "\\" + name + (opts.numbered ? "" : "*") + "{" + txt + "}";
+      }
+
+      function envOf(k) { return k === "ol" ? "enumerate" : "itemize"; }
+
+      function renderList(b, vault, ctx, opts) {
+        var out = [], stack = [];
+        function ind(n) { return new Array(n + 1).join("  "); }
+        function closeTo(n) {
+          while (stack.length > n) {
+            var s = stack.pop();
+            out.push(ind(stack.length) + "\\end{" + envOf(s.kind) + "}");
+          }
+        }
+        function open(it) {
+          stack.push({ kind: it.kind, indent: it.indent });
+          out.push(ind(stack.length - 1) + "\\begin{" + envOf(it.kind) + "}");
+          // Legal only before the first \item, which is exactly where we are.
+          if (it.kind === "ol" && it.num && it.num !== 1) {
+            out.push(ind(stack.length) + "\\setcounter{enumi}{" + (it.num - 1) + "}");
+          }
+        }
+
+        b.items.forEach(function (it) {
+          // Pop any levels indented deeper than this item.
+          while (stack.length > 1 && it.indent < stack[stack.length - 1].indent) closeTo(stack.length - 1);
+
+          if (!stack.length) {
+            open(it);
+          } else {
+            var top = stack[stack.length - 1];
+            if (it.indent > top.indent) {
+              if (stack.length >= 4) {
+                // Beyond 4 levels LaTeX raises '! Too deeply nested'. Treat the item
+                // as a sibling at the current depth instead of opening a 5th list.
+                ctx.warn("red", "List nesting deeper than 4 levels was flattened",
+                  "LaTeX errors with '! Too deeply nested' beyond 4 levels. Restructure the list.");
+              } else {
+                open(it);
+              }
+            } else if (top.kind !== it.kind) {
+              // Same level, different marker type: LaTeX cannot switch mid-environment.
+              closeTo(stack.length - 1);
+              open(it);
+            }
+          }
+
+          var raw = it.text;
+          var box = null;
+          var tm = /^\[([ xX])\]\s+/.exec(raw);
+          if (tm) { box = tm[1] === " " ? "$\\square$" : "$\\boxtimes$"; raw = raw.slice(tm[0].length); ctx.feature("symbols"); }
+          var txt = inlineToLatex(raw, vault, ctx, opts);
+          // \item [x] parses [x] as the OPTIONAL LABEL and silently replaces the bullet.
+          if (/^\s*\[/.test(txt)) txt = vault.put("{}") + txt;
+          ctx.count("listitem");
+          out.push(ind(stack.length) + "\\item " + (box ? vault.put(box) + " " : "") + txt);
+        });
+        closeTo(0);
+        return out.join("\n");
+      }
+
+      function renderTable(b, vault, ctx, opts) {
+        ctx.feature("tables");
+        var n = b.header.length;
+        var spec = b.align.slice(0, n);
+        while (spec.length < n) spec.push("l");
+        var lines = [];
+        lines.push("\\begin{table}[htbp]");
+        lines.push("\\centering");
+        lines.push("\\begin{tabular}{" + spec.join("") + "}");
+        lines.push(opts.booktabs ? "\\toprule" : "\\hline");
+
+        function row(cells) {
+          var c = cells.slice(0, n);
+          if (cells.length !== n) {
+            ctx.warn("red", "A table row had " + cells.length + " cells but the header has " + n,
+              "A mismatch causes '! Extra alignment tab has been changed to \\cr'. The row was padded/truncated.");
+          }
+          while (c.length < n) c.push("");
+          return c.map(function (x) { return inlineToLatex(x, vault, ctx, opts); }).join(" & ") + " \\\\";
+        }
+        lines.push(row(b.header));
+        lines.push(opts.booktabs ? "\\midrule" : "\\hline");
+        b.rows.forEach(function (r) { lines.push(row(r)); });
+        lines.push(opts.booktabs ? "\\bottomrule" : "\\hline");
+        lines.push("\\end{tabular}");
+        lines.push("\\end{table}");
+        ctx.count("table");
+        return lines.join("\n");
+      }
+
+      function renderBlocks(blocks, vault, ctx, opts) {
+        var out = [];
+        blocks.forEach(function (b) {
+          var s = null;
+          switch (b.type) {
+            case "heading": s = renderHeading(b, vault, ctx, opts); break;
+            case "para": s = inlineToLatex(b.text, vault, ctx, opts); ctx.count("para"); break;
+            case "rule": s = "\\begin{center}\\rule{0.6\\linewidth}{0.4pt}\\end{center}"; break;
+            case "raw": s = b.text; break;
+            case "list": s = renderList(b, vault, ctx, opts); break;
+            case "table": s = renderTable(b, vault, ctx, opts); break;
+            case "quote":
+              ctx.count("quote");
+              s = "\\begin{quote}\n" + renderBlocks(b.blocks, vault, ctx, opts) + "\n\\end{quote}";
+              break;
+          }
+          if (s !== null && s !== undefined && s !== "") out.push(s);
+        });
+        return out.join("\n\n");
+      }
+
+      /* ================================================= stage 8: assemble ==== */
+      var LSTSET = [
+        "\\lstset{",
+        "  basicstyle=\\ttfamily\\small,",
+        "  breaklines=true,",
+        "  frame=single,",
+        "  captionpos=b,",
+        "  keywordstyle=\\color{blue},",
+        "  commentstyle=\\color{gray},",
+        "  stringstyle=\\color{teal},",
+        "  showstringspaces=false",
+        "}"
+      ].join("\n");
+
+      var HYPERSETUP = [
+        "\\hypersetup{",
+        "  colorlinks=true,",
+        "  linkcolor=blue,",
+        "  urlcolor=blue,",
+        "  citecolor=blue",
+        "}"
+      ].join("\n");
+
+      // ORDERED manifest. Package order is load-bearing: hyperref must load last,
+      // xurl immediately before it, lmodern after fontenc. A Set would give
+      // insertion order, i.e. conversion order, i.e. the wrong order.
+      var PACKAGES = [
+        { id: "inputenc", when: function () { return true; }, lines: function () { return ["\\usepackage[utf8]{inputenc}"]; } },
+        { id: "fontenc",  when: function () { return true; }, lines: function () { return ["\\usepackage[T1]{fontenc}"]; } },
+        { id: "lmodern",  when: function () { return true; }, lines: function () { return ["\\usepackage{lmodern}"]; } },
+        { id: "geometry", when: function () { return true; }, lines: function () { return ["\\usepackage[margin=1in]{geometry}"]; } },
+        { id: "ams",      when: function (c) { return c.has("math") || c.has("symbols"); }, lines: function () { return ["\\usepackage{amsmath,amssymb}"]; } },
+        { id: "graphicx", when: function (c) { return c.has("images"); }, lines: function () { return ["\\usepackage{graphicx}"]; } },
+        { id: "array",    when: function (c) { return c.has("tables"); }, lines: function () { return ["\\usepackage{array}"]; } },
+        { id: "booktabs", when: function (c, o) { return c.has("tables") && o.booktabs; }, lines: function () { return ["\\usepackage{booktabs}"]; } },
+        { id: "ulem",     when: function (c) { return c.has("strike"); }, lines: function () { return ["\\usepackage[normalem]{ulem}"]; } },
+        { id: "xcolor",   when: function (c) { return c.has("listings"); }, lines: function () { return ["\\usepackage{xcolor}"]; } },
+        { id: "listings", when: function (c) { return c.has("listings"); }, lines: function () { return ["\\usepackage{listings}", LSTSET]; } },
+        { id: "textcomp", when: function (c) { return c.has("textsym"); }, lines: function () { return ["\\usepackage{textcomp}"]; } },
+        { id: "xurl",     when: function (c) { return c.has("links"); }, lines: function () { return ["\\usepackage{xurl}"]; } },
+        { id: "hyperref", when: function (c) { return c.has("links"); }, lines: function () { return ["\\usepackage{hyperref}", HYPERSETUP]; } }
+      ];
+
+      function preambleLines(ctx, opts) {
+        var out = [];
+        PACKAGES.forEach(function (p) {
+          if (p.when(ctx, opts)) out = out.concat(p.lines(ctx, opts));
+        });
+        return out;
+      }
+
+      function buildDocument(body, ctx, opts) {
+        var pre = preambleLines(ctx, opts);
+        if (opts.mode === "body") {
+          var head = ["% Converted from Markdown. Paste into your existing document.",
+                      "% Required packages - add these to your preamble if missing:"];
+          pre.forEach(function (l) {
+            if (l.indexOf("\\usepackage") === 0) head.push("%   " + l);
+          });
+          if (Object.keys(ctx.bibKeys).length) {
+            head.push("% Citations used - you need a .bib file and \\bibliography{...}:");
+            head.push("%   " + Object.keys(ctx.bibKeys).join(", "));
+          }
+          head.push("");
+          return head.join("\n") + body + "\n";
+        }
+        var doc = ["\\documentclass[11pt,a4paper]{article}"];
+        doc = doc.concat(pre);
+        doc.push("");
+        if (ctx.title) doc.push("\\title{" + ctx.title + "}", "\\author{}", "\\date{\\today}", "");
+        doc.push("\\begin{document}", "");
+        if (ctx.title) doc.push("\\maketitle", "");
+        doc.push(body, "");
+        if (Object.keys(ctx.bibKeys).length) {
+          // Deliberately commented: \bibliography{refs} with no refs.bib is a HARD
+          // error, whereas \cite with no bibliography is only a warning that
+          // typesets [?]. Commenting keeps the promise that output compiles.
+          doc.push("% Uncomment after uploading refs.bib to your Overleaf project:");
+          doc.push("% \\bibliographystyle{plain}");
+          doc.push("% \\bibliography{refs}");
+          doc.push("");
+        }
+        doc.push("\\end{document}");
+        return doc.join("\n");
+      }
+
+      /* ==================================================== stage 10: lint ==== */
+      function lintLatex(tex, ctx) {
+        var envs = [], re = /\\(begin|end)\{([a-zA-Z*]+)\}/g, m;
+        while ((m = re.exec(tex))) {
+          if (m[1] === "begin") envs.push(m[2]);
+          else if (envs.pop() !== m[2]) {
+            ctx.warn("red", "Mismatched \\begin/\\end for " + m[2], "This is a converter bug - please report the input that caused it.");
+            break;
+          }
+        }
+        if (envs.length) ctx.warn("red", "Unclosed environment: " + envs.join(", "), "This is a converter bug - please report the input.");
+        if (/\\\\\s*\n\s*\\end\{tabular\}/.test(tex)) {
+          ctx.warn("red", "Row separator immediately before \\end{tabular}", "Causes '! There's no line here to end'.");
+        }
+        var keys = Object.keys(ctx.badChars);
+        if (keys.length) {
+          var list = keys.slice(0, 8).map(function (c) { return c + " (" + ctx.badChars[c] + ")"; }).join(", ");
+          ctx.warn("red", keys.length + " character(s) pdfLaTeX cannot typeset: " + list,
+            "Switch Overleaf's compiler to XeLaTeX or LuaLaTeX (Menu > Compiler), or remove these characters.");
+        }
+        if (Object.keys(ctx.bibKeys).length) {
+          ctx.warn("amber", "Citations found: " + Object.keys(ctx.bibKeys).join(", "),
+            "Upload a .bib file to Overleaf and uncomment the \\bibliography lines at the end.");
+        }
+        if (ctx.images.length) {
+          ctx.warn("amber", "Upload " + ctx.images.length + " image file(s): " + ctx.images.slice(0, 5).join(", "),
+            "\\includegraphics needs the actual files in your Overleaf project.");
+        }
+      }
+
+      /* ======================================================== entry point === */
+      function convert(src, opts) {
+        opts = opts || {};
+        opts.mode = opts.mode || "full";
+        opts.codeStyle = opts.codeStyle || "listings";
+        opts.quotes = opts.quotes !== false;
+        opts.unicode = opts.unicode !== false;
+        opts.booktabs = opts.booktabs !== false;
+        opts.numbered = opts.numbered !== false;
+
+        var ctx = createCtx();
+        var vault = createVault();
+
+        if (!String(src).trim()) return { latex: "", ctx: ctx };
+
+        var lines = normaliseInput(src, ctx);
+        lines = extractFences(lines, vault, ctx, opts);
+
+        var text = lines.join("\n");
+        text = extractDisplayMath(text, vault, ctx);
+        text = extractLatexEnvs(text, vault, ctx);
+        text = extractInlineMath(text, vault, ctx);
+        text = extractInlineCode(text, vault, ctx);
+        text = extractRawHtml(text, vault, ctx);
+
+        lines = text.split("\n");
+        lines = collectFootnoteDefs(lines, ctx);
+
+        var blocks = parseBlocks(lines, ctx, 0);
+        var body = renderBlocks(blocks, vault, ctx, opts);
+        if (ctx.title) ctx.title = vault.restore(ctx.title);
+
+        var out = buildDocument(body, ctx, opts);
+        out = vault.restore(out);
+        lintLatex(out, ctx);
+
+        return { latex: out, ctx: ctx };
+      }
+
+      return { convert: convert, escapeText: escapeText, escapeUrl: escapeUrl, slugify: slugify };
+    });
+  </script>
+
+  <!-- ===================== UI wiring ===================== -->
+  <script>
+    (function () {
+      "use strict";
+      var $ = function (id) { return document.getElementById(id); };
+      var input = $("input"), output = $("output");
+
+      var SEV = {
+        red:   { label: "Will not compile", cls: "sig" },
+        amber: { label: "Needs attention",  cls: "typo" },
+        blue:  { label: "For information",  cls: "fmt" }
+      };
+      var LABELS = {
+        heading: "Headings", para: "Paragraphs", listitem: "List items", table: "Tables",
+        codeblock: "Code blocks", codespan: "Inline code", mathinline: "Inline maths",
+        mathdisplay: "Display maths", link: "Links", image: "Images", cite: "Citations",
+        footnote: "Footnotes", quote: "Block quotes", unicode: "Symbols converted",
+        quotes: "Smart quotes", emoji: "Emoji removed", latexenv: "LaTeX environments"
+      };
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+      function countWords(s) {
+        var t = s.trim(); return t ? (t.match(/\S+/g) || []).length : 0;
+      }
+      function segValue(id) {
+        var b = $(id).querySelector("button.active");
+        return b ? b.getAttribute("data-mode") : null;
+      }
+      function readOpts() {
+        return {
+          mode: segValue("modeSeg"),
+          codeStyle: segValue("codeSeg"),
+          unicode: $("opt-unicode").checked,
+          quotes: $("opt-quotes").checked,
+          booktabs: $("opt-booktabs").checked,
+          numbered: $("opt-numbered").checked
+        };
+      }
+
+      var lastTex = "", lastTitle = "document";
+
+      function render() {
+        var src = input.value;
+        $("inChars").textContent = src.length.toLocaleString();
+        $("inWords").textContent = countWords(src).toLocaleString();
+
+        if (!src.trim()) {
+          output.value = ""; lastTex = "";
+          $("outChars").textContent = "0"; $("outLines").textContent = "0";
+          $("status").textContent = "";
+          $("copyBtn").disabled = true; $("dlBtn").disabled = true;
+          $("summary").className = "summary idle";
+          $("summaryText").textContent = "Paste something to get started.";
+          $("convTable").innerHTML = ""; $("warnTable").innerHTML = "";
+          $("pkgToggle").hidden = true; $("pkgBox").classList.remove("show");
+          return;
+        }
+
+        var opts = readOpts();
+        var res;
+        try {
+          res = MdToTex.convert(src, opts);
+        } catch (e) {
+          output.value = "";
+          $("summary").className = "summary dirty";
+          $("summaryText").innerHTML = 'Conversion failed <span class="badge">ERROR</span>';
+          $("warnTable").innerHTML = '<p class="fix">' + escapeHtml(e.message) + "</p>";
+          return;
+        }
+
+        lastTex = res.latex;
+        lastTitle = MdToTex.slugify(res.ctx.title ? res.ctx.title.replace(/\\[a-zA-Z]+\{?|\}/g, "") : "document");
+        output.value = lastTex;
+        $("outChars").textContent = lastTex.length.toLocaleString();
+        $("outLines").textContent = String(lastTex.split("\n").length);
+        // Gate on .value.length - a textarea has no textContent and never
+        // carries the sibling tool's ".empty" class.
+        $("copyBtn").disabled = !lastTex.length;
+        $("dlBtn").disabled = !lastTex.length;
+
+        renderReport(res.ctx);
+      }
+
+      function renderReport(ctx) {
+        var w = ctx.warnings;
+        var red = w.filter(function (x) { return x.sev === "red"; }).length;
+        var amber = w.filter(function (x) { return x.sev === "amber"; }).length;
+        var need = red + amber;
+
+        $("summary").className = "summary " + (need ? "dirty" : "clean");
+        $("summaryText").innerHTML = need
+          ? "Converted, with " + need + " thing" + (need === 1 ? "" : "s") + " to check " +
+            '<span class="badge">' + need + " TO CHECK</span>"
+          : 'Converted cleanly <span class="badge">READY</span>';
+        $("status").textContent = "Converted · " + (need ? need + " to check" : "no warnings");
+
+        // Warnings, most severe first.
+        var order = { red: 0, amber: 1, blue: 2 };
+        var sorted = w.slice().sort(function (a, b) { return order[a.sev] - order[b.sev]; });
+        if (sorted.length) {
+          var rows = sorted.map(function (x) {
+            return "<tr><td class='sev'><span class='cat-pill " + SEV[x.sev].cls + "'>" +
+              SEV[x.sev].label + "</span></td><td>" + escapeHtml(x.what) +
+              (x.n > 1 ? " <b>×" + x.n + "</b>" : "") +
+              (x.fix ? "<br><span class='fix'>" + escapeHtml(x.fix) + "</span>" : "") +
+              "</td></tr>";
+          }).join("");
+          $("warnTable").innerHTML = "<h3>Needs your attention</h3>" +
+            "<table class='findings'><thead><tr><th>Severity</th><th>What, and what to do</th></tr></thead><tbody>" +
+            rows + "</tbody></table>";
+        } else {
+          $("warnTable").innerHTML = "";
+        }
+
+        // What was converted.
+        var keys = Object.keys(ctx.counts).filter(function (k) { return LABELS[k]; });
+        if (keys.length) {
+          var crows = keys.sort().map(function (k) {
+            return "<tr><td>" + LABELS[k] + "</td><td class='count'>" + ctx.counts[k] + "</td></tr>";
+          }).join("");
+          $("convTable").innerHTML = "<h3>Converted</h3>" +
+            "<table class='findings'><thead><tr><th>Element</th><th>Count</th></tr></thead><tbody>" +
+            crows + "</tbody></table>";
+        } else {
+          $("convTable").innerHTML = "";
+        }
+
+        // Required packages, from the emitted preamble.
+        var pkgs = (lastTex.match(/^\\usepackage.*$/gm) || []);
+        if (!pkgs.length) pkgs = (lastTex.match(/^%\s+(\\usepackage.*)$/gm) || []).map(function (l) {
+          return l.replace(/^%\s+/, "");
+        });
+        if (pkgs.length) {
+          $("pkgToggle").hidden = false;
+          $("pkgBox").innerHTML = "<pre style='margin:0;white-space:pre-wrap'>" +
+            escapeHtml(pkgs.join("\n")) + "</pre>";
+        } else {
+          $("pkgToggle").hidden = true;
+        }
+      }
+
+      /* --------------------------------------------------------- interactions */
+      var t;
+      function schedule() {
+        clearTimeout(t);
+        // This converter does far more work per keystroke than a codepoint scan,
+        // so back off further on very large inputs.
+        t = setTimeout(render, input.value.length > 300000 ? 400 : 150);
+      }
+      input.addEventListener("input", schedule);
+
+      ["modeSeg", "codeSeg"].forEach(function (id) {
+        $(id).addEventListener("click", function (e) {
+          var b = e.target.closest("button[data-mode]");
+          if (!b) return;
+          Array.prototype.forEach.call(this.querySelectorAll("button"), function (x) {
+            x.classList.remove("active");
+            x.setAttribute("aria-pressed", "false");
+          });
+          b.classList.add("active");
+          b.setAttribute("aria-pressed", "true");
+          render();
+        });
+      });
+      ["opt-unicode", "opt-quotes", "opt-booktabs", "opt-numbered"].forEach(function (id) {
+        $(id).addEventListener("change", render);
+      });
+
+      $("clearBtn").addEventListener("click", function () {
+        input.value = ""; render(); input.focus();
+      });
+
+      $("copyBtn").addEventListener("click", function () {
+        if (!lastTex) return;
+        var btn = this;
+        var done = function () {
+          btn.classList.add("done");
+          $("copyLabel").textContent = "Copied!";
+          setTimeout(function () {
+            btn.classList.remove("done");
+            $("copyLabel").textContent = "Copy";
+          }, 1600);
+        };
+        function fallback() {
+          // The output IS a textarea, so it can select itself - no clone needed.
+          output.removeAttribute("readonly");
+          output.select();
+          try { document.execCommand("copy"); done(); } catch (e) {}
+          output.setAttribute("readonly", "");
+          window.getSelection().removeAllRanges();
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastTex).then(done, fallback);
+        } else { fallback(); }
+      });
+
+      $("dlBtn").addEventListener("click", function () {
+        if (!lastTex) return;
+        // No BOM: pdfLaTeX chokes on one at the top of a .tex file.
+        var blob = new Blob([lastTex], { type: "application/x-tex;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url; a.download = (lastTitle || "document") + ".tex";
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        // Revoke on a timeout: Safari and Firefox may not have started the
+        // download by the time click() returns.
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      });
+
+      $("pkgToggle").addEventListener("click", function () {
+        var box = $("pkgBox");
+        box.classList.toggle("show");
+        $("pkgLabel").textContent = box.classList.contains("show")
+          ? "Hide required packages" : "Show required packages";
+      });
+
+      render();
+    })();
+  </script>
+
+</body>
+</html>
