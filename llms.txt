@@ -54,6 +54,7 @@
 - [Contact](https://shankar-jayaraj.github.io/contact.html): booking form (WhatsApp +91 93447 75577; LinkedIn: linkedin.com/in/drshankarj)
 - [Links](https://shankar-jayaraj.github.io/links/): single hub of all resources, tools, talks and 1:1 booking
 - [LinkedIn Post Cleaner](https://shankar-jayaraj.github.io/text_format/): free browser-based tool that strips hidden AI footprints from text
+- [Markdown to LaTeX Converter](https://shankar-jayaraj.github.io/text_latex/): free browser-based tool that converts Markdown or plain text into LaTeX that compiles in Overleaf without errors — correct escaping of LaTeX special characters, tables, maths, code, images, footnotes and citations, and a dynamic package preamble. Runs entirely client-side.
 
 ## Profiles
 - ORCID: https://orcid.org/0000-0002-9456-8953
