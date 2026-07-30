@@ -58,6 +58,7 @@
 ## Profiles
 - ORCID: https://orcid.org/0000-0002-9456-8953
 - Google Scholar: https://scholar.google.com/citations?user=PQM5NW8AAAAJ&hl=en
+- IEEE Xplore author page: https://ieeexplore.ieee.org/author/316599636927289
 - LinkedIn: https://www.linkedin.com/in/drshankarj
 - GitHub: https://github.com/shankar-jayaraj
 - YouTube: https://www.youtube.com/@drshankarj
