@@ -14,16 +14,38 @@
   <meta property="og:description" content="I decode brain signals for a living. 481 expert sessions. PhD researcher in brain-computer interfaces at NIT Calicut. Quoted in Forbes; featured in The Times of India.">
   <meta property="og:url" content="https://shankar-jayaraj.github.io/">
   <meta property="og:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img.png">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+  <meta property="og:image:alt" content="Shankar J, PhD scholar at NIT Calicut and keynote speaker on AI/ML in signal processing and EEG">
+  <!-- TODO (high value): replace profile-img.png with a 1200x630 branded OG card.
+       At 400x400 LinkedIn and X cannot render a large preview, so every shared
+       link shows a small square thumbnail instead of a full-width card.
+       Then update the width/height above and switch twitter:card back to
+       summary_large_image. -->
   <meta property="og:locale" content="en_IN">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Shankar J: Keynote &amp; FDP Speaker on AI/ML in Signal Processing and EEG">
   <meta name="twitter:description" content="481 expert sessions. PhD researcher in brain-computer interfaces at NIT Calicut.">
   <meta name="twitter:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img.png">
+  <meta name="twitter:image:alt" content="Shankar J, PhD scholar at NIT Calicut and keynote speaker on AI/ML in signal processing and EEG">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/revamp.css?v=20260709b">
 
+  <!-- ============================================================================
+       SEO / AEO NOTE - sameAs is the strongest remaining lever for ranking the
+       name "Shankar J", which is common enough that Google and the LLM answer
+       engines need help deciding which "Shankar J" this site is about.
+       Add each URL to the Person "sameAs" array below as soon as it exists:
+         1. ORCID iD            https://orcid.org/NNNN-NNNN-NNNN-NNNN
+         2. Google Scholar profile
+         3. IEEE Xplore author page (from the TriMiX paper)
+         4. ResearchGate profile
+         5. Wikidata item, only if notability criteria are met
+       Every entry must be a real, resolving URL - a dead sameAs is worse than
+       none. Step-by-step instructions: ideas/idea-003-seo-aeo-llm-optimisation.md
+       ============================================================================ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,15 +56,31 @@
         "name": "Shankar J",
         "alternateName": "Shankar Jayaraj",
         "url": "https://shankar-jayaraj.github.io/",
-        "image": "https://shankar-jayaraj.github.io/assets/img/profile-img.png",
+        "image": {"@id": "https://shankar-jayaraj.github.io/#profile-photo"},
         "jobTitle": "PhD Scholar; Keynote & FDP Speaker on AI/ML in Signal Processing and EEG",
         "description": "Shankar J is a PhD scholar at NIT Calicut researching brain-computer interfaces and EEG deep learning, and a keynote, FDP and workshop speaker on AI/ML in signal processing who has delivered 481 expert sessions to more than 16,500 learners.",
+        "disambiguatingDescription": "Shankar J (also written Shankar Jayaraj) — PhD scholar in Electronics and Communication Engineering at the National Institute of Technology Calicut, Kerala, India, working on EEG signal processing and brain-computer interfaces; keynote and faculty-development-programme speaker on AI/ML in signal processing; licensed amateur radio operator with the callsign VU3FIY. Not to be confused with other people named Shankar or Shankar J.",
         "affiliation": {"@type": "CollegeOrUniversity", "name": "National Institute of Technology Calicut", "sameAs": "https://nitc.ac.in/"},
+        "hasOccupation": [
+          {
+            "@type": "Occupation",
+            "name": "Keynote and faculty development programme speaker on AI/ML in signal processing and EEG",
+            "occupationalCategory": "25-1032.00 Engineering Teachers, Postsecondary",
+            "skills": "EEG signal processing, brain-computer interfaces, applied machine learning for biomedical data, AI-assisted research workflows, faculty development programme delivery"
+          },
+          {
+            "@type": "Occupation",
+            "name": "Biomedical signal processing researcher (EEG, brain-computer interfaces)",
+            "occupationalCategory": "19-1042.00 Medical Scientists",
+            "skills": "Motor imagery classification, deep learning for EEG, interpretable machine learning, biomedical signal pipelines"
+          }
+        ],
+        "memberOf": {"@type": "Organization", "name": "IEEE", "sameAs": "https://www.ieee.org/"},
+        "knowsLanguage": {"@type": "Language", "name": "English"},
         "alumniOf": [
           {"@type": "CollegeOrUniversity", "name": "SRM University, Chennai"},
           {"@type": "CollegeOrUniversity", "name": "University College of Engineering Kariavattom, University of Kerala"}
         ],
-        "knowsAbout": ["EEG signal processing","Brain-computer interfaces","Motor imagery classification","Deep learning","Biomedical signal processing","Machine learning","Faculty development programmes"],
         "award": [
           "IEEE R10 Young Professionals Outstanding Volunteer in Academic Award 2021",
           "IEEE India Council Outstanding Young Professional Volunteer Award 2020",
@@ -52,14 +90,29 @@
         ],
         "subjectOf": [
           {"@type": "NewsArticle", "headline": "Will Every Entrepreneur Have An AI Coach? (Experts Share Predictions)", "publisher": {"@type": "Organization", "name": "Forbes"}, "datePublished": "2024-04-05", "url": "https://www.forbes.com/sites/jodiecook/2024/04/05/will-every-entrepreneur-have-an-ai-coach-experts-share-predictions/", "description": "Shankar J is quoted as an expert on AI and productivity."},
-          {"@type": "NewsArticle", "headline": "The Times of India feature", "publisher": {"@type": "Organization", "name": "The Times of India"}, "datePublished": "2024-08-23", "url": "https://epaper.indiatimes.com/article-share?article=23_08_2024_023_020_cap_TOI"}
+          {"@type": "NewsArticle", "headline": "Shankar J featured in The Times of India, 23 August 2024 edition", "publisher": {"@type": "Organization", "name": "The Times of India"}, "datePublished": "2024-08-23", "url": "https://epaper.indiatimes.com/article-share?article=23_08_2024_023_020_cap_TOI", "description": "Shankar J is featured in the 23 August 2024 edition of The Times of India."}
+        ],
+        "knowsAbout": [
+          "EEG signal processing",
+          "Brain-computer interfaces",
+          "Motor imagery classification",
+          "Interpretable machine learning",
+          "Deep learning",
+          "Biomedical signal processing",
+          "Machine learning",
+          "Neurotechnology",
+          "Electronics and communication engineering",
+          "Faculty development programmes",
+          "Amateur radio"
         ],
         "sameAs": [
           "https://www.linkedin.com/in/drshankarj",
           "https://github.com/shankar-jayaraj",
-          "https://www.youtube.com/c/drshankarj",
+          "https://www.youtube.com/@drshankarj",
           "https://www.instagram.com/drshankarj/",
-          "https://www.topmate.io/shankar_j"
+          "https://www.facebook.com/drshankarj",
+          "https://linktr.ee/drshankarj",
+          "https://topmate.io/shankar_j"
         ],
         "workLocation": {"@type": "Place", "address": {"@type": "PostalAddress", "addressLocality": "Thiruvananthapuram", "addressRegion": "Kerala", "addressCountry": "IN"}}
       },
@@ -68,7 +121,31 @@
         "@id": "https://shankar-jayaraj.github.io/#site",
         "url": "https://shankar-jayaraj.github.io/",
         "name": "Shankar J, Speaker & BCI Researcher",
+        "inLanguage": "en",
         "publisher": {"@id": "https://shankar-jayaraj.github.io/#shankar"}
+      },
+      {
+        "@type": ["WebPage", "ProfilePage"],
+        "@id": "https://shankar-jayaraj.github.io/#webpage",
+        "url": "https://shankar-jayaraj.github.io/",
+        "name": "Shankar J: Keynote & FDP Speaker on AI/ML in Signal Processing and EEG",
+        "isPartOf": {"@id": "https://shankar-jayaraj.github.io/#site"},
+        "about": {"@id": "https://shankar-jayaraj.github.io/#shankar"},
+        "mainEntity": {"@id": "https://shankar-jayaraj.github.io/#shankar"},
+        "primaryImageOfPage": {"@id": "https://shankar-jayaraj.github.io/#profile-photo"},
+        "inLanguage": "en",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["h1", ".hero-sub", ".faq"]
+        }
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://shankar-jayaraj.github.io/#profile-photo",
+        "url": "https://shankar-jayaraj.github.io/assets/img/profile-img.png",
+        "contentUrl": "https://shankar-jayaraj.github.io/assets/img/profile-img.png",
+        "caption": "Shankar J, PhD scholar at NIT Calicut and keynote speaker on AI/ML in signal processing and EEG",
+        "representativeOfPage": true
       },
       {
         "@type": "ScholarlyArticle",
@@ -83,13 +160,28 @@
         "@type": "FAQPage",
         "mainEntity": [
           {"@type": "Question", "name": "Who is Shankar J?", "acceptedAnswer": {"@type": "Answer", "text": "Shankar J is a PhD scholar at NIT Calicut researching brain-computer interfaces and EEG deep learning. He is a keynote, FDP and workshop speaker on AI/ML in signal processing who has delivered 481 expert sessions to more than 16,500 learners, and is a four-time IEEE-recognised volunteer leader."}},
-          {"@type": "Question", "name": "What topics does Shankar J speak on?", "acceptedAnswer": {"@type": "Answer", "text": "He speaks on AI/ML in signal processing and EEG, brain-computer interfaces, applied machine learning for . He also covers AI-assisted research workflows for scholars and faculty, and LinkedIn positioning for technical professionals & students. His sessions are delivered as keynotes, faculty development programs (FDPs), and hands-on workshops, both online and in person."}},
-          {"@type": "Question", "name": "How do I book Shankar J to speak?", "acceptedAnswer": {"@type": "Answer", "text": "Send your event date, audience profile and topic through the booking page on his website, or via WhatsApp or LinkedIn. He replies within 24 hours with fit, availability and a tailored quote, and delivers across India and online worldwide."}},
+          {"@type": "Question", "name": "What topics does Shankar J speak on?", "acceptedAnswer": {"@type": "Answer", "text": "Shankar J speaks on AI and machine learning in signal processing and EEG, brain-computer interfaces, and applied machine learning for biomedical data. He also covers AI-assisted research workflows for scholars and faculty, and LinkedIn positioning for technical professionals. His sessions are delivered as keynotes, faculty development programs (FDPs), and hands-on workshops, both online and in person."}},
+          {"@type": "Question", "name": "How do I book Shankar J for a keynote, FDP or workshop?", "acceptedAnswer": {"@type": "Answer", "text": "Send your event date, audience profile and topic through the booking page on his website, or via WhatsApp or LinkedIn. He replies within 24 hours with fit, availability and a tailored quote, and delivers across India and online worldwide."}},
           {"@type": "Question", "name": "Is Shankar J open to research roles?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. He is open to Research Scientist and Research Associate roles in biomedical AI, EEG and brain-computer interfaces, in industry or academia. He prefers remote roles; for on-site positions he is based in Thiruvananthapuram, Kerala, India."}}
         ]
       }
     ]
   }
+  </script>
+
+  <!-- Google Analytics 4 (G-04MPNZV7JT).
+       The google_analytics key in _config.yml does NOT emit this tag: that key is only
+       read by Jekyll themes such as minima, and this site uses no theme. The tag has to
+       be in the HTML, which is why nothing was being measured before.
+       Privacy note: this sets analytics cookies. If you ever need EU/UK consent
+       compliance, gate this behind a consent banner or switch to a cookieless
+       analytics tool. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04MPNZV7JT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-04MPNZV7JT');
   </script>
 </head>
 <body data-base="">
@@ -301,15 +393,15 @@
           <p>A PhD scholar at NIT Calicut researching brain-computer interfaces and EEG deep learning, and a keynote, FDP and workshop speaker on AI/ML in signal processing who has delivered <span data-stat="sessionsDelivered" data-suffix="">481</span> expert sessions to more than 16,500 learners. Four-time IEEE-recognised volunteer leader.</p>
         </details>
         <details>
-          <summary>What topics does Shankar speak on?</summary>
+          <summary>What topics does Shankar J speak on?</summary>
           <p>AI and machine learning in signal processing and EEG, brain-computer interfaces, and applied machine learning for biomedical data. He also covers AI-assisted research workflows for scholars and faculty, and LinkedIn positioning for technical professionals. His sessions are delivered as keynotes, faculty development programs (FDPs), and hands-on workshops, both online and in person.</p>
         </details>
         <details>
-          <summary>How do I book him for a keynote, FDP or workshop?</summary>
+          <summary>How do I book Shankar J for a keynote, FDP or workshop?</summary>
           <p>Send your event date, audience profile and topic via the <a href="contact.html">booking page</a>, WhatsApp or LinkedIn. He replies within 24 hours with fit, availability and a tailored quote, available across India and online worldwide.</p>
         </details>
         <details>
-          <summary>Is Shankar open to research roles?</summary>
+          <summary>Is Shankar J open to research roles?</summary>
           <p>Yes. Research Scientist and Research Associate roles in biomedical AI, EEG and brain-computer interfaces, in industry or academia. Remote-first; for on-site positions he is based in Thiruvananthapuram, Kerala. See the <a href="research.html">research profile</a>.</p>
         </details>
       </div>

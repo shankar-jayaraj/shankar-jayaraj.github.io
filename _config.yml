@@ -1,1 +1,8 @@
+# Jekyll config for shankar-jayaraj.github.io
+#
+# WARNING: the google_analytics key below does NOTHING on this site. It is only
+# read by Jekyll themes (minima and similar) that render it into their layout,
+# and this site ships plain HTML with no theme. The real GA4 tag is hardcoded in
+# the <head> of every page. Kept here only so the property ID stays discoverable
+# alongside the rest of the config.
 google_analytics: G-04MPNZV7JT

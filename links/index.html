@@ -87,6 +87,21 @@
     footer a{ color:var(--cyan); text-decoration:none; }
     footer a:hover{ text-decoration:underline; }
   </style>
+
+  <!-- Google Analytics 4 (G-04MPNZV7JT).
+       The google_analytics key in _config.yml does NOT emit this tag: that key is only
+       read by Jekyll themes such as minima, and this site uses no theme. The tag has to
+       be in the HTML, which is why nothing was being measured before.
+       Privacy note: this sets analytics cookies. If you ever need EU/UK consent
+       compliance, gate this behind a consent banner or switch to a cookieless
+       analytics tool. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04MPNZV7JT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-04MPNZV7JT');
+  </script>
 </head>
 <body>
 <main class="wrap">

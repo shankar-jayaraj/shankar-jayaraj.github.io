@@ -12,7 +12,15 @@
   <meta property="og:description" content="Event date. Audience. Topic. That's all he needs. Reply within 24 hours.">
   <meta property="og:url" content="https://shankar-jayaraj.github.io/contact.html">
   <meta property="og:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+  <meta property="og:image:alt" content="Shankar J, PhD scholar at NIT Calicut and keynote speaker on AI/ML in signal processing and EEG">
+  <!-- TODO (high value): replace profile-img.png with a 1200x630 branded OG card.
+       At 400x400 LinkedIn and X cannot render a large preview, so every shared
+       link shows a small square thumbnail instead of a full-width card.
+       Then update the width/height above and switch twitter:card back to
+       summary_large_image. -->
+  <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
@@ -28,6 +36,21 @@
       ]}
     ]
   }
+  </script>
+
+  <!-- Google Analytics 4 (G-04MPNZV7JT).
+       The google_analytics key in _config.yml does NOT emit this tag: that key is only
+       read by Jekyll themes such as minima, and this site uses no theme. The tag has to
+       be in the HTML, which is why nothing was being measured before.
+       Privacy note: this sets analytics cookies. If you ever need EU/UK consent
+       compliance, gate this behind a consent banner or switch to a cookieless
+       analytics tool. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04MPNZV7JT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-04MPNZV7JT');
   </script>
 </head>
 <body data-base="">

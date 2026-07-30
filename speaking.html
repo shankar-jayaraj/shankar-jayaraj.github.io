@@ -13,7 +13,15 @@
   <meta property="og:description" content="A technical talk your whole audience will follow. Keynotes, FDPs and workshops built from 481 sessions. Replies within 24 hours.">
   <meta property="og:url" content="https://shankar-jayaraj.github.io/speaking.html">
   <meta property="og:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+  <meta property="og:image:alt" content="Shankar J, PhD scholar at NIT Calicut and keynote speaker on AI/ML in signal processing and EEG">
+  <!-- TODO (high value): replace profile-img.png with a 1200x630 branded OG card.
+       At 400x400 LinkedIn and X cannot render a large preview, so every shared
+       link shows a small square thumbnail instead of a full-width card.
+       Then update the width/height above and switch twitter:card back to
+       summary_large_image. -->
+  <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
@@ -48,6 +56,44 @@
         ]
       },
       {
+        "@id": "https://shankar-jayaraj.github.io/#shankar",
+        "performerIn": [
+          {
+            "@type": "Event",
+            "name": "IEEE WIE International Leadership Summit, Kerala 2025",
+            "startDate": "2025",
+            "organizer": {"@type": "Organization", "name": "IEEE Women in Engineering, Kerala Section"},
+            "location": {"@type": "Place", "address": {"@type": "PostalAddress", "addressRegion": "Kerala", "addressCountry": "IN"}},
+            "performer": {"@id": "https://shankar-jayaraj.github.io/#shankar"},
+            "url": "https://shankar-jayaraj.github.io/ieeewieils2025/"
+          },
+          {
+            "@type": "EducationEvent",
+            "name": "IEEE Signal Processing Society Day: AI and ML in Signal Processing",
+            "startDate": "2025",
+            "organizer": {"@type": "Organization", "name": "College of Engineering Karunagappally"},
+            "location": {"@type": "Place", "address": {"@type": "PostalAddress", "addressLocality": "Karunagappally", "addressRegion": "Kerala", "addressCountry": "IN"}},
+            "performer": {"@id": "https://shankar-jayaraj.github.io/#shankar"}
+          },
+          {
+            "@type": "EducationEvent",
+            "name": "IEEE Student Branch webinar, Dedan Kimathi University of Technology",
+            "startDate": "2025-10",
+            "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+            "organizer": {"@type": "Organization", "name": "IEEE Student Branch, Dedan Kimathi University of Technology, Kenya"},
+            "performer": {"@id": "https://shankar-jayaraj.github.io/#shankar"}
+          },
+          {
+            "@type": "EducationEvent",
+            "name": "Mastering E-content Development",
+            "startDate": "2024-03",
+            "organizer": {"@type": "Organization", "name": "MIMS College of Nursing"},
+            "location": {"@type": "Place", "address": {"@type": "PostalAddress", "addressRegion": "Kerala", "addressCountry": "IN"}},
+            "performer": {"@id": "https://shankar-jayaraj.github.io/#shankar"}
+          }
+        ]
+      },
+      {
         "@type": "FAQPage",
         "mainEntity": [
           {"@type": "Question", "name": "What formats does Shankar J offer?", "acceptedAnswer": {"@type": "Answer", "text": "Keynotes of 45–60 minutes, invited talks, half-day to multi-day faculty development programmes, hands-on workshops and masterclasses, delivered in person across India or online worldwide."}},
@@ -57,6 +103,21 @@
       }
     ]
   }
+  </script>
+
+  <!-- Google Analytics 4 (G-04MPNZV7JT).
+       The google_analytics key in _config.yml does NOT emit this tag: that key is only
+       read by Jekyll themes such as minima, and this site uses no theme. The tag has to
+       be in the HTML, which is why nothing was being measured before.
+       Privacy note: this sets analytics cookies. If you ever need EU/UK consent
+       compliance, gate this behind a consent banner or switch to a cookieless
+       analytics tool. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04MPNZV7JT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-04MPNZV7JT');
   </script>
 </head>
 <body class="theme-dark" data-base="">
@@ -203,6 +264,16 @@
       <div class="h-signal">
         <svg viewBox="0 0 180 18" aria-hidden="true"><path class="spike" d="M0,12 L60,12 70,12 78,2 86,16 94,12 180,12"/></svg>
         <h2 id="pw-h">Where I've spoken.</h2>
+        <!-- SEO/AEO: four of these six engagements are also declared as Event schema in the
+             JSON-LD above (Person.performerIn), which is what answer engines quote when asked
+             "where has Shankar J spoken?". Two are omitted because no date is confirmed -
+             an Event without a startDate produces "missing field" warnings in Search Console.
+             Supply the month + year for these two and add them to performerIn:
+               - Mathematical Foundations of AI and Data Science FDP, IES College of
+                 Engineering, Thrissur
+               - Tech Conclave panel, "AI and Its Social Impacts", Christ College Irinjalakuda
+             Every future engagement should be appended to performerIn as it happens: it is
+             the cheapest recurring freshness signal on the site. -->
       </div>
       <p class="lead mt-1">A sample of recent talks, panels and summits, from IEEE flagship events to engineering and medical colleges across India and beyond. Tap any poster to enlarge.</p>
       <div class="poster-wall mt-3">

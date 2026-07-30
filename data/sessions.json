@@ -1,0 +1,7 @@
+{
+  "_instructions": "YOUR SINGLE ENTRY POINT for recent talks. Replace the sample entries with your real last 5-10 sessions (newest first) and set sample:false. Entries with sample:true are NOT displayed and the section stays hidden. Fields: topic, event, host, date (YYYY-MM-DD), mode (In-person/Online), location (optional).",
+  "sessions": [
+    { "sample": true, "topic": "[Talk title]", "event": "[Event name]", "host": "[College / organisation]", "date": "2026-07-01", "mode": "In-person", "location": "[City]" },
+    { "sample": true, "topic": "[Talk title]", "event": "[Event name]", "host": "[College / organisation]", "date": "2026-06-15", "mode": "Online", "location": "" }
+  ]
+}
