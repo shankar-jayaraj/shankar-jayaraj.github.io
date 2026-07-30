@@ -37,14 +37,13 @@
        SEO / AEO NOTE - sameAs is the strongest remaining lever for ranking the
        name "Shankar J", which is common enough that Google and the LLM answer
        engines need help deciding which "Shankar J" this site is about.
-       Add each URL to the Person "sameAs" array below as soon as it exists:
-         1. ORCID iD            https://orcid.org/NNNN-NNNN-NNNN-NNNN
-         2. Google Scholar profile
-         3. IEEE Xplore author page (from the TriMiX paper)
-         4. ResearchGate profile
-         5. Wikidata item, only if notability criteria are met
-       Every entry must be a real, resolving URL - a dead sameAs is worse than
-       none. Step-by-step instructions: ideas/idea-003-seo-aeo-llm-optimisation.md
+       Done (2026-07-30): ORCID (0000-0002-9456-8953, verified nitc.ac.in email,
+       lists both papers) and Google Scholar (user=PQM5NW8AAAAJ) are in sameAs below.
+       Still to add, same rule applies - only a real, resolving URL, never a guess:
+         1. IEEE Xplore author page (from the TriMiX paper)
+         2. ResearchGate profile
+         3. Wikidata item, only if notability criteria are met
+       Step-by-step instructions: ideas/idea-003-seo-aeo-llm-optimisation.md
        ============================================================================ -->
   <script type="application/ld+json">
   {
@@ -106,6 +105,8 @@
           "Amateur radio"
         ],
         "sameAs": [
+          "https://orcid.org/0000-0002-9456-8953",
+          "https://scholar.google.com/citations?user=PQM5NW8AAAAJ&hl=en",
           "https://www.linkedin.com/in/drshankarj",
           "https://github.com/shankar-jayaraj",
           "https://www.youtube.com/@drshankarj",
@@ -150,11 +151,19 @@
       {
         "@type": "ScholarlyArticle",
         "headline": "TriMiX: An Interpretable Machine Learning Pipeline for Tri-Class Motor Imagery EEG Classification for Clinical Brain-Computer Interfaces",
-        "author": {"@id": "https://shankar-jayaraj.github.io/#shankar"},
+        "author": [
+          {"@id": "https://shankar-jayaraj.github.io/#shankar"},
+          {"@type": "Person", "name": "Gayatri Kiran Kadlag"},
+          {"@type": "Person", "name": "Sathidevi P. S."},
+          {"@type": "Person", "name": "Sreelekha G."}
+        ],
         "publisher": {"@type": "Organization", "name": "IEEE"},
-        "datePublished": "2025",
+        "isPartOf": {"@type": "PublicationEvent", "name": "2025 International Conference on Signal Processing, Computation, Electronics, Power and Telecommunication (IConSCEPT)"},
+        "datePublished": "2025-12-06",
+        "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.1109/iconscept66142.2025.11436539"},
         "about": ["Motor imagery classification", "Brain-computer interfaces", "EEG signal processing", "Interpretable machine learning"],
-        "url": "https://ieeexplore.ieee.org/document/11436539"
+        "url": "https://ieeexplore.ieee.org/document/11436539",
+        "sameAs": ["https://doi.org/10.1109/iconscept66142.2025.11436539"]
       },
       {
         "@type": "FAQPage",
