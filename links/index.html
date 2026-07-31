@@ -21,6 +21,10 @@
     :root{
       --blue:#035FAC; --cyan:#01B9D5; --lime:#A4E100; --ice:#D9F4FF;
       --ink:#0D1B27; --ink-2:#132836; --line:#22394C; --muted:#8FA9BD; --text:#E8F1F8;
+      /* Violet is link-hub only: the brand palette has no purple, and this page
+         is already a self-contained dark theme that does not load revamp.css.
+         Chosen to sit beside the existing neon lime/cyan at similar intensity. */
+      --violet:#A855F7;
     }
     *{ margin:0; padding:0; box-sizing:border-box; }
     body{
@@ -56,7 +60,7 @@
       display:flex; align-items:center; gap:.9rem; text-decoration:none;
       background:var(--ink-2); border:1px solid var(--line); border-radius:.9rem;
       padding:.95rem 1.1rem; margin-bottom:.7rem; color:var(--text);
-      transition:transform .15s ease, border-color .15s ease, background .15s ease;
+      transition:transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
     }
     a.card:hover, a.card:focus-visible{ transform:translateY(-2px); border-color:var(--cyan); background:#16304a; outline:none; }
     .card .txt{ flex:1; min-width:0; }
@@ -68,11 +72,46 @@
       color:var(--ink); background:var(--cyan); border-radius:99px; padding:.14rem .55rem; margin-bottom:.3rem;
     }
 
-    /* primary card */
-    a.card.primary{ background:linear-gradient(115deg, #17351f 0%, var(--ink-2) 70%); border-color:var(--lime); }
-    a.card.primary:hover, a.card.primary:focus-visible{ background:#1b3d24; border-color:var(--lime); }
-    .card.primary .tag{ background:var(--lime); }
-    .card.primary .arrow{ color:var(--lime); }
+    /* ------------------------------------------------------------------
+       Colour-coded cards. Two families, and the markup keeps them grouped:
+         .linkedin (lime glow)  - everything LinkedIn-related
+         .research (violet glow) - everything research-related
+       Colour is a SECOND signal here, never the only one: each card still
+       says what it is in its title, so this reads fine for anyone who
+       cannot distinguish the two hues.
+       ------------------------------------------------------------------ */
+
+    /* LinkedIn — lime glow */
+    a.card.linkedin{
+      background:linear-gradient(115deg, #17351f 0%, var(--ink-2) 70%);
+      border-color:var(--lime);
+      box-shadow:0 0 18px rgba(164,225,0,.16);
+    }
+    a.card.linkedin:hover, a.card.linkedin:focus-visible{
+      background:#1b3d24; border-color:var(--lime);
+      box-shadow:0 0 26px rgba(164,225,0,.34);
+    }
+    .card.linkedin .tag{ background:var(--lime); }
+    .card.linkedin .arrow{ color:var(--lime); }
+
+    /* Research — violet glow */
+    a.card.research{
+      background:linear-gradient(115deg, #2a1b3d 0%, var(--ink-2) 70%);
+      border-color:var(--violet);
+      box-shadow:0 0 18px rgba(168,85,247,.16);
+    }
+    a.card.research:hover, a.card.research:focus-visible{
+      background:#33224a; border-color:var(--violet);
+      box-shadow:0 0 26px rgba(168,85,247,.34);
+    }
+    .card.research .tag{ background:var(--violet); color:#fff; }
+    .card.research .arrow{ color:var(--violet); }
+
+    /* The glow is decorative; respect a reduced-motion preference. */
+    @media (prefers-reduced-motion: reduce){
+      a.card{ transition:none; }
+      a.card:hover{ transform:none; }
+    }
 
     /* socials */
     .socials{ display:flex; justify-content:center; gap:.65rem; margin-top:1.8rem; flex-wrap:wrap; }
@@ -116,7 +155,7 @@
 
   <div class="glabel">Free resources</div>
 
-  <a class="card primary" href="https://drshankarj.substack.com/?utm_source=linkhub&amp;utm_medium=web" rel="noopener">
+  <a class="card linkedin" href="https://drshankarj.substack.com/?utm_source=linkhub&amp;utm_medium=web" rel="noopener">
     <span class="txt">
       <span class="tag">Free 16-page PDF</span>
       <span class="t" style="display:block">The LinkedIn Credibility Checklist</span>
@@ -125,7 +164,7 @@
     <span class="arrow">→</span>
   </a>
 
-  <a class="card" href="../text_format/">
+  <a class="card linkedin" href="../text_format/">
     <span class="txt">
       <span class="t">LinkedIn Post Cleaner</span>
       <span class="d">Strip hidden watermark characters &amp; AI typographic tells before you post. Runs 100% in your browser.</span>
@@ -133,7 +172,7 @@
     <span class="arrow">→</span>
   </a>
 
-  <a class="card" href="../text_latex/">
+  <a class="card research" href="../text_latex/">
     <span class="txt">
       <span class="t">Markdown to LaTeX Converter</span>
       <span class="d">Paste Markdown, get LaTeX that compiles in Overleaf without errors. Runs 100% in your browser.</span>
@@ -141,7 +180,7 @@
     <span class="arrow">→</span>
   </a>
 
-  <a class="card" href="../bundle/">
+  <a class="card research" href="../bundle/">
     <span class="txt">
       <span class="t">Research Tools Bundle</span>
       <span class="d">The AI-tools stack for scholars: discovery, writing, visualisation, references, analysis.</span>
@@ -149,7 +188,7 @@
     <span class="arrow">→</span>
   </a>
 
-  <a class="card" href="https://github.com/shankar-jayaraj/Theory_Meets_Practice_by_Shankar_J" rel="noopener">
+  <a class="card research" href="https://github.com/shankar-jayaraj/Theory_Meets_Practice_by_Shankar_J" rel="noopener">
     <span class="txt">
       <span class="t">Theory Meets Practice — open notebooks</span>
       <span class="d">Free on GitHub, bridging theory and implementation. Growing with each session.</span>
@@ -157,7 +196,7 @@
     <span class="arrow">→</span>
   </a>
 
-  <a class="card" href="https://api.whatsapp.com/send/?phone=%2B919344775577&amp;text=Hello%20Shankar%2C%20please%20send%20me%20the%20AI%20research%20workflow.&amp;type=phone_number&amp;app_absent=0" rel="noopener">
+  <a class="card research" href="https://api.whatsapp.com/send/?phone=%2B919344775577&amp;text=Hello%20Shankar%2C%20please%20send%20me%20the%20AI%20research%20workflow.&amp;type=phone_number&amp;app_absent=0" rel="noopener">
     <span class="txt">
       <span class="t">AI Research Workflow</span>
       <span class="d">My end-to-end AI-assisted workflow from literature discovery to publication — on WhatsApp.</span>
