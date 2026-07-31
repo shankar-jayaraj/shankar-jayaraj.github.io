@@ -21,10 +21,13 @@
     :root{
       --blue:#035FAC; --cyan:#01B9D5; --lime:#A4E100; --ice:#D9F4FF;
       --ink:#0D1B27; --ink-2:#132836; --line:#22394C; --muted:#8FA9BD; --text:#E8F1F8;
-      /* Violet is link-hub only: the brand palette has no purple, and this page
-         is already a self-contained dark theme that does not load revamp.css.
-         Chosen to sit beside the existing neon lime/cyan at similar intensity. */
+      /* Violet and azure are link-hub only: the brand palette has no purple, and
+         Signal Blue (#035FAC) is too close to this page's navy background to read
+         as a glow. This page is a self-contained dark theme that does not load
+         revamp.css, so these stay local. Both are pitched at the same intensity
+         as the existing neon lime/cyan. */
       --violet:#A855F7;
+      --azure:#3B82F6;
     }
     *{ margin:0; padding:0; box-sizing:border-box; }
     body{
@@ -73,12 +76,14 @@
     }
 
     /* ------------------------------------------------------------------
-       Colour-coded cards. Two families, and the markup keeps them grouped:
-         .linkedin (lime glow)  - everything LinkedIn-related
-         .research (violet glow) - everything research-related
+       Colour-coded cards. Three families, and the markup keeps them grouped
+       so the colours run in blocks rather than alternating:
+         .linkedin (lime glow)   - everything LinkedIn-related
+         .research (violet glow) - research tooling and workflow
+         .learning (azure glow)  - teaching / open educational material
        Colour is a SECOND signal here, never the only one: each card still
        says what it is in its title, so this reads fine for anyone who
-       cannot distinguish the two hues.
+       cannot distinguish the hues.
        ------------------------------------------------------------------ */
 
     /* LinkedIn — lime glow */
@@ -106,6 +111,19 @@
     }
     .card.research .tag{ background:var(--violet); color:#fff; }
     .card.research .arrow{ color:var(--violet); }
+
+    /* Learning / open notebooks — azure glow */
+    a.card.learning{
+      background:linear-gradient(115deg, #14283f 0%, var(--ink-2) 70%);
+      border-color:var(--azure);
+      box-shadow:0 0 18px rgba(59,130,246,.16);
+    }
+    a.card.learning:hover, a.card.learning:focus-visible{
+      background:#1a3454; border-color:var(--azure);
+      box-shadow:0 0 26px rgba(59,130,246,.34);
+    }
+    .card.learning .tag{ background:var(--azure); color:#fff; }
+    .card.learning .arrow{ color:var(--azure); }
 
     /* The glow is decorative; respect a reduced-motion preference. */
     @media (prefers-reduced-motion: reduce){
@@ -188,18 +206,19 @@
     <span class="arrow">→</span>
   </a>
 
-  <a class="card research" href="https://github.com/shankar-jayaraj/Theory_Meets_Practice_by_Shankar_J" rel="noopener">
-    <span class="txt">
-      <span class="t">Theory Meets Practice — open notebooks</span>
-      <span class="d">Free on GitHub, bridging theory and implementation. Growing with each session.</span>
-    </span>
-    <span class="arrow">→</span>
-  </a>
 
   <a class="card research" href="https://api.whatsapp.com/send/?phone=%2B919344775577&amp;text=Hello%20Shankar%2C%20please%20send%20me%20the%20AI%20research%20workflow.&amp;type=phone_number&amp;app_absent=0" rel="noopener">
     <span class="txt">
       <span class="t">AI Research Workflow</span>
       <span class="d">My end-to-end AI-assisted workflow from literature discovery to publication — on WhatsApp.</span>
+    </span>
+    <span class="arrow">→</span>
+  </a>
+
+  <a class="card learning" href="https://github.com/shankar-jayaraj/Theory_Meets_Practice_by_Shankar_J" rel="noopener">
+    <span class="txt">
+      <span class="t">Theory Meets Practice — open notebooks</span>
+      <span class="d">Free on GitHub, bridging theory and implementation. Growing with each session.</span>
     </span>
     <span class="arrow">→</span>
   </a>
