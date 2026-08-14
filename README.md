@@ -1,6 +1,6 @@
 ### Hi, I'm Shankar J 👋
 
-**PhD Scholar, Electronics & Communication Engineering, NIT Calicut** — researching EEG deep learning and brain-computer interfaces (BCI). Keynote, FDP and workshop speaker on AI/ML in signal processing, with 481 expert sessions delivered to 16,500+ learners.
+**PhD Scholar, Electronics & Communication Engineering, NIT Calicut** — researching EEG deep learning and brain-computer interfaces (BCI). Keynote, FDP and workshop speaker on AI/ML in signal processing, with 481 expert sessions delivered to 16,800+ learners.
 
 - 🧠 Current research: motor imagery classification, interpretable ML for clinical BCI — see [TriMiX (IEEE, 2025)](https://ieeexplore.ieee.org/document/11436539)
 - 🎤 I speak on AI/ML in signal processing, EEG, and AI-assisted research workflows — [book a session](https://shankar-jayaraj.github.io/speaking.html)

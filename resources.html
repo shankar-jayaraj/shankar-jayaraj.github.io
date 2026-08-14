@@ -3,35 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Resources: LinkedIn Checklist, AI Research Workflow &amp; Open Notebooks | Shankar J</title>
-  <meta name="description" content="Free resources from Shankar J: a LinkedIn checklist for students, researchers and professionals, a browser-based LinkedIn Post Cleaner, an AI-assisted research workflow, open Theory-Meets-Practice notebooks, a curated research-tools bundle, and a poster media kit for event organisers.">
+  <title>Free Resources: LinkedIn Checklist, LaTeX Tool &amp; Notebooks</title>
+  <meta name="description" content="Free from Shankar J: LinkedIn Credibility Checklist, Post Cleaner, Markdown-to-LaTeX converter, AI research workflow and open Theory-Meets-Practice notebooks.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://shankar-jayaraj.github.io/resources.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Free Resources: Shankar J">
   <meta property="og:description" content="Tools I wish someone had handed me: LinkedIn Credibility Checklist, AI research workflow, open notebooks and more.">
   <meta property="og:url" content="https://shankar-jayaraj.github.io/resources.html">
-  <meta property="og:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img.png">
-  <meta property="og:image:width" content="400">
-  <meta property="og:image:height" content="400">
+  <meta property="og:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img-2026.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
   <meta property="og:image:alt" content="Shankar J, PhD scholar at NIT Calicut and keynote speaker on AI/ML in signal processing and EEG">
-  <!-- TODO (high value): replace profile-img.png with a 1200x630 branded OG card.
-       At 400x400 LinkedIn and X cannot render a large preview, so every shared
-       link shows a small square thumbnail instead of a full-width card.
-       Then update the width/height above and switch twitter:card back to
-       summary_large_image. -->
+  <!-- 2026-07-31: og:image now points at profile-img-2026.png, a 1200x1200 square
+       headshot (was profile-img.png at 400x400, too small for any good preview).
+       The square is deliberate: it is also the Knowledge Graph entity photo, and
+       square is the right shape for that.
+       STILL OPEN: a separate 1200x630 branded OG card would give full-width link
+       previews on LinkedIn and X. That is a different image for a different job,
+       so it needs its own file rather than replacing this one. When it exists,
+       point og:image at it, set width/height to 1200x630, and switch
+       twitter:card back to summary_large_image. Leave the schema ImageObject
+       on the square. -->
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/revamp.css?v=20260709b">
+  <link rel="stylesheet" href="assets/css/revamp.css?v=20260731a">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://shankar-jayaraj.github.io/"},
-      {"@type": "ListItem", "position": 2, "name": "Resources", "item": "https://shankar-jayaraj.github.io/resources.html"}
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://shankar-jayaraj.github.io/resources.html#webpage",
+        "url": "https://shankar-jayaraj.github.io/resources.html",
+        "name": "Free Resources: LinkedIn Checklist, LaTeX Tool & Notebooks",
+        "about": {"@id": "https://shankar-jayaraj.github.io/#shankar"},
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://shankar-jayaraj.github.io/#shankar",
+        "name": "Shankar J",
+        "alternateName": "Shankar Jayaraj",
+        "url": "https://shankar-jayaraj.github.io/",
+        "jobTitle": "PhD Scholar; Keynote & FDP Speaker on AI/ML in Signal Processing and EEG",
+        "affiliation": {"@type": "CollegeOrUniversity", "name": "National Institute of Technology Calicut", "sameAs": "https://nitc.ac.in/"},
+        "identifier": [
+          {"@type": "PropertyValue", "propertyID": "ORCID", "value": "0000-0002-9456-8953", "url": "https://orcid.org/0000-0002-9456-8953"}
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://shankar-jayaraj.github.io/"},
+          {"@type": "ListItem", "position": 2, "name": "Resources", "item": "https://shankar-jayaraj.github.io/resources.html"}
+        ]
+      }
     ]
   }
   </script>
@@ -148,10 +177,10 @@
       <div class="callout">
         <div>
           <h3 id="kit-h">Planning an event?</h3>
-          <p>The poster media kit has publicity-ready photos, bio and talk titles for your posters and social posts.</p>
+          <p>The bio &amp; media kit has a spoken stage-intro script, bios in four lengths, headshots and exact talk titles &mdash; everything for your posters, programme and social posts.</p>
         </div>
         <div class="hero-ctas">
-          <a class="btn btn-blue btn-sm" href="https://www.bit.ly/shankarjayaraj" rel="noopener">Download the kit</a>
+          <a class="btn btn-blue btn-sm" href="bio.html">Open the bio &amp; media kit</a>
           <a class="btn btn-ghost btn-sm" href="speaking.html">See talks &amp; topics</a>
         </div>
       </div>
@@ -169,6 +198,12 @@
   </section>
 </main>
 
+<!-- Mobile-only sticky booking CTA. Below 940px the nav button is hidden behind
+     the hamburger, leaving phones with no visible primary CTA. -->
+<div class="mobile-cta">
+  <a class="btn btn-lime" href="contact.html">Check availability</a>
+</div>
+
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -183,6 +218,7 @@
           <li><a href="research.html">Research</a></li>
           <li><a href="about.html">About &amp; awards</a></li>
           <li><a href="resources.html">Resources</a></li>
+          <li><a href="links/">All links</a></li>
         </ul>
       </div>
       <div>
@@ -191,7 +227,7 @@
           <li><a href="contact.html">Check availability</a></li>
           <li><a href="https://www.topmate.io/shankar_j" rel="noopener">1:1 on Topmate</a></li>
           <li><a href="https://api.whatsapp.com/send/?phone=%2B919344775577&amp;text=Hello%20Shankar%2C%20I%20found%20your%20website%20and%20would%20like%20to%20discuss%20a%20booking.&amp;type=phone_number&amp;app_absent=0" rel="noopener">WhatsApp</a></li>
-          <li><a href="https://www.bit.ly/shankarjayaraj" rel="noopener">Poster media kit</a></li>
+          <li><a href="bio.html">Speaker bio &amp; media kit</a></li>
         </ul>
       </div>
       <div>
@@ -211,6 +247,6 @@
   </div>
 </footer>
 
-<script src="assets/js/revamp-main.js?v=20260709b"></script>
+<script src="assets/js/revamp-main.js?v=20260731a"></script>
 </body>
 </html>

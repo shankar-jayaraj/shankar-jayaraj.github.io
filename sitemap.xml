@@ -25,6 +25,15 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Speaker bio & media kit: what event organisers actually need in order to
+       introduce him and build publicity. Targets "Shankar J bio". -->
+  <url>
+    <loc>https://shankar-jayaraj.github.io/bio.html</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://shankar-jayaraj.github.io/research.html</loc>
     <lastmod>2026-07-30</lastmod>
@@ -89,21 +98,10 @@
     <priority>0.4</priority>
   </url>
 
-  <!-- Topic microsites. Both are thin (~4 KB); either expand them into real
-       articles or drop them from the sitemap. Thin pages in a sitemap dilute the
-       overall quality signal for the site. -->
-  <url>
-    <loc>https://shankar-jayaraj.github.io/Industry-5.0/</loc>
-    <lastmod>2025-03-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://shankar-jayaraj.github.io/Education-5.0/</loc>
-    <lastmod>2025-03-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <!-- REMOVED 2026-07-31: /Industry-5.0/ and /Education-5.0/ are now noindexed.
+       At ~150-190 words each, with no canonical, no structured data, no analytics and
+       zero inbound links, they were too thin to rank and were diluting this sitemap.
+       The files remain in the repo: expand them into real articles, drop the noindex,
+       and add them back here. -->
 
 </urlset>

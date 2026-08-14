@@ -195,7 +195,74 @@ document.addEventListener('DOMContentLoaded', function () {
         'Audience: ' + val('#f-audience') + '\n' +
         'Topic of interest: ' + val('#f-topic') + '\n\n' +
         'I found you via your website and would like to discuss this.';
-      window.open('https://api.whatsapp.com/send/?phone=%2B919344775577&text=' + encodeURIComponent(msg) + '&type=phone_number&app_absent=0', '_blank', 'noopener');
+      var waUrl = 'https://api.whatsapp.com/send/?phone=%2B919344775577&text=' +
+                  encodeURIComponent(msg) + '&type=phone_number&app_absent=0';
+      var win = window.open(waUrl, '_blank', 'noopener');
+
+      // Always show the fallback. window.open returns null when the popup is
+      // blocked, but it also returns a usable handle in cases where WhatsApp
+      // never actually loads (no WhatsApp Web session, corporate machine).
+      // Previously nothing rendered at all, so a failed send looked identical
+      // to a successful one and the enquiry was lost silently.
+      var panel = document.getElementById('sent-panel');
+      if (panel) {
+        var blocked = !win || win.closed || typeof win.closed === 'undefined';
+        panel.hidden = false;
+        panel.innerHTML = '';
+
+        var h = document.createElement('h3');
+        h.textContent = blocked ? 'WhatsApp did not open' : 'WhatsApp should have opened';
+        panel.appendChild(h);
+
+        var p = document.createElement('p');
+        p.className = 'small';
+        p.textContent = blocked
+          ? 'Your browser blocked the popup. Your message is below - copy it, or use the direct link.'
+          : 'If the WhatsApp tab did not appear, copy your message below or use the direct link.';
+        panel.appendChild(p);
+
+        var pre = document.createElement('pre');
+        pre.className = 'sent-msg';
+        pre.textContent = msg;              // textContent: never parse user input as HTML
+        panel.appendChild(pre);
+
+        var row = document.createElement('div');
+        row.className = 'sent-actions';
+
+        var copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.className = 'btn btn-ghost btn-sm';
+        copyBtn.textContent = 'Copy message';
+        copyBtn.addEventListener('click', function () {
+          function done() {
+            copyBtn.textContent = 'Copied!';
+            setTimeout(function () { copyBtn.textContent = 'Copy message'; }, 1600);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(msg).then(done, function () {});
+          }
+        });
+        row.appendChild(copyBtn);
+
+        var waLink = document.createElement('a');
+        waLink.className = 'btn btn-lime btn-sm';
+        waLink.href = waUrl;
+        waLink.target = '_blank';
+        waLink.rel = 'noopener';
+        waLink.textContent = 'Open WhatsApp';
+        row.appendChild(waLink);
+
+        var liLink = document.createElement('a');
+        liLink.className = 'btn btn-ghost btn-sm';
+        liLink.href = 'https://www.linkedin.com/in/drshankarj';
+        liLink.target = '_blank';
+        liLink.rel = 'noopener';
+        liLink.textContent = 'Send on LinkedIn instead';
+        row.appendChild(liLink);
+
+        panel.appendChild(row);
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     });
   }
 });

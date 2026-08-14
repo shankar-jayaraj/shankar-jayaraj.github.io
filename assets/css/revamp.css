@@ -334,3 +334,50 @@ section{padding:96px 0}
   .cta-band{padding:44px 22px}
   .callout{padding:26px 22px}
 }
+
+/* ==========================================================================
+   Booking-flow additions (2026-07-31)
+   ========================================================================== */
+
+/* Optional-field hint, so "required" reads as a deliberate choice */
+.opt{font-weight:400;color:var(--muted);font-size:.86em}
+
+/* Post-submit fallback panel on contact.html. Rendered by revamp-main.js.
+   Exists because window.open() can be blocked or land on a machine with no
+   WhatsApp session - previously that failure was completely silent. */
+.sent-panel{
+  margin-top:18px;padding:20px 22px;border:1px solid var(--line);
+  border-radius:var(--r);background:var(--paper-2);
+}
+.sent-panel h3{font-size:1rem;margin:0 0 6px}
+.sent-msg{
+  white-space:pre-wrap;word-break:break-word;margin:12px 0;padding:14px 16px;
+  background:#fff;border:1px solid var(--line);border-radius:10px;
+  font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  font-size:.82rem;line-height:1.6;max-height:260px;overflow:auto;
+}
+.sent-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Mobile sticky CTA.
+   Below 940px the nav (and with it the only "Check availability" button)
+   collapses behind the hamburger, so the primary CTA was invisible on phones -
+   which is where most student-branch leads and coordinators actually are. */
+.mobile-cta{display:none}
+@media (max-width:940px){
+  .mobile-cta{
+    display:block;position:fixed;left:0;right:0;bottom:0;z-index:60;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);
+  }
+  .mobile-cta .btn{width:100%;justify-content:center;text-align:center}
+  /* Keep the sticky bar from covering the last of the page content.
+     The bar measures ~80px, so 76px left a 4px overlap on the footer's last row.
+     env() must be repeated here: the bar's own safe-area padding makes it taller
+     on notched devices, and the body has to clear that too. */
+  body:not(.no-mobile-cta){padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+  body.no-mobile-cta .mobile-cta{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .mobile-cta{backdrop-filter:none}
+}

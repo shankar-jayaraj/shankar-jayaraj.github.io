@@ -11,20 +11,25 @@
   <meta property="og:title" content="Check Availability: Book Shankar J">
   <meta property="og:description" content="Event date. Audience. Topic. That's all he needs. Reply within 24 hours.">
   <meta property="og:url" content="https://shankar-jayaraj.github.io/contact.html">
-  <meta property="og:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img.png">
-  <meta property="og:image:width" content="400">
-  <meta property="og:image:height" content="400">
+  <meta property="og:image" content="https://shankar-jayaraj.github.io/assets/img/profile-img-2026.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
   <meta property="og:image:alt" content="Shankar J, PhD scholar at NIT Calicut and keynote speaker on AI/ML in signal processing and EEG">
-  <!-- TODO (high value): replace profile-img.png with a 1200x630 branded OG card.
-       At 400x400 LinkedIn and X cannot render a large preview, so every shared
-       link shows a small square thumbnail instead of a full-width card.
-       Then update the width/height above and switch twitter:card back to
-       summary_large_image. -->
+  <!-- 2026-07-31: og:image now points at profile-img-2026.png, a 1200x1200 square
+       headshot (was profile-img.png at 400x400, too small for any good preview).
+       The square is deliberate: it is also the Knowledge Graph entity photo, and
+       square is the right shape for that.
+       STILL OPEN: a separate 1200x630 branded OG card would give full-width link
+       previews on LinkedIn and X. That is a different image for a different job,
+       so it needs its own file rather than replacing this one. When it exists,
+       point og:image at it, set width/height to 1200x630, and switch
+       twitter:card back to summary_large_image. Leave the schema ImageObject
+       on the square. -->
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/revamp.css?v=20260709b">
+  <link rel="stylesheet" href="assets/css/revamp.css?v=20260731a">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -53,7 +58,7 @@
     gtag('config', 'G-04MPNZV7JT');
   </script>
 </head>
-<body data-base="">
+<body data-base="" class="no-mobile-cta">
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -88,14 +93,15 @@
           <svg viewBox="0 0 180 18" aria-hidden="true"><path class="spike" d="M0,12 L60,12 70,12 78,2 86,16 94,12 180,12"/></svg>
           <h2 id="form-h" style="font-size:1.4rem">Send an enquiry.</h2>
         </div>
-        <p class="small mb-2">This opens a pre-written WhatsApp message to me, the fastest channel.</p>
+        <p class="mb-2"><strong>This goes straight to my phone.</strong> You are messaging me directly &mdash; not an assistant, not a ticket queue, not an agency. I reply within 24 hours.</p>
+        <p class="small mb-2">In a hurry? Skip the form and <a href="https://api.whatsapp.com/send/?phone=%2B919344775577&amp;text=Hello%20Shankar%2C%20I%20found%20your%20website%20and%20would%20like%20to%20discuss%20an%20event.&amp;type=phone_number&amp;app_absent=0" rel="noopener">message me on WhatsApp now</a> &mdash; a line about your event is enough to start.</p>
         <form id="booking-form">
           <div class="field">
             <label for="f-name">Your name</label>
             <input id="f-name" type="text" required autocomplete="name" placeholder="e.g., Anvitha A S">
           </div>
           <div class="field">
-            <label for="f-org">Organisation / institution</label>
+            <label for="f-org">Organisation / institution <span class="opt">(optional)</span></label>
             <input id="f-org" type="text" autocomplete="organization" placeholder="e.g., IEEE SB, XYZ College of Engineering">
           </div>
           <div class="field">
@@ -111,12 +117,12 @@
             </select>
           </div>
           <div class="field">
-            <label for="f-date">Event date (tentative is fine)</label>
-            <input id="f-date" type="date" required>
+            <label for="f-date">Event date <span class="opt">(optional — tentative is fine)</span></label>
+            <input id="f-date" type="date">
           </div>
           <div class="field">
-            <label for="f-audience">Audience (who, and roughly how many)</label>
-            <input id="f-audience" type="text" required placeholder="e.g., 120 final-year ECE students">
+            <label for="f-audience">Audience <span class="opt">(optional)</span></label>
+            <input id="f-audience" type="text" placeholder="e.g., 120 final-year ECE students">
           </div>
           <div class="field">
             <label for="f-topic">Topic of interest</label>
@@ -124,6 +130,10 @@
           </div>
           <button class="btn btn-lime" type="submit" style="width:100%">Send via WhatsApp</button>
         </form>
+        <!-- Populated by revamp-main.js after submit. Without this, a blocked popup
+             meant the enquiry vanished with zero feedback and the organiser assumed
+             it had sent. -->
+        <div id="sent-panel" class="sent-panel" hidden></div>
       </div>
 
       <div>
@@ -166,6 +176,7 @@
           <li><a href="research.html">Research</a></li>
           <li><a href="about.html">About &amp; awards</a></li>
           <li><a href="resources.html">Resources</a></li>
+          <li><a href="links/">All links</a></li>
         </ul>
       </div>
       <div>
@@ -174,7 +185,7 @@
           <li><a href="contact.html">Check availability</a></li>
           <li><a href="https://www.topmate.io/shankar_j" rel="noopener">1:1 on Topmate</a></li>
           <li><a href="https://api.whatsapp.com/send/?phone=%2B919344775577" rel="noopener">WhatsApp</a></li>
-          <li><a href="https://www.bit.ly/shankarjayaraj" rel="noopener">Poster media kit</a></li>
+          <li><a href="bio.html">Speaker bio &amp; media kit</a></li>
         </ul>
       </div>
       <div>
@@ -194,6 +205,6 @@
   </div>
 </footer>
 
-<script src="assets/js/revamp-main.js?v=20260709b"></script>
+<script src="assets/js/revamp-main.js?v=20260731a"></script>
 </body>
 </html>
