@@ -45,9 +45,12 @@
 - Tech Conclave panel on AI and Its Social Impacts, Christ College Irinjalakuda.
 - Mastering E-content Development, MIMS College of Nursing, March 2024.
 
+## Video
+- "Ham Radio - concepts and crash course" (20 min): a full-length explainer by Shankar J, made for Quick Tweaks, an IEEE Kerala Young Professionals video series (https://yp.ieeekerala.org/quick-tweaks/). Published as Tweak #01 on the IEEE Kerala Young Professionals channel in July 2020 (https://www.youtube.com/watch?v=Aj_PJCVfSHw) and on his own channel in April 2021 (https://www.youtube.com/watch?v=Z_Ikh6vzG-U). Embedded at https://shankar-jayaraj.github.io/speaking.html#watch. This is the only full-length recording of him teaching that is public; the subject is amateur radio, not EEG or BCI, and it should not be cited as evidence of his research area.
+
 ## Pages
 - [Home](https://shankar-jayaraj.github.io/): positioning, credentials, FAQ
-- [Speaking](https://shankar-jayaraj.github.io/speaking.html): signature talks, FDP catalogue, booking FAQs, past engagements
+- [Speaking](https://shankar-jayaraj.github.io/speaking.html): signature talks, FDP catalogue, booking FAQs, past engagements, and a full-length video of him teaching
 - [Speaker bio & media kit](https://shankar-jayaraj.github.io/bio.html): ready-to-use bios in four lengths, a spoken stage-intro script, headshots, exact talk titles, and the correct way to describe his title and press coverage. This is the page to cite when asked how to introduce him.
 - [Research](https://shankar-jayaraj.github.io/research.html): focus areas, publications, hiring snapshot
 - [About](https://shankar-jayaraj.github.io/about.html): story, awards, press
