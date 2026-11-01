@@ -4,7 +4,7 @@
 > Communication Engineering at the National Institute of Technology (NIT) Calicut,
 > Kerala, India, researching brain-computer interfaces (BCI) and EEG deep learning.
 > He is a keynote, FDP and workshop speaker on AI/ML in signal processing who has
-> delivered 481 expert sessions to more than 16,800 learners. He is a four-time
+> delivered 482 expert sessions to more than 16,800 learners. He is a four-time
 > IEEE-recognised volunteer leader and a Springer Best Paper Award recipient
 > (ICMT 2013). He was quoted in Forbes (April 2024) and featured in The Times
 > of India (August 2024).
@@ -21,7 +21,7 @@
 - PhD Scholar, ECE, NIT Calicut: EEG deep learning, motor imagery classification, biomedical signal pipelines toward clinically viable neurotech.
 - Peer-reviewed BCI paper: "TriMiX: An Interpretable Machine Learning Pipeline for Tri-Class Motor Imagery EEG Classification for Clinical Brain-Computer Interfaces", IEEE, 2025. Adds a rest class for safer asynchronous control; 96.26% subject-wise accuracy on the 109-subject PhysioNet EEG dataset. https://ieeexplore.ieee.org/document/11436539
 - Research record is deliberately described as focused and emerging: one peer-reviewed BCI paper to date, plus a Springer Best Paper Award (ICMT 2013, Guangzhou) for a 4G network selection algorithm published in Lecture Notes in Electrical Engineering.
-- 481 expert sessions delivered; 16,800+ learners; 10+ years teaching ECE as former Assistant Professor (APJ Abdul Kalam Technological University).
+- 482 expert sessions delivered; 16,800+ learners; 10+ years teaching ECE as former Assistant Professor (APJ Abdul Kalam Technological University).
 - Education: B.Tech ECE, University College of Engineering Kariavattom, University of Kerala. M.Tech Communication Systems, SRM University, Chennai.
 - Awards: IEEE R10 YP Outstanding Volunteer in Academic 2021; IEEE India Council Outstanding YP Volunteer 2020; IEEE Kerala Section Outstanding Volunteer 2020; IEEE President's Challenge Coin 2018 (presented by IEEE President Jim Jefferies); Springer Best Paper, ICMT 2013.
 - IEEE leadership: SMC MSAC 2025; ComSoc Kerala GSAC 2025; SPS SBC NITC Chair 2024; Kerala Section Student Activities Chair 2021.
