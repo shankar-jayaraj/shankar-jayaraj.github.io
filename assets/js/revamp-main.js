@@ -126,6 +126,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var base = document.body.getAttribute('data-base') || '';
 
+  // Numbers inside plain strings (the bio page's data-copy texts). Same rules as
+  // website/tools/sync_stats.py: a number is swapped only when it sits right before its word
+  // ("482 sessions", "16,800+ learners", "10+ years", "4× IEEE") and is within -20%/+25%.
+  function syncNumbers(str, s) {
+    var rules = [
+      ['sessionsDelivered', /(^|[^\d,])(\d{3,5})(?=\+?\s(?:expert\s|hands-on\s|invited\s)?sessions\b)/g],
+      ['learners', /(^|[^\d,])(\d{1,3}(?:,\d{2,3})+)(?=\+?\s[Ll]earners\b)/g],
+      ['yearsTeaching', /(^|[^\d,])(\d{1,2})(?=\+\s[Yy]ears\b)/g],
+      ['ieeeAwards', /(^|[^\d,])(\d{1,2})(?=\s?[×x]\s?IEEE)/g],
+      ['mentoredProjects', /(^|[^\d,])(\d{1,3})(?=\+?\s(?:mentored)\b)/g]
+    ];
+    rules.forEach(function (r) {
+      var v = Number(s[r[0]]);
+      if (!isFinite(v) || !v) return;
+      str = str.replace(r[1], function (m, pre, num) {
+        var old = Number(num.replace(/,/g, ''));
+        if (old < 0.8 * v || old > 1.25 * v) return m;
+        return pre + (r[0] === 'ieeeAwards' ? String(v) : v.toLocaleString('en-IN'));
+      });
+    });
+    return str;
+  }
+
   // ---- Stats: fetch canonical values, overwrite static fallbacks ----
   // no-store: this file changes independently of deploys, a stale cached copy would show an outdated number
   fetch(base + 'data/stats.json', { cache: 'no-store' })
@@ -138,6 +161,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (suffix === null) suffix = s[key + 'Suffix'] || '';
         setStat(el, s[key], suffix);
       });
+      // Copy buttons hold their text in an attribute; keep its numbers current too
+      document.querySelectorAll('[data-copy]').forEach(function (el) {
+        el.setAttribute('data-copy', syncNumbers(el.getAttribute('data-copy'), s));
+      });
+      document.title = syncNumbers(document.title, s);   // e.g. "From Five Students to 16,900+ Learners"
       // Speaker reel: shown only when a file path is configured
       var reelWrap = document.getElementById('speaker-reel');
       if (reelWrap && s.speakerReel) {
