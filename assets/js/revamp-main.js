@@ -227,6 +227,10 @@ document.addEventListener('DOMContentLoaded', function () {
                   encodeURIComponent(msg) + '&type=phone_number&app_absent=0';
       var win = window.open(waUrl, '_blank', 'noopener');
 
+      // Count the enquiry (assets/js/analytics.js). Only the fixed dropdown value goes to GA:
+      // never the name, organisation, date, audience or topic typed into the form.
+      if (window.sjLead) window.sjLead('booking_form', { cta_location: 'booking-form', engagement_type: val('#f-type') });
+
       // Always show the fallback. window.open returns null when the popup is
       // blocked, but it also returns a usable handle in cases where WhatsApp
       // never actually loads (no WhatsApp Web session, corporate machine).
@@ -277,6 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
         waLink.href = waUrl;
         waLink.target = '_blank';
         waLink.rel = 'noopener';
+        waLink.setAttribute('data-track', 'off'); // already counted as booking_form above
         waLink.textContent = 'Open WhatsApp';
         row.appendChild(waLink);
 
