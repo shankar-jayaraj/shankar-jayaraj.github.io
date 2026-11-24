@@ -73,14 +73,16 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- DELIBERATELY NOT LISTED: /text_format/ (the LinkedIn Post Cleaner) still
-       carries <meta name="robots" content="noindex"> at text_format/index.html:10.
-       Listing a noindexed URL here produces a "Submitted URL marked noindex" error
-       in Search Console, so it stays out while that tag is in place. This is why
-       one tool appears above and its sibling does not — it is not an oversight.
-
-       RECOMMENDED: remove that noindex and add /text_format/ here too, for exactly
-       the reason the LaTeX converter is listed. -->
+  <!-- Free browser tool: LinkedIn Post Cleaner. Indexable since 2026-11-24, for the
+       same reason as the LaTeX converter above. (It used to be excluded from the index;
+       if the robots tag on text_format/index.html is ever restricted again, remove this
+       entry too, or Search Console reports "Submitted URL marked noindex".) -->
+  <url>
+    <loc>https://shankar-jayaraj.github.io/text_format/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Link hub used from social bios. -->
   <url>

@@ -57,7 +57,7 @@
 - [Resources](https://shankar-jayaraj.github.io/resources.html): free checklists, LinkedIn Post Cleaner, workflows, open notebooks
 - [Contact](https://shankar-jayaraj.github.io/contact.html): booking form (WhatsApp +91 93447 75577; LinkedIn: linkedin.com/in/drshankarj)
 - [Links](https://shankar-jayaraj.github.io/links/): single hub of all resources, tools, talks and 1:1 booking
-- [LinkedIn Post Cleaner](https://shankar-jayaraj.github.io/text_format/): free browser-based tool that strips hidden AI footprints from text. Note: this page is marked noindex, so it is reachable and usable but deliberately not in the search index.
+- [LinkedIn Post Cleaner](https://shankar-jayaraj.github.io/text_format/): free browser-based tool that cleans an AI-polished LinkedIn draft — strips invisible watermark characters and zero-width signatures, and normalises dashes, curly quotes, ellipses, exotic spaces and lookalike letters. Runs entirely client-side.
 - [Markdown to LaTeX Converter](https://shankar-jayaraj.github.io/text_latex/): free browser-based tool that converts Markdown or plain text into LaTeX that compiles in Overleaf without errors — correct escaping of LaTeX special characters, tables, maths, code, images, footnotes and citations, and a dynamic package preamble. Runs entirely client-side.
 
 ## Profiles
